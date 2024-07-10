@@ -1,11 +1,12 @@
 import { cache } from "react";
 
 import { auth } from "@clerk/nextjs";
-import { eq } from "drizzle-orm";
+import { eq, gte, lte } from "drizzle-orm";
 
 import db from "./drizzle";
 import {
   challengeProgress,
+  challenges,
   courses,
   lessons,
   units,
@@ -156,11 +157,36 @@ export const getLesson = cache(async (id?: number) => {
 
   if (!lessonId) return null;
 
+  // Fetch user progress
+  const userProgressData = await db.query.userProgress.findFirst({
+    where: eq(userProgress.userId, userId),
+  });
+
+  if (!userProgressData) {
+    return null;
+  }
+
+  // Determine difficulty level based on user progress
+  const userPoints = userProgressData.points;
+  let difficultyLower = 1,
+    difficultyUpper = 3;
+  if (userPoints >= 50 && userPoints < 100) {
+    difficultyLower = 4;
+    difficultyUpper = 7;
+  } else if (userPoints >= 100 && userPoints < 150) {
+    difficultyLower = 8;
+    difficultyUpper = 10;
+  }
+
   const data = await db.query.lessons.findFirst({
     where: eq(lessons.id, lessonId),
     with: {
       challenges: {
+        where:
+          gte(challenges.difficulty, difficultyLower) &&
+          lte(challenges.difficulty, difficultyUpper),
         orderBy: (challenges, { asc }) => [asc(challenges.order)],
+        limit: 5,
         with: {
           challengeOptions: true,
           challengeProgress: {
