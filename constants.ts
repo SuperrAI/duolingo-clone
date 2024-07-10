@@ -1,8 +1,8 @@
 export const POINTS_TO_REFILL = 10;
 
-export const MAX_HEARTS = 5;
+export const MAX_HEARTS = 500;
 
-export const CHALLENGES_FOR_LESSON_COMPLETION = 5;
+export const CHALLENGES_FOR_LESSON_COMPLETION = 2;
 
 export const QUESTS = [
   {
