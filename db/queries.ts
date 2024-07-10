@@ -3,6 +3,7 @@ import { cache } from "react";
 import { auth } from "@clerk/nextjs";
 import { eq, gte, lte } from "drizzle-orm";
 
+import { CHALLENGES_FOR_LESSON_COMPLETION } from "@/constants";
 import db from "./drizzle";
 import {
   challengeProgress,
@@ -65,10 +66,9 @@ export const getUnits = cache(async () => {
 
   const normalizedData = data.map((unit) => {
     const lessonsWithCompletedStatus = unit.lessons.map((lesson) => {
-      if (lesson.challenges.length === 0)
-        return { ...lesson, completed: false };
+      if (lesson.challenges.length < 5) return { ...lesson, completed: false };
 
-      const allCompletedChallenges = lesson.challenges.every((challenge) => {
+      const completedChallenges = lesson.challenges.filter((challenge) => {
         return (
           challenge.challengeProgress &&
           challenge.challengeProgress.length > 0 &&
@@ -76,7 +76,11 @@ export const getUnits = cache(async () => {
         );
       });
 
-      return { ...lesson, completed: allCompletedChallenges };
+      return {
+        ...lesson,
+        completed:
+          completedChallenges.length >= CHALLENGES_FOR_LESSON_COMPLETION,
+      };
     });
 
     return { ...unit, lessons: lessonsWithCompletedStatus };
@@ -132,13 +136,14 @@ export const getCourseProgress = cache(async () => {
   const firstUncompletedLesson = unitsInActiveCourse
     .flatMap((unit) => unit.lessons)
     .find((lesson) => {
-      return lesson.challenges.some((challenge) => {
+      const completedChallenges = lesson.challenges.filter((challenge) => {
         return (
-          !challenge.challengeProgress ||
-          challenge.challengeProgress.length === 0 ||
-          challenge.challengeProgress.some((progress) => !progress.completed)
+          challenge.challengeProgress &&
+          challenge.challengeProgress.length > 0 &&
+          challenge.challengeProgress.every((progress) => progress.completed)
         );
       });
+      return completedChallenges.length < CHALLENGES_FOR_LESSON_COMPLETION;
     });
 
   return {
