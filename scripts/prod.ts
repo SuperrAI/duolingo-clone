@@ -14,7 +14,7 @@ const createTables = async () => {
     user_name TEXT NOT NULL DEFAULT 'User',
     user_image_src TEXT NOT NULL DEFAULT '/man.svg',
     active_course_id INTEGER REFERENCES courses(id) ON DELETE CASCADE,
-    hearts INTEGER NOT NULL DEFAULT 5,
+    hearts INTEGER NOT NULL DEFAULT 50,
     points INTEGER NOT NULL DEFAULT 0
   );`;
 
@@ -23,7 +23,8 @@ const createTables = async () => {
     lesson_id INTEGER,
     type VARCHAR(50),
     question TEXT,
-    challenge_order INTEGER
+    challenge_order INTEGER,
+    difficulty INTEGER
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS units (
