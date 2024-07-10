@@ -66,7 +66,7 @@ const LeaderboardPage = async () => {
             >
               <p className="mr-4 font-bold text-lime-700">{i + 1}</p>
 
-              <Avatar className="ml-3 mr-6 h-12 w-12 border bg-green-500">
+              <Avatar className="ml-3 mr-6 h-12 w-12 border bg-orange-500">
                 <AvatarImage
                   src={userProgress.userImageSrc}
                   className="object-cover"
