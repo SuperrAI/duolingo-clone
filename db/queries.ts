@@ -175,7 +175,7 @@ export const getLesson = cache(async (id?: number) => {
     difficultyUpper = 7;
   } else if (userPoints >= 100 && userPoints < 150) {
     difficultyLower = 8;
-    difficultyUpper = 10;
+    difficultyUpper = 20;
   }
 
   const data = await db.query.lessons.findFirst({

@@ -130,36 +130,42 @@ const main = async () => {
                 type: "SELECT",
                 question: "Write 5 million, 3 thousand, and 21 in numerals.",
                 order: 1,
+                difficulty: 9,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
                 question: "In the number 3,456, what place value is the 4 in?",
                 order: 2,
+                difficulty: 5,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
                 question: "What is the result of 2^3 x 3^2?",
                 order: 3,
+                difficulty: 10,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
                 question: "Solve for x: 3x + 7 = 22",
                 order: 4,
+                difficulty: 11,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
                 question: "What is 25% of 80?",
                 order: 5,
+                difficulty: 1,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
                 question: "Convert 3/8 to a decimal.",
                 order: 6,
+                difficulty: 4,
               },
               {
                 lessonId: lesson.id,
@@ -167,6 +173,7 @@ const main = async () => {
                 question:
                   "Find the area of a rectangle with length 9 cm and width 6 cm.",
                 order: 7,
+                difficulty: 3,
               },
               {
                 lessonId: lesson.id,
@@ -174,12 +181,14 @@ const main = async () => {
                 question:
                   "What is the greatest common factor (GCF) of 24 and 36?",
                 order: 8,
+                difficulty: 7,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
                 question: "Simplify: -4 + (-7) - (+2)",
                 order: 9,
+                difficulty: 6,
               },
               {
                 lessonId: lesson.id,
@@ -187,6 +196,7 @@ const main = async () => {
                 question:
                   "If a triangle has angles measuring 30° and 60°, what is the measure of the third angle?",
                 order: 10,
+                difficulty: 8,
               },
               {
                 lessonId: lesson.id,
@@ -194,12 +204,14 @@ const main = async () => {
                 question:
                   "What is the value of π (pi) rounded to two decimal places?",
                 order: 11,
+                difficulty: 2,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
                 question: "Solve: 2(x + 3) = 14",
                 order: 12,
+                difficulty: 12,
               },
             ])
             .returning();
