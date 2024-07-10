@@ -8,10 +8,74 @@ const sql = neon(process.env.DATABASE_URL);
 
 const db = drizzle(sql, { schema });
 
+const createTables = async () => {
+  await sql`CREATE TABLE IF NOT EXISTS user_progress (
+    user_id TEXT PRIMARY KEY,
+    user_name TEXT NOT NULL DEFAULT 'User',
+    user_image_src TEXT NOT NULL DEFAULT '/man.svg',
+    active_course_id INTEGER REFERENCES courses(id) ON DELETE CASCADE,
+    hearts INTEGER NOT NULL DEFAULT 5,
+    points INTEGER NOT NULL DEFAULT 0
+  );`;
+
+  await sql`CREATE TABLE IF NOT EXISTS challenges (
+    id SERIAL PRIMARY KEY,
+    lesson_id INTEGER,
+    type VARCHAR(50),
+    question TEXT,
+    challenge_order INTEGER
+  );`;
+
+  await sql`CREATE TABLE IF NOT EXISTS units (
+    id SERIAL PRIMARY KEY,
+    course_id INTEGER,
+    title VARCHAR(255),
+    description TEXT,
+    unit_order INTEGER
+  );`;
+
+  await sql`CREATE TABLE IF NOT EXISTS lessons (
+    id SERIAL PRIMARY KEY,
+    unit_id INTEGER,
+    title VARCHAR(255),
+    lesson_order INTEGER
+  );`;
+
+  await sql`CREATE TABLE IF NOT EXISTS courses (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255),
+    image_src VARCHAR(255),
+    course_order INTEGER
+  );`;
+
+  await sql`CREATE TABLE IF NOT EXISTS challenge_options (
+    id SERIAL PRIMARY KEY,
+    challenge_id INTEGER,
+    correct BOOLEAN,
+    text TEXT,
+    image_src VARCHAR(255),
+    audio_src VARCHAR(255)
+  );`;
+
+  await sql`CREATE TABLE IF NOT EXISTS user_subscription (
+    id SERIAL PRIMARY KEY,
+    user_id TEXT NOT NULL UNIQUE,
+    stripe_customer_id TEXT NOT NULL UNIQUE,
+    stripe_subscription_id TEXT NOT NULL UNIQUE,
+    stripe_price_id TEXT NOT NULL,
+    stripe_current_period_end TIMESTAMP NOT NULL
+  );`;
+
+  await sql`CREATE TABLE IF NOT EXISTS challenge_progress (
+      id SERIAL PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      challenge_id INTEGER NOT NULL REFERENCES challenges(id) ON DELETE CASCADE,
+      completed BOOLEAN NOT NULL DEFAULT FALSE
+    );`;
+};
+
 const main = async () => {
   try {
-    console.log("Seeding database");
-
     // Delete all existing data
     await Promise.all([
       db.delete(schema.userProgress),
@@ -23,10 +87,16 @@ const main = async () => {
       db.delete(schema.userSubscription),
     ]);
 
+    console.log("Creating tables");
+    await createTables();
+    console.log("Tables created");
+
+    console.log("Seeding database");
+
     // Insert courses
     const courses = await db
       .insert(schema.courses)
-      .values([{ title: "Spanish", imageSrc: "/es.svg" }])
+      .values([{ title: "Math", imageSrc: "/man.svg" }])
       .returning();
 
     // For each course, insert units
@@ -37,14 +107,8 @@ const main = async () => {
           {
             courseId: course.id,
             title: "Unit 1",
-            description: `Learn the basics of ${course.title}`,
+            description: `Basic Math Questions`,
             order: 1,
-          },
-          {
-            courseId: course.id,
-            title: "Unit 2",
-            description: `Learn intermediate ${course.title}`,
-            order: 2,
           },
         ])
         .returning();
@@ -53,13 +117,7 @@ const main = async () => {
       for (const unit of units) {
         const lessons = await db
           .insert(schema.lessons)
-          .values([
-            { unitId: unit.id, title: "Nouns", order: 1 },
-            { unitId: unit.id, title: "Verbs", order: 2 },
-            { unitId: unit.id, title: "Adjectives", order: 3 },
-            { unitId: unit.id, title: "Phrases", order: 4 },
-            { unitId: unit.id, title: "Sentences", order: 5 },
-          ])
+          .values([{ unitId: unit.id, title: "Lesson 1", order: 1 }])
           .returning();
 
         // For each lesson, insert challenges
@@ -70,50 +128,78 @@ const main = async () => {
               {
                 lessonId: lesson.id,
                 type: "SELECT",
-                question: 'Which one of these is "the man"?',
+                question: "Write 5 million, 3 thousand, and 21 in numerals.",
                 order: 1,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
-                question: 'Which one of these is "the woman"?',
+                question: "In the number 3,456, what place value is the 4 in?",
                 order: 2,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
-                question: 'Which one of these is "the boy"?',
+                question: "What is the result of 2^3 x 3^2?",
                 order: 3,
               },
               {
                 lessonId: lesson.id,
-                type: "ASSIST",
-                question: '"the man"',
+                type: "SELECT",
+                question: "Solve for x: 3x + 7 = 22",
                 order: 4,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
-                question: 'Which one of these is "the zombie"?',
+                question: "What is 25% of 80?",
                 order: 5,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
-                question: 'Which one of these is "the robot"?',
+                question: "Convert 3/8 to a decimal.",
                 order: 6,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
-                question: 'Which one of these is "the girl"?',
+                question:
+                  "Find the area of a rectangle with length 9 cm and width 6 cm.",
                 order: 7,
               },
               {
                 lessonId: lesson.id,
-                type: "ASSIST",
-                question: '"the zombie"',
+                type: "SELECT",
+                question:
+                  "What is the greatest common factor (GCF) of 24 and 36?",
                 order: 8,
+              },
+              {
+                lessonId: lesson.id,
+                type: "SELECT",
+                question: "Simplify: -4 + (-7) - (+2)",
+                order: 9,
+              },
+              {
+                lessonId: lesson.id,
+                type: "SELECT",
+                question:
+                  "If a triangle has angles measuring 30° and 60°, what is the measure of the third angle?",
+                order: 10,
+              },
+              {
+                lessonId: lesson.id,
+                type: "SELECT",
+                question:
+                  "What is the value of π (pi) rounded to two decimal places?",
+                order: 11,
+              },
+              {
+                lessonId: lesson.id,
+                type: "SELECT",
+                question: "Solve: 2(x + 3) = 14",
+                order: 12,
               },
             ])
             .returning();
@@ -125,200 +211,116 @@ const main = async () => {
                 {
                   challengeId: challenge.id,
                   correct: true,
-                  text: "el hombre",
-                  imageSrc: "/man.svg",
-                  audioSrc: "/es_man.mp3",
+                  text: "5,003,021",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "la mujer",
-                  imageSrc: "/woman.svg",
-                  audioSrc: "/es_woman.mp3",
+                  text: "5,300,021",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el chico",
-                  imageSrc: "/boy.svg",
-                  audioSrc: "/es_boy.mp3",
+                  text: "5,030,021",
+                },
+                {
+                  challengeId: challenge.id,
+                  correct: false,
+                  text: "5,000,321",
                 },
               ]);
-            }
-
-            if (challenge.order === 2) {
-              await db.insert(schema.challengeOptions).values([
-                {
-                  challengeId: challenge.id,
-                  correct: true,
-                  text: "la mujer",
-                  imageSrc: "/woman.svg",
-                  audioSrc: "/es_woman.mp3",
-                },
-                {
-                  challengeId: challenge.id,
-                  correct: false,
-                  text: "el chico",
-                  imageSrc: "/boy.svg",
-                  audioSrc: "/es_boy.mp3",
-                },
-                {
-                  challengeId: challenge.id,
-                  correct: false,
-                  text: "el hombre",
-                  imageSrc: "/man.svg",
-                  audioSrc: "/es_man.mp3",
-                },
-              ]);
-            }
-
-            if (challenge.order === 3) {
+            } else if (challenge.order === 2) {
               await db.insert(schema.challengeOptions).values([
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "la mujer",
-                  imageSrc: "/woman.svg",
-                  audioSrc: "/es_woman.mp3",
+                  text: "Ones",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el hombre",
-                  imageSrc: "/man.svg",
-                  audioSrc: "/es_man.mp3",
+                  text: "Tens",
                 },
                 {
                   challengeId: challenge.id,
                   correct: true,
-                  text: "el chico",
-                  imageSrc: "/boy.svg",
-                  audioSrc: "/es_boy.mp3",
+                  text: "Hundreds",
+                },
+                {
+                  challengeId: challenge.id,
+                  correct: false,
+                  text: "Thousands",
                 },
               ]);
-            }
-
-            if (challenge.order === 4) {
+            } else if (challenge.order === 3) {
               await db.insert(schema.challengeOptions).values([
-                {
-                  challengeId: challenge.id,
-                  correct: false,
-                  text: "la mujer",
-                  audioSrc: "/es_woman.mp3",
-                },
-                {
-                  challengeId: challenge.id,
-                  correct: true,
-                  text: "el hombre",
-                  audioSrc: "/es_man.mp3",
-                },
-                {
-                  challengeId: challenge.id,
-                  correct: false,
-                  text: "el chico",
-                  audioSrc: "/es_boy.mp3",
-                },
+                { challengeId: challenge.id, correct: true, text: "72" },
+                { challengeId: challenge.id, correct: false, text: "36" },
+                { challengeId: challenge.id, correct: false, text: "64" },
+                { challengeId: challenge.id, correct: false, text: "81" },
               ]);
-            }
-
-            if (challenge.order === 5) {
+            } else if (challenge.order === 4) {
               await db.insert(schema.challengeOptions).values([
-                {
-                  challengeId: challenge.id,
-                  correct: false,
-                  text: "el hombre",
-                  imageSrc: "/man.svg",
-                  audioSrc: "/es_man.mp3",
-                },
-                {
-                  challengeId: challenge.id,
-                  correct: false,
-                  text: "la mujer",
-                  imageSrc: "/woman.svg",
-                  audioSrc: "/es_woman.mp3",
-                },
-                {
-                  challengeId: challenge.id,
-                  correct: true,
-                  text: "el zombie",
-                  imageSrc: "/zombie.svg",
-                  audioSrc: "/es_zombie.mp3",
-                },
+                { challengeId: challenge.id, correct: true, text: "5" },
+                { challengeId: challenge.id, correct: false, text: "7" },
+                { challengeId: challenge.id, correct: false, text: "4" },
+                { challengeId: challenge.id, correct: false, text: "6" },
               ]);
-            }
-
-            if (challenge.order === 6) {
+            } else if (challenge.order === 5) {
               await db.insert(schema.challengeOptions).values([
-                {
-                  challengeId: challenge.id,
-                  correct: true,
-                  text: "el robot",
-                  imageSrc: "/robot.svg",
-                  audioSrc: "/es_robot.mp3",
-                },
-                {
-                  challengeId: challenge.id,
-                  correct: false,
-                  text: "el zombie",
-                  imageSrc: "/zombie.svg",
-                  audioSrc: "/es_zombie.mp3",
-                },
-                {
-                  challengeId: challenge.id,
-                  correct: false,
-                  text: "el chico",
-                  imageSrc: "/boy.svg",
-                  audioSrc: "/es_boy.mp3",
-                },
+                { challengeId: challenge.id, correct: true, text: "20" },
+                { challengeId: challenge.id, correct: false, text: "15" },
+                { challengeId: challenge.id, correct: false, text: "25" },
+                { challengeId: challenge.id, correct: false, text: "30" },
               ]);
-            }
-
-            if (challenge.order === 7) {
+            } else if (challenge.order === 6) {
               await db.insert(schema.challengeOptions).values([
-                {
-                  challengeId: challenge.id,
-                  correct: true,
-                  text: "la nina",
-                  imageSrc: "/girl.svg",
-                  audioSrc: "/es_girl.mp3",
-                },
-                {
-                  challengeId: challenge.id,
-                  correct: false,
-                  text: "el zombie",
-                  imageSrc: "/zombie.svg",
-                  audioSrc: "/es_zombie.mp3",
-                },
-                {
-                  challengeId: challenge.id,
-                  correct: false,
-                  text: "el hombre",
-                  imageSrc: "/man.svg",
-                  audioSrc: "/es_man.mp3",
-                },
+                { challengeId: challenge.id, correct: true, text: "0.375" },
+                { challengeId: challenge.id, correct: false, text: "0.3" },
+                { challengeId: challenge.id, correct: false, text: "0.38" },
+                { challengeId: challenge.id, correct: false, text: "0.4" },
               ]);
-            }
-
-            if (challenge.order === 8) {
+            } else if (challenge.order === 7) {
               await db.insert(schema.challengeOptions).values([
-                {
-                  challengeId: challenge.id,
-                  correct: false,
-                  text: "la mujer",
-                  audioSrc: "/es_woman.mp3",
-                },
-                {
-                  challengeId: challenge.id,
-                  correct: true,
-                  text: "el zombie",
-                  audioSrc: "/es_zombie.mp3",
-                },
-                {
-                  challengeId: challenge.id,
-                  correct: false,
-                  text: "el chico",
-                  audioSrc: "/es_boy.mp3",
-                },
+                { challengeId: challenge.id, correct: true, text: "54 cm²" },
+                { challengeId: challenge.id, correct: false, text: "30 cm²" },
+                { challengeId: challenge.id, correct: false, text: "45 cm²" },
+                { challengeId: challenge.id, correct: false, text: "60 cm²" },
+              ]);
+            } else if (challenge.order === 8) {
+              await db.insert(schema.challengeOptions).values([
+                { challengeId: challenge.id, correct: true, text: "12" },
+                { challengeId: challenge.id, correct: false, text: "6" },
+                { challengeId: challenge.id, correct: false, text: "18" },
+                { challengeId: challenge.id, correct: false, text: "24" },
+              ]);
+            } else if (challenge.order === 9) {
+              await db.insert(schema.challengeOptions).values([
+                { challengeId: challenge.id, correct: true, text: "-13" },
+                { challengeId: challenge.id, correct: false, text: "-9" },
+                { challengeId: challenge.id, correct: false, text: "-11" },
+                { challengeId: challenge.id, correct: false, text: "-15" },
+              ]);
+            } else if (challenge.order === 10) {
+              await db.insert(schema.challengeOptions).values([
+                { challengeId: challenge.id, correct: true, text: "90°" },
+                { challengeId: challenge.id, correct: false, text: "80°" },
+                { challengeId: challenge.id, correct: false, text: "100°" },
+                { challengeId: challenge.id, correct: false, text: "120°" },
+              ]);
+            } else if (challenge.order === 11) {
+              await db.insert(schema.challengeOptions).values([
+                { challengeId: challenge.id, correct: true, text: "3.14" },
+                { challengeId: challenge.id, correct: false, text: "3.12" },
+                { challengeId: challenge.id, correct: false, text: "3.16" },
+                { challengeId: challenge.id, correct: false, text: "3.18" },
+              ]);
+            } else if (challenge.order === 12) {
+              await db.insert(schema.challengeOptions).values([
+                { challengeId: challenge.id, correct: true, text: "4" },
+                { challengeId: challenge.id, correct: false, text: "5" },
+                { challengeId: challenge.id, correct: false, text: "3" },
+                { challengeId: challenge.id, correct: false, text: "6" },
               ]);
             }
           }

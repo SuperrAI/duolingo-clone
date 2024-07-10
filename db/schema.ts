@@ -31,7 +31,7 @@ export const units = pgTable("units", {
       onDelete: "cascade",
     })
     .notNull(),
-  order: integer("order").notNull(),
+  order: integer("unit_order").notNull(),
 });
 
 export const unitsRelations = relations(units, ({ many, one }) => ({
@@ -50,7 +50,7 @@ export const lessons = pgTable("lessons", {
       onDelete: "cascade",
     })
     .notNull(),
-  order: integer("order").notNull(),
+  order: integer("lesson_order").notNull(),
 });
 
 export const lessonsRelations = relations(lessons, ({ one, many }) => ({
@@ -72,7 +72,7 @@ export const challenges = pgTable("challenges", {
     .notNull(),
   type: challengesEnum("type").notNull(),
   question: text("question").notNull(),
-  order: integer("order").notNull(),
+  order: integer("challenge_order").notNull(),
 });
 
 export const challengesRelations = relations(challenges, ({ one, many }) => ({
