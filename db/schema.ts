@@ -39,10 +39,10 @@ export const chaptersRelations = relations(chapters, ({ many, one }) => ({
     fields: [chapters.subjectId],
     references: [subjects.id],
   }),
-  skills: many(skills),
+  topics: many(topics),
 }));
 
-export const skills = pgTable("skills", {
+export const topics = pgTable("topics", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   chapterId: integer("chapter_id")
@@ -50,12 +50,12 @@ export const skills = pgTable("skills", {
       onDelete: "cascade",
     })
     .notNull(),
-  order: integer("skill_order").notNull(),
+  order: integer("topic_order").notNull(),
 });
 
-export const skillsRelations = relations(skills, ({ one, many }) => ({
+export const topicsRelations = relations(topics, ({ one, many }) => ({
   chapter: one(chapters, {
-    fields: [skills.chapterId],
+    fields: [topics.chapterId],
     references: [chapters.id],
   }),
   challenges: many(challenges),
@@ -65,8 +65,8 @@ export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST"]);
 
 export const challenges = pgTable("challenges", {
   id: serial("id").primaryKey(),
-  skillId: integer("skill_id")
-    .references(() => skills.id, {
+  topicId: integer("topic_id")
+    .references(() => topics.id, {
       onDelete: "cascade",
     })
     .notNull(),
@@ -77,9 +77,9 @@ export const challenges = pgTable("challenges", {
 });
 
 export const challengesRelations = relations(challenges, ({ one, many }) => ({
-  skill: one(skills, {
-    fields: [challenges.skillId],
-    references: [skills.id],
+  topic: one(topics, {
+    fields: [challenges.topicId],
+    references: [topics.id],
   }),
   challengeOptions: many(challengeOptions),
   challengeProgress: many(challengeProgress),
@@ -133,11 +133,11 @@ export const challengeProgressRelations = relations(
   })
 );
 
-export const skillProgress = pgTable("skill_progress", {
+export const topicProgress = pgTable("topic_progress", {
   id: serial("id").primaryKey(),
   userId: text("user_id").notNull(),
-  skillId: integer("skill_id")
-    .references(() => skills.id, {
+  topicId: integer("topic_id")
+    .references(() => topics.id, {
       onDelete: "cascade",
     })
     .notNull(),
@@ -148,14 +148,14 @@ export const skillProgress = pgTable("skill_progress", {
   lastAttemptedAt: timestamp("last_attempted_at").notNull().defaultNow(),
 });
 
-export const skillProgressRelations = relations(skillProgress, ({ one }) => ({
+export const topicProgressRelations = relations(topicProgress, ({ one }) => ({
   user: one(userProgress, {
-    fields: [skillProgress.userId],
+    fields: [topicProgress.userId],
     references: [userProgress.userId],
   }),
-  skill: one(skills, {
-    fields: [skillProgress.skillId],
-    references: [skills.id],
+  topic: one(topics, {
+    fields: [topicProgress.topicId],
+    references: [topics.id],
   }),
 }));
 
@@ -168,7 +168,7 @@ export const userProgress = pgTable("user_progress", {
   }),
   hearts: integer("hearts").notNull().default(MAX_HEARTS),
   points: integer("points").notNull().default(0),
-  currentSkillId: integer("current_skill_id").references(() => skills.id),
+  currentTopicId: integer("current_topic_id").references(() => topics.id),
   lastAttemptedChallengeId: integer("last_attempted_challenge_id").references(
     () => challenges.id
   ),

@@ -24,7 +24,7 @@ export const upsertUserProgress = async (subjectId: number) => {
 
   if (!subject) throw new Error("Subject not found.");
 
-  if (!subject.chapters.length || !subject.chapters[0].skills.length)
+  if (!subject.chapters.length || !subject.chapters[0].topics.length)
     throw new Error("Subject is empty.");
 
   const existingUserProgress = await getUserProgress();
@@ -67,7 +67,7 @@ export const reduceHearts = async (challengeId: number) => {
 
   if (!challenge) throw new Error("Challenge not found.");
 
-  const skillId = challenge.skillId;
+  const topicId = challenge.topicId;
 
   const existingChallengeProgress = await db.query.challengeProgress.findFirst({
     where: and(
@@ -97,7 +97,7 @@ export const reduceHearts = async (challengeId: number) => {
   revalidatePath("/learn");
   revalidatePath("/quests");
   revalidatePath("/leaderboard");
-  revalidatePath(`/skill/${skillId}`);
+  revalidatePath(`/topic/${topicId}`);
 };
 
 export const refillHearts = async () => {

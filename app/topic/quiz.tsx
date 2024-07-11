@@ -23,8 +23,8 @@ import { ResultCard } from "./result-card";
 type QuizProps = {
   initialPercentage: number;
   initialHearts: number;
-  initialSkillId: number;
-  initialSkillChallenges: (typeof challenges.$inferSelect & {
+  initialTopicId: number;
+  initialTopicChallenges: (typeof challenges.$inferSelect & {
     completed: boolean;
     challengeOptions: (typeof challengeOptions.$inferSelect)[];
   })[];
@@ -38,8 +38,8 @@ type QuizProps = {
 export const Quiz = ({
   initialPercentage,
   initialHearts,
-  initialSkillId,
-  initialSkillChallenges,
+  initialTopicId,
+  initialTopicChallenges,
   userSubscription,
 }: QuizProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -63,12 +63,12 @@ export const Quiz = ({
     if (initialPercentage === 100) openPracticeModal();
   });
 
-  const [skillId] = useState(initialSkillId);
+  const [topicId] = useState(initialTopicId);
   const [hearts, setHearts] = useState(initialHearts);
   const [percentage, setPercentage] = useState(() => {
     return initialPercentage === 100 ? 0 : initialPercentage;
   });
-  const [challenges] = useState(initialSkillChallenges);
+  const [challenges] = useState(initialTopicChallenges);
   const [activeIndex, setActiveIndex] = useState(() => {
     const uncompletedIndex = challenges.findIndex(
       (challenge) => !challenge.completed
@@ -172,7 +172,7 @@ export const Quiz = ({
           />
 
           <h1 className="text-lg font-bold text-neutral-700 lg:text-3xl">
-            Great job! <br /> You&apos;ve completed the skill.
+            Great job! <br /> You&apos;ve completed the topic.
           </h1>
 
           <div className="flex w-full items-center gap-x-4">
@@ -185,7 +185,7 @@ export const Quiz = ({
         </div>
 
         <Footer
-          skillId={skillId}
+          topicId={topicId}
           status="completed"
           onCheck={() => router.push("/learn")}
         />

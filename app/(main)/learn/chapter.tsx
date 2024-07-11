@@ -1,6 +1,6 @@
-import { skills, chapters } from "@/db/schema";
+import { topics, chapters } from "@/db/schema";
 
-import { SkillButton } from "./skill-button";
+import { TopicButton } from "./topic-button";
 import { ChapterBanner } from "./chapter-banner";
 
 type ChapterProps = {
@@ -8,42 +8,42 @@ type ChapterProps = {
   order: number;
   title: string;
   description: string;
-  skills: (typeof skills.$inferSelect & {
+  topics: (typeof topics.$inferSelect & {
     completed: boolean;
   })[];
-  activeSkill:
-    | (typeof skills.$inferSelect & {
+  activeTopic:
+    | (typeof topics.$inferSelect & {
         chapter: typeof chapters.$inferSelect;
       })
     | undefined;
-  activeSkillPercentage: number;
+  activeTopicPercentage: number;
 };
 
 export const Chapter = ({
   title,
   description,
-  skills,
-  activeSkill,
-  activeSkillPercentage,
+  topics,
+  activeTopic,
+  activeTopicPercentage,
 }: ChapterProps) => {
   return (
     <>
       <ChapterBanner title={title} description={description} />
 
       <div className="relative flex flex-col items-center">
-        {skills.map((skill, i) => {
-          const isCurrent = skill.id === activeSkill?.id;
-          const isLocked = !skill.completed && !isCurrent;
+        {topics.map((topic, i) => {
+          const isCurrent = topic.id === activeTopic?.id;
+          const isLocked = !topic.completed && !isCurrent;
 
           return (
-            <SkillButton
-              key={skill.id}
-              id={skill.id}
+            <TopicButton
+              key={topic.id}
+              id={topic.id}
               index={i}
-              totalCount={skills.length - 1}
+              totalCount={topics.length - 1}
               current={isCurrent}
               locked={isLocked}
-              percentage={activeSkillPercentage}
+              percentage={activeTopicPercentage}
             />
           );
         })}

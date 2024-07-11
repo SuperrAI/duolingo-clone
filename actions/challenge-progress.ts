@@ -10,7 +10,7 @@ import { getUserProgress, getUserSubscription } from "@/db/queries";
 import {
   challengeProgress,
   challenges,
-  skillProgress,
+  topicProgress,
   userProgress,
 } from "@/db/schema";
 
@@ -33,7 +33,7 @@ export const upsertChallengeProgress = async (
 
   if (!challenge) throw new Error("Challenge not found.");
 
-  const skillId = challenge.skillId;
+  const topicId = challenge.topicId;
 
   const existingChallengeProgress = await db.query.challengeProgress.findFirst({
     where: and(
@@ -68,10 +68,10 @@ export const upsertChallengeProgress = async (
       .where(eq(userProgress.userId, userId));
 
     revalidatePath("/learn");
-    revalidatePath("/skill");
+    revalidatePath("/topic");
     revalidatePath("/quests");
     revalidatePath("/leaderboard");
-    revalidatePath(`/skill/${skillId}`);
+    revalidatePath(`/topic/${topicId}`);
     return;
   }
 
@@ -81,31 +81,31 @@ export const upsertChallengeProgress = async (
     completed: true,
   });
 
-  const skillProgressData = await db.query.skillProgress.findFirst({
+  const topicProgressData = await db.query.topicProgress.findFirst({
     where: and(
-      eq(skillProgress.userId, userId),
-      eq(skillProgress.skillId, skillId)
+      eq(topicProgress.userId, userId),
+      eq(topicProgress.topicId, topicId)
     ),
   });
 
-  if (!skillProgressData) {
-    // Create new skill progress if it doesn't exist
-    await db.insert(skillProgress).values({
+  if (!topicProgressData) {
+    // Create new topic progress if it doesn't exist
+    await db.insert(topicProgress).values({
       userId,
-      skillId,
+      topicId,
       currentDifficulty: 1,
       correctAnswers: isCorrect ? 1 : 0,
       totalAttempts: 1,
     });
   } else {
-    // Update existing skill progress
+    // Update existing topic progress
     const newCorrectAnswers = isCorrect
-      ? skillProgressData.correctAnswers + 1
-      : skillProgressData.correctAnswers;
-    const newTotalAttempts = skillProgressData.totalAttempts + 1;
+      ? topicProgressData.correctAnswers + 1
+      : topicProgressData.correctAnswers;
+    const newTotalAttempts = topicProgressData.totalAttempts + 1;
     const accuracy = newCorrectAnswers / newTotalAttempts;
 
-    let newDifficulty = skillProgressData.currentDifficulty;
+    let newDifficulty = topicProgressData.currentDifficulty;
     if (accuracy > 0.8 && newDifficulty < 3) {
       newDifficulty++;
     } else if (accuracy < 0.5 && newDifficulty > 1) {
@@ -113,13 +113,13 @@ export const upsertChallengeProgress = async (
     }
 
     await db
-      .update(skillProgress)
+      .update(topicProgress)
       .set({
         currentDifficulty: newDifficulty,
         correctAnswers: newCorrectAnswers,
         totalAttempts: newTotalAttempts,
       })
-      .where(eq(skillProgress.id, skillProgressData.id));
+      .where(eq(topicProgress.id, topicProgressData.id));
   }
 
   await db
@@ -130,8 +130,8 @@ export const upsertChallengeProgress = async (
     .where(eq(userProgress.userId, userId));
 
   revalidatePath("/learn");
-  revalidatePath("/skill");
+  revalidatePath("/topic");
   revalidatePath("/quests");
   revalidatePath("/leaderboard");
-  revalidatePath(`/skill/${skillId}`);
+  revalidatePath(`/topic/${topicId}`);
 };

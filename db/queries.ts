@@ -10,9 +10,9 @@ import {
   challengeProgress,
   challenges,
   chapters,
-  skillProgress,
-  skills,
   subjects,
+  topicProgress,
+  topics,
   userProgress,
   userSubscription,
 } from "./schema";
@@ -50,8 +50,8 @@ export const getChapters = cache(async () => {
     where: eq(chapters.subjectId, userProgress.activeSubjectId),
     orderBy: (chapters, { asc }) => [asc(chapters.order)],
     with: {
-      skills: {
-        orderBy: (skills, { asc }) => [asc(skills.order)],
+      topics: {
+        orderBy: (topics, { asc }) => [asc(topics.order)],
         with: {
           challenges: {
             orderBy: (challenges, { asc }) => [asc(challenges.order)],
@@ -67,10 +67,10 @@ export const getChapters = cache(async () => {
   });
 
   const normalizedData = data.map((chapter) => {
-    const skillsWithCompletedStatus = chapter.skills.map((skill) => {
-      if (skill.challenges.length < 5) return { ...skill, completed: false };
+    const topicsWithCompletedStatus = chapter.topics.map((topic) => {
+      if (topic.challenges.length < 5) return { ...topic, completed: false };
 
-      const completedChallenges = skill.challenges.filter((challenge) => {
+      const completedChallenges = topic.challenges.filter((challenge) => {
         return (
           challenge.challengeProgress &&
           challenge.challengeProgress.length > 0 &&
@@ -79,13 +79,13 @@ export const getChapters = cache(async () => {
       });
 
       return {
-        ...skill,
+        ...topic,
         completed:
           completedChallenges.length >= CHALLENGES_FOR_LESSON_COMPLETION,
       };
     });
 
-    return { ...chapter, skills: skillsWithCompletedStatus };
+    return { ...chapter, topics: topicsWithCompletedStatus };
   });
 
   return normalizedData;
@@ -98,8 +98,8 @@ export const getSubjectById = cache(async (subjectId: number) => {
       chapters: {
         orderBy: (chapters, { asc }) => [asc(chapters.order)],
         with: {
-          skills: {
-            orderBy: (skills, { asc }) => [asc(skills.order)],
+          topics: {
+            orderBy: (topics, { asc }) => [asc(topics.order)],
           },
         },
       },
@@ -119,8 +119,8 @@ export const getSubjectProgress = cache(async () => {
     orderBy: (chapters, { asc }) => [asc(chapters.order)],
     where: eq(chapters.subjectId, userProgress.activeSubjectId),
     with: {
-      skills: {
-        orderBy: (skills, { asc }) => [asc(skills.order)],
+      topics: {
+        orderBy: (topics, { asc }) => [asc(topics.order)],
         with: {
           chapter: true,
           challenges: {
@@ -135,10 +135,10 @@ export const getSubjectProgress = cache(async () => {
     },
   });
 
-  const firstUncompletedSkill = chaptersInActiveSubject
-    .flatMap((chapter) => chapter.skills)
-    .find((skill) => {
-      const completedChallenges = skill.challenges.filter((challenge) => {
+  const firstUncompletedTopic = chaptersInActiveSubject
+    .flatMap((chapter) => chapter.topics)
+    .find((topic) => {
+      const completedChallenges = topic.challenges.filter((challenge) => {
         return (
           challenge.challengeProgress &&
           challenge.challengeProgress.length > 0 &&
@@ -149,20 +149,20 @@ export const getSubjectProgress = cache(async () => {
     });
 
   return {
-    activeSkill: firstUncompletedSkill,
-    activeSkillId: firstUncompletedSkill?.id,
+    activeTopic: firstUncompletedTopic,
+    activeTopicId: firstUncompletedTopic?.id,
   };
 });
 
-export const getSkill = cache(async (id?: number) => {
+export const getTopic = cache(async (id?: number) => {
   const { userId } = auth();
 
   if (!userId) return null;
 
   const subjectProgress = await getSubjectProgress();
-  const skillId = id || subjectProgress?.activeSkillId;
+  const topicId = id || subjectProgress?.activeTopicId;
 
-  if (!skillId) return null;
+  if (!topicId) return null;
 
   // Fetch user progress
   const userProgressData = await db.query.userProgress.findFirst({
@@ -173,19 +173,19 @@ export const getSkill = cache(async (id?: number) => {
     return null;
   }
 
-  // Fetch skill progress
-  const skillProgressData = await db.query.skillProgress.findFirst({
+  // Fetch topic progress
+  const topicProgressData = await db.query.topicProgress.findFirst({
     where: and(
-      eq(skillProgress.userId, userId),
-      eq(skillProgress.skillId, skillId)
+      eq(topicProgress.userId, userId),
+      eq(topicProgress.topicId, topicId)
     ),
   });
 
-  // Determine difficulty level based on skill progress
-  const difficulty = skillProgressData?.currentDifficulty || 1;
+  // Determine difficulty level based on topic progress
+  const difficulty = topicProgressData?.currentDifficulty || 1;
 
-  const data = await db.query.skills.findFirst({
-    where: eq(skills.id, skillId),
+  const data = await db.query.topics.findFirst({
+    where: eq(topics.id, topicId),
     with: {
       challenges: {
         where: eq(challenges.difficulty, difficulty),
@@ -215,21 +215,21 @@ export const getSkill = cache(async (id?: number) => {
   return { ...data, challenges: normalizedChallenges };
 });
 
-export const getSkillPercentage = cache(async () => {
+export const getTopicPercentage = cache(async () => {
   const subjectProgress = await getSubjectProgress();
 
-  if (!subjectProgress?.activeSkillId) return 0;
+  if (!subjectProgress?.activeTopicId) return 0;
 
-  const skill = await getSkill(subjectProgress?.activeSkillId);
+  const topic = await getTopic(subjectProgress?.activeTopicId);
 
-  if (!skill) return 0;
+  if (!topic) return 0;
 
-  const completedChallenges = skill.challenges.filter(
+  const completedChallenges = topic.challenges.filter(
     (challenge) => challenge.completed
   );
 
   const percentage = Math.round(
-    (completedChallenges.length / skill.challenges.length) * 100
+    (completedChallenges.length / topic.challenges.length) * 100
   );
 
   return percentage;

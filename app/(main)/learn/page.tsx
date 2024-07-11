@@ -7,7 +7,7 @@ import { StickyWrapper } from "@/components/sticky-wrapper";
 import { UserProgress } from "@/components/user-progress";
 import {
   getSubjectProgress,
-  getSkillPercentage,
+  getTopicPercentage,
   getChapters,
   getUserProgress,
   getUserSubscription,
@@ -19,7 +19,7 @@ import { Chapter } from "./chapter";
 const LearnPage = async () => {
   const userProgressData = getUserProgress();
   const subjectProgressData = getSubjectProgress();
-  const skillPercentageData = getSkillPercentage();
+  const topicPercentageData = getTopicPercentage();
   const chaptersData = getChapters();
   const userSubscriptionData = getUserSubscription();
 
@@ -27,13 +27,13 @@ const LearnPage = async () => {
     userProgress,
     chapters,
     subjectProgress,
-    skillPercentage,
+    topicPercentage,
     userSubscription,
   ] = await Promise.all([
     userProgressData,
     chaptersData,
     subjectProgressData,
-    skillPercentageData,
+    topicPercentageData,
     userSubscriptionData,
   ]);
 
@@ -64,9 +64,9 @@ const LearnPage = async () => {
               order={chapter.order}
               description={chapter.description}
               title={chapter.title}
-              skills={chapter.skills}
-              activeSkill={subjectProgress.activeSkill}
-              activeSkillPercentage={skillPercentage}
+              topics={chapter.topics}
+              activeTopic={subjectProgress.activeTopic}
+              activeTopicPercentage={topicPercentage}
             />
           </div>
         ))}

@@ -6,7 +6,7 @@ import {
   TextField,
 } from "react-admin";
 
-export const SkillList = () => {
+export const TopicList = () => {
   return (
     <List>
       <Datagrid rowClick="edit">
