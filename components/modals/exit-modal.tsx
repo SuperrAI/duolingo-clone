@@ -43,7 +43,7 @@ export const ExitModal = () => {
           </DialogTitle>
 
           <DialogDescription className="text-center text-base">
-            You&apos;re about to leave the lesson. Are you sure?
+            You&apos;re about to leave the skill. Are you sure?
           </DialogDescription>
         </DialogHeader>
 

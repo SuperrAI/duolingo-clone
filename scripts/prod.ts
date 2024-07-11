@@ -11,7 +11,7 @@ const db = drizzle(sql, { schema });
 const createTables = async () => {
   await sql`CREATE TABLE IF NOT EXISTS challenges (
     id SERIAL PRIMARY KEY,
-    lesson_id INTEGER,
+    skill_id INTEGER,
     type VARCHAR(50),
     question TEXT,
     challenge_order INTEGER,
@@ -26,11 +26,11 @@ const createTables = async () => {
     chapter_order INTEGER
   );`;
 
-  await sql`CREATE TABLE IF NOT EXISTS lessons (
+  await sql`CREATE TABLE IF NOT EXISTS skills (
     id SERIAL PRIMARY KEY,
     chapter_id INTEGER,
     title VARCHAR(255),
-    lesson_order INTEGER
+    skill_order INTEGER
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS courses (
@@ -69,10 +69,10 @@ const createTables = async () => {
     updated_at TIMESTAMP NOT NULL DEFAULT now()
   );`;
 
-  await sql`CREATE TABLE IF NOT EXISTS lesson_progress (
+  await sql`CREATE TABLE IF NOT EXISTS skill_progress (
     id SERIAL PRIMARY KEY,
     user_id TEXT NOT NULL,
-    lesson_id INTEGER NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
+    skill_id INTEGER NOT NULL REFERENCES skills(id) ON DELETE CASCADE,
     current_difficulty INTEGER,
     correct_answers INTEGER,
     total_attempts INTEGER,
@@ -85,7 +85,7 @@ const createTables = async () => {
     user_name TEXT NOT NULL DEFAULT 'User',
     user_image_src TEXT NOT NULL DEFAULT '/man.svg',
     active_course_id INTEGER REFERENCES courses(id) ON DELETE CASCADE,
-    current_lesson_id INTEGER REFERENCES lessons(id),
+    current_skill_id INTEGER REFERENCES skills(id),
     last_attempted_challenge_id INTEGER REFERENCES challenges(id),
     hearts INTEGER NOT NULL DEFAULT 50,
     points INTEGER NOT NULL DEFAULT 0
@@ -99,7 +99,7 @@ const main = async () => {
     //   db.delete(schema.userProgress),
     //   db.delete(schema.challenges),
     //   db.delete(schema.chapters),
-    //   db.delete(schema.lessons),
+    //   db.delete(schema.skills),
     //   db.delete(schema.courses),
     //   db.delete(schema.challengeOptions),
     //   db.delete(schema.userSubscription),
@@ -125,7 +125,7 @@ const main = async () => {
             description: `Knowing Our Numbers`,
             order: 1,
             title: "Chapter 1",
-            lessons: [
+            skills: [
               {
                 id: 111,
                 title: "Comparing Large and Small Numbers",
@@ -3821,7 +3821,7 @@ const main = async () => {
             description: `Components of Food`,
             order: 1,
             title: "Chapter 1",
-            lessons: [
+            skills: [
               {
                 id: 211,
                 title: "What do different food items contain?",
@@ -7177,7 +7177,7 @@ const main = async () => {
             description: `From Hunting-Gathering to Growing Food`,
             order: 1,
             title: "Chapter 1",
-            lessons: [
+            skills: [
               {
                 id: 311,
                 title: "Hunter-gatherers and their lifestyle ",
@@ -10765,28 +10765,28 @@ const main = async () => {
 
       console.log(`Inserted ${chapters.length} chapters of course "${course.title}"`);
 
-      // For each chapter, insert lessons
+      // For each chapter, insert skills
       for (const courseChapters of course.chapters) {
-        const lessons = await db
-          .insert(schema.lessons)
+        const skills = await db
+          .insert(schema.skills)
           .values(
-            courseChapters.lessons.map((eachLesson) => {
-              return { chapterId: courseChapters.id, ...eachLesson };
+            courseChapters.skills.map((eachSkill) => {
+              return { chapterId: courseChapters.id, ...eachSkill };
             })
           )
           .returning();
         console.log(
-          `Inserted ${lessons.length} lessons of chapter "${courseChapters.title}"`
+          `Inserted ${skills.length} skills of chapter "${courseChapters.title}"`
         );
 
-        // For each lesson, insert challenges
-        for (const lesson of courseChapters.lessons) {
+        // For each skill, insert challenges
+        for (const skill of courseChapters.skills) {
           const challenges = await db
             .insert(schema.challenges)
             .values(
-              lesson.challenges.map((eachChallenge) => {
+              skill.challenges.map((eachChallenge) => {
                 return {
-                  lessonId: lesson.id,
+                  skillId: skill.id,
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                   type: eachChallenge.type,
                   question: eachChallenge.question,
@@ -10798,11 +10798,11 @@ const main = async () => {
             )
             .returning();
           console.log(
-            `Inserted ${challenges.length} challenges of lesson "${lesson.title}"`
+            `Inserted ${challenges.length} challenges of skill "${skill.title}"`
           );
 
           // For each challenge, insert challenge options
-          for (const challenge of lesson.challenges) {
+          for (const challenge of skill.challenges) {
             await db.insert(schema.challengeOptions).values(
               challenge.challengeOptions.map((eachOption) => {
                 return { challengeId: challenge.id, ...eachOption };

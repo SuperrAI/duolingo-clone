@@ -8,14 +8,14 @@ type FooterProps = {
   onCheck: () => void;
   status: "correct" | "wrong" | "none" | "completed";
   disabled?: boolean;
-  lessonId?: number;
+  skillId?: number;
 };
 
 export const Footer = ({
   onCheck,
   status,
   disabled,
-  lessonId,
+  skillId,
 }: FooterProps) => {
   useKey("Enter", onCheck, {}, [onCheck]);
   const isMobile = useMedia("(max-width: 1024px)");
@@ -47,7 +47,7 @@ export const Footer = ({
           <Button
             variant="default"
             size={isMobile ? "sm" : "lg"}
-            onClick={() => (window.location.href = `/lesson/${lessonId}`)}
+            onClick={() => (window.location.href = `/skill/${skillId}`)}
           >
             Practice again
           </Button>

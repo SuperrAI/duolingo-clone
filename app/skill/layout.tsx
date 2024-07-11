@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 
-const LessonLayout = ({ children }: PropsWithChildren) => {
+const SkillLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className="flex h-full flex-col">
       <div className="flex h-full w-full flex-col">{children}</div>
@@ -8,4 +8,4 @@ const LessonLayout = ({ children }: PropsWithChildren) => {
   );
 };
 
-export default LessonLayout;
+export default SkillLayout;

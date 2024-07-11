@@ -7,7 +7,7 @@ import {
   required,
 } from "react-admin";
 
-export const LessonCreate = () => {
+export const SkillCreate = () => {
   return (
     <Create>
       <SimpleForm>

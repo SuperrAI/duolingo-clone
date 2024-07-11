@@ -12,9 +12,9 @@ import { ChallengeOptionsList } from "./challengeOption/list";
 import { CourseCreate } from "./course/create";
 import { CourseEdit } from "./course/edit";
 import { CourseList } from "./course/list";
-import { LessonCreate } from "./lesson/create";
-import { LessonEdit } from "./lesson/edit";
-import { LessonList } from "./lesson/list";
+import { SkillCreate } from "./skill/create";
+import { SkillEdit } from "./skill/edit";
+import { SkillList } from "./skill/list";
 import { ChapterCreate } from "./chapter/create";
 import { ChapterEdit } from "./chapter/edit";
 import { ChapterList } from "./chapter/list";
@@ -41,11 +41,11 @@ const App = () => {
       />
 
       <Resource
-        name="lessons"
+        name="skills"
         recordRepresentation="title"
-        list={LessonList}
-        create={LessonCreate}
-        edit={LessonEdit}
+        list={SkillList}
+        create={SkillCreate}
+        edit={SkillEdit}
       />
 
       <Resource

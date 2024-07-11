@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 import "react-circular-progressbar/dist/styles.css";
 
-type LessonButtonProps = {
+type SkillButtonProps = {
   id: number;
   index: number;
   totalCount: number;
@@ -18,14 +18,14 @@ type LessonButtonProps = {
   percentage: number;
 };
 
-export const LessonButton = ({
+export const SkillButton = ({
   id,
   index,
   totalCount,
   locked,
   current,
   percentage,
-}: LessonButtonProps) => {
+}: SkillButtonProps) => {
   const cycleLength = 8;
   const cycleIndex = index % cycleLength;
 
@@ -44,7 +44,7 @@ export const LessonButton = ({
 
   const Icon = isCompleted ? Check : isLast ? Crown : Star;
 
-  const href = isCompleted ? `/lesson/${id}` : "/lesson";
+  const href = isCompleted ? `/skill/${id}` : "/skill";
 
   return (
     <Link
