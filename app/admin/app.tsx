@@ -9,15 +9,15 @@ import { ChallengeList } from "./challenge/list";
 import { ChallengeOptionCreate } from "./challengeOption/create";
 import { ChallengeOptionEdit } from "./challengeOption/edit";
 import { ChallengeOptionsList } from "./challengeOption/list";
+import { ChapterCreate } from "./chapter/create";
+import { ChapterEdit } from "./chapter/edit";
+import { ChapterList } from "./chapter/list";
 import { SubjectCreate } from "./subject/create";
 import { SubjectEdit } from "./subject/edit";
 import { SubjectList } from "./subject/list";
 import { TopicCreate } from "./topic/create";
 import { TopicEdit } from "./topic/edit";
 import { TopicList } from "./topic/list";
-import { ChapterCreate } from "./chapter/create";
-import { ChapterEdit } from "./chapter/edit";
-import { ChapterList } from "./chapter/list";
 
 const dataProvider = simpleRestProvider("/api");
 

@@ -1,7 +1,7 @@
 import { topics, chapters } from "@/db/schema";
 
-import { TopicButton } from "./topic-button";
 import { ChapterBanner } from "./chapter-banner";
+import { TopicButton } from "./topic-button";
 
 type ChapterProps = {
   id: number;

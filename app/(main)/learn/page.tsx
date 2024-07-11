@@ -13,8 +13,8 @@ import {
   getUserSubscription,
 } from "@/db/queries";
 
-import { Header } from "./header";
 import { Chapter } from "./chapter";
+import { Header } from "./header";
 
 const LearnPage = async () => {
   const userProgressData = getUserProgress();
