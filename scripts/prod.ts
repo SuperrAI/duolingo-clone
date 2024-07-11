@@ -7167,6 +7167,3572 @@ const main = async () => {
           },
         ],
       },
+      {
+        courseId: 3,
+        title: "History",
+        imageSrc: "/man.svg",
+        units: [
+          {
+            id: 31,
+            description: `From Hunting-Gathering to Growing Food`,
+            order: 1,
+            title: "Unit 1",
+            lessons: [
+              {
+                id: 311,
+                title: "Hunter-gatherers and their lifestyle ",
+                order: 1,
+                challenges: [
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "Who were the hunter-gatherers?",
+                    order: 1,
+                    difficulty: 1,
+                    id: 90011001,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "People who grew crops",
+                      },
+                      {
+                        correct: true,
+                        text: "People who hunted animals and gathered wild plants",
+                      },
+                      {
+                        correct: false,
+                        text: "People who built large cities",
+                      },
+                      {
+                        correct: false,
+                        text: "People who worked in factories",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was the primary occupation of hunter-gatherers?",
+                    order: 2,
+                    difficulty: 1,
+                    id: 90011002,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Farming",
+                      },
+                      {
+                        correct: false,
+                        text: "Trading",
+                      },
+                      {
+                        correct: true,
+                        text: "Hunting animals and gathering plants",
+                      },
+                      {
+                        correct: false,
+                        text: "Fishing",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why did hunter-gatherers move from place to place?",
+                    order: 3,
+                    difficulty: 1,
+                    id: 90011003,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "To find new lands to farm",
+                      },
+                      {
+                        correct: true,
+                        text: "To follow animal herds and seasonal plants",
+                      },
+                      {
+                        correct: false,
+                        text: "To build permanent homes",
+                      },
+                      {
+                        correct: false,
+                        text: "To start businesses",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which tools were commonly used by hunter-gatherers?",
+                    order: 4,
+                    difficulty: 1,
+                    id: 90011004,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Ploughs and hoes",
+                      },
+                      {
+                        correct: true,
+                        text: "Bows, arrows, and stone tools",
+                      },
+                      {
+                        correct: false,
+                        text: "Tractors and combines",
+                      },
+                      {
+                        correct: false,
+                        text: "Computers and phones",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What did hunter-gatherers mainly rely on for their diet?",
+                    order: 5,
+                    difficulty: 1,
+                    id: 90011005,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Cultivated crops",
+                      },
+                      {
+                        correct: true,
+                        text: "Hunted animals and gathered wild fruits and nuts",
+                      },
+                      {
+                        correct: false,
+                        text: "Dairy products",
+                      },
+                      {
+                        correct: false,
+                        text: "Imported foods",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "Where did hunter-gatherers live?",
+                    order: 6,
+                    difficulty: 1,
+                    id: 90011006,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "In cities",
+                      },
+                      {
+                        correct: false,
+                        text: "In permanent houses",
+                      },
+                      {
+                        correct: true,
+                        text: "In temporary shelters or caves",
+                      },
+                      {
+                        correct: false,
+                        text: "In skyscrapers",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What is a key characteristic of the hunter-gatherer lifestyle?",
+                    order: 7,
+                    difficulty: 1,
+                    id: 90011007,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Farming on large fields",
+                      },
+                      {
+                        correct: true,
+                        text: "Nomadic movement and seasonal migration",
+                      },
+                      {
+                        correct: false,
+                        text: "Building large stone monuments",
+                      },
+                      {
+                        correct: false,
+                        text: "Writing and recording history",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What type of society did hunter-gatherers live in?",
+                    order: 8,
+                    difficulty: 1,
+                    id: 90011008,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Industrial",
+                      },
+                      {
+                        correct: false,
+                        text: "Agrarian",
+                      },
+                      {
+                        correct: true,
+                        text: "Nomadic and egalitarian",
+                      },
+                      {
+                        correct: false,
+                        text: "Urban",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "How did hunter-gatherers obtain food?",
+                    order: 9,
+                    difficulty: 1,
+                    id: 90011009,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "By buying it from stores",
+                      },
+                      {
+                        correct: false,
+                        text: "By growing it themselves",
+                      },
+                      {
+                        correct: true,
+                        text: "By hunting animals and gathering wild plants",
+                      },
+                      {
+                        correct: false,
+                        text: "By trading with other countries",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What did hunter-gatherers use to hunt animals?",
+                    order: 10,
+                    difficulty: 1,
+                    id: 90011010,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Fireworks",
+                      },
+                      {
+                        correct: false,
+                        text: "Guns",
+                      },
+                      {
+                        correct: true,
+                        text: "Spears and bows",
+                      },
+                      {
+                        correct: false,
+                        text: "Tractors",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What kind of shelters did hunter-gatherers use?",
+                    order: 11,
+                    difficulty: 1,
+                    id: 90011011,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Permanent stone houses",
+                      },
+                      {
+                        correct: false,
+                        text: "Mud huts",
+                      },
+                      {
+                        correct: true,
+                        text: "Temporary shelters like tents or caves",
+                      },
+                      {
+                        correct: false,
+                        text: "Wooden cabins",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "How did hunter-gatherers make their tools?",
+                    order: 12,
+                    difficulty: 1,
+                    id: 90011012,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Using metal foundries",
+                      },
+                      {
+                        correct: true,
+                        text: "By carving stone, bone, and wood",
+                      },
+                      {
+                        correct: false,
+                        text: "By 3D printing",
+                      },
+                      {
+                        correct: false,
+                        text: "By buying them from markets",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was a common feature of hunter-gatherer societies?",
+                    order: 13,
+                    difficulty: 1,
+                    id: 90011013,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Large armies",
+                      },
+                      {
+                        correct: false,
+                        text: "Permanent farms",
+                      },
+                      {
+                        correct: true,
+                        text: "Shared resources and communal living",
+                      },
+                      {
+                        correct: false,
+                        text: "Tall buildings",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following was NOT a typical activity of hunter-gatherers?",
+                    order: 14,
+                    difficulty: 1,
+                    id: 90011014,
+                    challengeOptions: [
+                      {
+                        correct: true,
+                        text: "Farming",
+                      },
+                      {
+                        correct: false,
+                        text: "Gathering berries",
+                      },
+                      {
+                        correct: false,
+                        text: "Hunting deer",
+                      },
+                      {
+                        correct: false,
+                        text: "Fishing",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why is the lifestyle of hunter-gatherers considered nomadic?",
+                    order: 15,
+                    difficulty: 1,
+                    id: 90011015,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "They stayed in one place permanently",
+                      },
+                      {
+                        correct: true,
+                        text: "They moved frequently in search of food and resources",
+                      },
+                      {
+                        correct: false,
+                        text: "They built permanent cities",
+                      },
+                      {
+                        correct: false,
+                        text: "They owned large amounts of land",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which materials were primarily used by hunter-gatherers to make their tools?",
+                    order: 16,
+                    difficulty: 2,
+                    id: 90012001,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Metal and plastic",
+                      },
+                      {
+                        correct: true,
+                        text: "Stone, bone, and wood",
+                      },
+                      {
+                        correct: false,
+                        text: "Concrete and glass",
+                      },
+                      {
+                        correct: false,
+                        text: "Steel and rubber",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the hunter-gatherer way of life affect their social structure?",
+                    order: 17,
+                    difficulty: 2,
+                    id: 90012002,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It created a complex class system",
+                      },
+                      {
+                        correct: true,
+                        text: "It promoted equality and cooperation within small groups",
+                      },
+                      {
+                        correct: false,
+                        text: "It led to the establishment of monarchies",
+                      },
+                      {
+                        correct: false,
+                        text: "It resulted in a capitalist economy",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was the role of women in hunter-gatherer societies?",
+                    order: 18,
+                    difficulty: 2,
+                    id: 90012003,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Only hunting",
+                      },
+                      {
+                        correct: false,
+                        text: "Only gathering",
+                      },
+                      {
+                        correct: true,
+                        text: "Gathering, food preparation, and sometimes hunting",
+                      },
+                      {
+                        correct: false,
+                        text: "Leading armies",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following statements about hunter-gatherer diet is true?",
+                    order: 19,
+                    difficulty: 2,
+                    id: 90012004,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "They ate only meat",
+                      },
+                      {
+                        correct: true,
+                        text: "They had a varied diet including meat, fish, fruits, nuts, and vegetables",
+                      },
+                      {
+                        correct: false,
+                        text: "They ate only plants",
+                      },
+                      {
+                        correct: false,
+                        text: "They relied on dairy products",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did hunter-gatherers adapt to their environment?",
+                    order: 20,
+                    difficulty: 2,
+                    id: 90012005,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "By building large farms",
+                      },
+                      {
+                        correct: true,
+                        text: "By creating tools and strategies to hunt and gather effectively",
+                      },
+                      {
+                        correct: false,
+                        text: "By constructing skyscrapers",
+                      },
+                      {
+                        correct: false,
+                        text: "By forming large governments",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was the main reason hunter-gatherers moved with the seasons?",
+                    order: 21,
+                    difficulty: 2,
+                    id: 90012006,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "To attend festivals",
+                      },
+                      {
+                        correct: true,
+                        text: "To follow the migration patterns of animals and availability of plants",
+                      },
+                      {
+                        correct: false,
+                        text: "To build new homes",
+                      },
+                      {
+                        correct: false,
+                        text: "To visit other tribes",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the use of fire benefit hunter-gatherers?",
+                    order: 22,
+                    difficulty: 2,
+                    id: 90012007,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It provided a source of light and heat",
+                      },
+                      {
+                        correct: true,
+                        text: "It allowed them to cook food and protect themselves from predators",
+                      },
+                      {
+                        correct: false,
+                        text: "It helped them create metal tools",
+                      },
+                      {
+                        correct: false,
+                        text: "It was used mainly for decoration",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was the significance of rock paintings created by hunter-gatherers?",
+                    order: 23,
+                    difficulty: 2,
+                    id: 90012008,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "They were just for decoration",
+                      },
+                      {
+                        correct: true,
+                        text: "They recorded important events and daily activities",
+                      },
+                      {
+                        correct: false,
+                        text: "They served as advertisements",
+                      },
+                      {
+                        correct: false,
+                        text: "They were used as maps",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why is the study of hunter-gatherer societies important for understanding human history?",
+                    order: 24,
+                    difficulty: 2,
+                    id: 90012009,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It shows the origins of agriculture",
+                      },
+                      {
+                        correct: true,
+                        text: "It reveals the ways early humans adapted to their environment and organized their societies",
+                      },
+                      {
+                        correct: false,
+                        text: "It highlights ancient technology",
+                      },
+                      {
+                        correct: false,
+                        text: "It focuses on ancient civilizations",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What kind of evidence do archaeologists find to learn about hunter-gatherer life?",
+                    order: 25,
+                    difficulty: 2,
+                    id: 90012010,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Written records",
+                      },
+                      {
+                        correct: true,
+                        text: "Tools, bones, and cave paintings",
+                      },
+                      {
+                        correct: false,
+                        text: "Modern buildings",
+                      },
+                      {
+                        correct: false,
+                        text: "Newspapers",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was one of the main challenges faced by hunter-gatherers?",
+                    order: 26,
+                    difficulty: 2,
+                    id: 90012011,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Lack of water",
+                      },
+                      {
+                        correct: true,
+                        text: "Finding enough food throughout the year",
+                      },
+                      {
+                        correct: false,
+                        text: "Building permanent homes",
+                      },
+                      {
+                        correct: false,
+                        text: "Communicating with other tribes",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What does the term 'Paleolithic' refer to?",
+                    order: 27,
+                    difficulty: 2,
+                    id: 90012012,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "New Stone Age",
+                      },
+                      {
+                        correct: true,
+                        text: "Old Stone Age",
+                      },
+                      {
+                        correct: false,
+                        text: "Iron Age",
+                      },
+                      {
+                        correct: false,
+                        text: "Bronze Age",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the invention of tools impact the hunter-gatherer lifestyle?",
+                    order: 28,
+                    difficulty: 2,
+                    id: 90012013,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It made hunting and gathering less efficient",
+                      },
+                      {
+                        correct: true,
+                        text: "It increased their ability to hunt and gather food more effectively",
+                      },
+                      {
+                        correct: false,
+                        text: "It was only used for decoration",
+                      },
+                      {
+                        correct: false,
+                        text: "It led to the abandonment of hunting",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why were hunter-gatherer groups typically small?",
+                    order: 29,
+                    difficulty: 2,
+                    id: 90012014,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Because they wanted to avoid detection",
+                      },
+                      {
+                        correct: true,
+                        text: "To ensure mobility and ease of resource sharing",
+                      },
+                      {
+                        correct: false,
+                        text: "Because they didn't like large groups",
+                      },
+                      {
+                        correct: false,
+                        text: "Because they had limited tools",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What is an example of a natural resource that hunter-gatherers depended on?",
+                    order: 30,
+                    difficulty: 2,
+                    id: 90012015,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Oil",
+                      },
+                      {
+                        correct: true,
+                        text: "Wild plants and animals",
+                      },
+                      {
+                        correct: false,
+                        text: "Manufactured goods",
+                      },
+                      {
+                        correct: false,
+                        text: "Electronics",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did hunter-gatherers contribute to the spread of early human populations?",
+                    order: 31,
+                    difficulty: 3,
+                    id: 90013001,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "By staying in one place",
+                      },
+                      {
+                        correct: true,
+                        text: "By migrating to new areas and adapting to different environments",
+                      },
+                      {
+                        correct: false,
+                        text: "By building cities",
+                      },
+                      {
+                        correct: false,
+                        text: "By writing historical records",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What evidence supports the theory that early humans practiced collective hunting strategies?",
+                    order: 32,
+                    difficulty: 3,
+                    id: 90013002,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Solitary hunting tools",
+                      },
+                      {
+                        correct: true,
+                        text: "Large animal bones found with multiple tool marks",
+                      },
+                      {
+                        correct: false,
+                        text: "Written documents from that period",
+                      },
+                      {
+                        correct: false,
+                        text: "Photographs of hunts",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did changes in climate affect hunter-gatherer lifestyles?",
+                    order: 33,
+                    difficulty: 3,
+                    id: 90013003,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It had no effect",
+                      },
+                      {
+                        correct: true,
+                        text: "It influenced migration patterns and availability of food resources",
+                      },
+                      {
+                        correct: false,
+                        text: "It made them settle permanently",
+                      },
+                      {
+                        correct: false,
+                        text: "It led to the invention of agriculture",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What is the significance of the discovery of cave paintings in understanding hunter-gatherer cultures?",
+                    order: 34,
+                    difficulty: 3,
+                    id: 90013004,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "They were purely decorative",
+                      },
+                      {
+                        correct: true,
+                        text: "They provide insights into their daily lives, beliefs, and environment",
+                      },
+                      {
+                        correct: false,
+                        text: "They were used for trade",
+                      },
+                      {
+                        correct: false,
+                        text: "They were made by modern humans",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did hunter-gatherers' knowledge of plants benefit their survival?",
+                    order: 35,
+                    difficulty: 3,
+                    id: 90013005,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It had no benefit",
+                      },
+                      {
+                        correct: true,
+                        text: "It helped them identify edible and medicinal plants",
+                      },
+                      {
+                        correct: false,
+                        text: "It was used to create gardens",
+                      },
+                      {
+                        correct: false,
+                        text: "It was only theoretical knowledge",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why are hunter-gatherers considered to have an egalitarian social structure?",
+                    order: 36,
+                    difficulty: 3,
+                    id: 90013006,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "They had strict class systems",
+                      },
+                      {
+                        correct: true,
+                        text: "Resources were shared equally and decisions were made collectively",
+                      },
+                      {
+                        correct: false,
+                        text: "They had kings and queens",
+                      },
+                      {
+                        correct: false,
+                        text: "They lived in large cities",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What methods did hunter-gatherers use to ensure the sustainability of their resources?",
+                    order: 37,
+                    difficulty: 3,
+                    id: 90013007,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Overhunting",
+                      },
+                      {
+                        correct: true,
+                        text: "Moving to new areas to allow resources to replenish",
+                      },
+                      {
+                        correct: false,
+                        text: "Storing large quantities of food",
+                      },
+                      {
+                        correct: false,
+                        text: "Farming intensively",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the seasonal movement of hunter-gatherers impact their social interactions?",
+                    order: 38,
+                    difficulty: 3,
+                    id: 90013008,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It isolated them from other groups",
+                      },
+                      {
+                        correct: true,
+                        text: "It facilitated the exchange of ideas, tools, and cultural practices with other groups",
+                      },
+                      {
+                        correct: false,
+                        text: "It prevented them from meeting others",
+                      },
+                      {
+                        correct: false,
+                        text: "It limited their ability to develop new technologies",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What role did animals play in the life of hunter-gatherers?",
+                    order: 39,
+                    difficulty: 3,
+                    id: 90013009,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "They were only used as pets",
+                      },
+                      {
+                        correct: true,
+                        text: "They were hunted for food, and their bones and hides were used for tools and clothing",
+                      },
+                      {
+                        correct: false,
+                        text: "They were worshipped exclusively",
+                      },
+                      {
+                        correct: false,
+                        text: "They were kept in zoos",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the development of language impact hunter-gatherer societies?",
+                    order: 40,
+                    difficulty: 3,
+                    id: 90013010,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It had no impact",
+                      },
+                      {
+                        correct: true,
+                        text: "It enabled better coordination during hunts and the sharing of knowledge and traditions",
+                      },
+                      {
+                        correct: false,
+                        text: "It made communication more difficult",
+                      },
+                      {
+                        correct: false,
+                        text: "It was only used for writing",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What does the term 'Mesolithic' refer to?",
+                    order: 41,
+                    difficulty: 3,
+                    id: 90013011,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "New Stone Age",
+                      },
+                      {
+                        correct: true,
+                        text: "Middle Stone Age",
+                      },
+                      {
+                        correct: false,
+                        text: "Iron Age",
+                      },
+                      {
+                        correct: false,
+                        text: "Bronze Age",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why is the study of hunter-gatherer societies important for modern humans?",
+                    order: 42,
+                    difficulty: 3,
+                    id: 90013012,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It has no relevance",
+                      },
+                      {
+                        correct: true,
+                        text: "It helps us understand the foundations of human survival, adaptation, and social organization",
+                      },
+                      {
+                        correct: false,
+                        text: "It only interests historians",
+                      },
+                      {
+                        correct: false,
+                        text: "It shows us how to build modern tools",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What is one way that hunter-gatherers influenced their environment?",
+                    order: 43,
+                    difficulty: 3,
+                    id: 90013013,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "By building dams",
+                      },
+                      {
+                        correct: true,
+                        text: "Through controlled use of fire to manage vegetation",
+                      },
+                      {
+                        correct: false,
+                        text: "By constructing large buildings",
+                      },
+                      {
+                        correct: false,
+                        text: "By mining extensively",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did hunter-gatherers' knowledge of animal behavior aid their hunting practices?",
+                    order: 44,
+                    difficulty: 3,
+                    id: 90013014,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It was irrelevant",
+                      },
+                      {
+                        correct: true,
+                        text: "It allowed them to predict animal movements and devise effective hunting strategies",
+                      },
+                      {
+                        correct: false,
+                        text: "It made hunting more dangerous",
+                      },
+                      {
+                        correct: false,
+                        text: "It led to the domestication of animals",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why did hunter-gatherers create art and symbolic objects?",
+                    order: 45,
+                    difficulty: 3,
+                    id: 90013015,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "For no reason",
+                      },
+                      {
+                        correct: true,
+                        text: "To express beliefs, record events, and enhance social cohesion",
+                      },
+                      {
+                        correct: false,
+                        text: "Only to sell them",
+                      },
+                      {
+                        correct: false,
+                        text: "To destroy them later",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                id: 312,
+                title: "Tools and Implements used by early humans ",
+                order: 2,
+                challenges: [
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What materials did early humans use to make their tools?",
+                    order: 1,
+                    difficulty: 1,
+                    id: 90022050,
+                    challengeOptions: [
+                      { correct: false, text: "Plastic and metal" },
+                      { correct: true, text: "Stone, bone, and wood" },
+                      { correct: false, text: "Concrete and steel" },
+                      { correct: false, text: "Rubber and glass" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What is a primary purpose of early human tools?",
+                    order: 2,
+                    difficulty: 1,
+                    id: 90022051,
+                    challengeOptions: [
+                      { correct: false, text: "Decoration" },
+                      { correct: true, text: "Hunting and gathering" },
+                      { correct: false, text: "Writing" },
+                      { correct: false, text: "Transportation" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What is a common tool used by early humans?",
+                    order: 3,
+                    difficulty: 1,
+                    id: 90022052,
+                    challengeOptions: [
+                      { correct: false, text: "Hammer" },
+                      { correct: true, text: "Spear" },
+                      { correct: false, text: "Computer" },
+                      { correct: false, text: "Telephone" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "Why did early humans make tools from stone?",
+                    order: 4,
+                    difficulty: 1,
+                    id: 90022053,
+                    challengeOptions: [
+                      {
+                        correct: true,
+                        text: "Stone was easily available and could be shaped",
+                      },
+                      { correct: false, text: "Stone was colorful" },
+                      { correct: false, text: "Stone was rare" },
+                      { correct: false, text: "Stone was soft and flexible" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What is the name of the period when early humans used stone tools?",
+                    order: 5,
+                    difficulty: 1,
+                    id: 90022054,
+                    challengeOptions: [
+                      { correct: false, text: "Bronze Age" },
+                      { correct: false, text: "Iron Age" },
+                      { correct: true, text: "Stone Age" },
+                      { correct: false, text: "Modern Age" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which tool was commonly used by early humans for cutting?",
+                    order: 6,
+                    difficulty: 1,
+                    id: 90022055,
+                    challengeOptions: [
+                      { correct: false, text: "Knife" },
+                      { correct: true, text: "Axe" },
+                      { correct: false, text: "Scissors" },
+                      { correct: false, text: "Saw" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What tool did early humans use to hunt animals from a distance?",
+                    order: 7,
+                    difficulty: 1,
+                    id: 90022056,
+                    challengeOptions: [
+                      { correct: true, text: "Bow and arrow" },
+                      { correct: false, text: "Hammer" },
+                      { correct: false, text: "Knife" },
+                      { correct: false, text: "Hoe" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which tool was primarily used for digging and preparing the ground?",
+                    order: 8,
+                    difficulty: 1,
+                    id: 90022057,
+                    challengeOptions: [
+                      { correct: true, text: "Hoe" },
+                      { correct: false, text: "Axe" },
+                      { correct: false, text: "Spear" },
+                      { correct: false, text: "Needle" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What was a hand axe used for by early humans?",
+                    order: 9,
+                    difficulty: 1,
+                    id: 90022058,
+                    challengeOptions: [
+                      { correct: false, text: "Writing" },
+                      { correct: true, text: "Digging, cutting, and hunting" },
+                      { correct: false, text: "Cooking" },
+                      { correct: false, text: "Painting" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "How were early human tools typically made?",
+                    order: 10,
+                    difficulty: 1,
+                    id: 90022059,
+                    challengeOptions: [
+                      { correct: false, text: "Forging in fire" },
+                      { correct: true, text: "Carving and chipping stone" },
+                      { correct: false, text: "Molding plastic" },
+                      { correct: false, text: "Using machines" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What is a characteristic of the tools used in the Paleolithic era?",
+                    order: 11,
+                    difficulty: 1,
+                    id: 90022060,
+                    challengeOptions: [
+                      { correct: false, text: "Complex designs" },
+                      { correct: true, text: "Simple and functional" },
+                      { correct: false, text: "Electronic components" },
+                      { correct: false, text: "Made of gold" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "Which tool was not used by early humans?",
+                    order: 12,
+                    difficulty: 1,
+                    id: 90022061,
+                    challengeOptions: [
+                      { correct: false, text: "Spear" },
+                      { correct: false, text: "Bow and arrow" },
+                      { correct: true, text: "Tractor" },
+                      { correct: false, text: "Hand axe" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What purpose did the early human tool called a 'scraper' serve?",
+                    order: 13,
+                    difficulty: 1,
+                    id: 90022062,
+                    challengeOptions: [
+                      { correct: false, text: "Writing" },
+                      { correct: true, text: "Scraping animal hides" },
+                      { correct: false, text: "Building houses" },
+                      { correct: false, text: "Playing music" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "Why were tools important for early humans?",
+                    order: 14,
+                    difficulty: 1,
+                    id: 90022063,
+                    challengeOptions: [
+                      { correct: false, text: "For artistic expression" },
+                      {
+                        correct: true,
+                        text: "To make their daily tasks easier and more efficient",
+                      },
+                      {
+                        correct: false,
+                        text: "For trading with other communities",
+                      },
+                      { correct: false, text: "For religious rituals" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What does the term 'Neolithic' refer to in terms of tools?",
+                    order: 15,
+                    difficulty: 1,
+                    id: 90022064,
+                    challengeOptions: [
+                      { correct: true, text: "New Stone Age" },
+                      { correct: false, text: "Old Stone Age" },
+                      { correct: false, text: "Iron Age" },
+                      { correct: false, text: "Bronze Age" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which tool innovation is attributed to the Mesolithic period?",
+                    order: 16,
+                    difficulty: 2,
+                    id: 90022065,
+                    challengeOptions: [
+                      {
+                        correct: true,
+                        text: "Microblades and composite tools",
+                      },
+                      { correct: false, text: "Iron tools" },
+                      { correct: false, text: "Metal weapons" },
+                      { correct: false, text: "Complex machinery" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was a significant improvement in tools during the Neolithic period?",
+                    order: 17,
+                    difficulty: 2,
+                    id: 90022066,
+                    challengeOptions: [
+                      { correct: false, text: "Introduction of iron tools" },
+                      {
+                        correct: true,
+                        text: "Polished stone tools and farming implements",
+                      },
+                      { correct: false, text: "Use of plastic" },
+                      { correct: false, text: "Development of electronics" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "How did early humans shape stone tools?",
+                    order: 18,
+                    difficulty: 2,
+                    id: 90022067,
+                    challengeOptions: [
+                      { correct: false, text: "By melting and molding" },
+                      {
+                        correct: true,
+                        text: "By flaking and chipping away at the stone",
+                      },
+                      { correct: false, text: "By using chemical reactions" },
+                      { correct: false, text: "By 3D printing" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following tools was used for grinding grain?",
+                    order: 19,
+                    difficulty: 2,
+                    id: 90022068,
+                    challengeOptions: [
+                      { correct: false, text: "Bow and arrow" },
+                      { correct: true, text: "Grinding stone or quern" },
+                      { correct: false, text: "Spear" },
+                      { correct: false, text: "Knife" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What is a 'microlith'?",
+                    order: 20,
+                    difficulty: 2,
+                    id: 90022069,
+                    challengeOptions: [
+                      { correct: false, text: "A large stone tool" },
+                      {
+                        correct: true,
+                        text: "A small, finely made stone tool",
+                      },
+                      { correct: false, text: "A type of metal tool" },
+                      { correct: false, text: "A bone tool" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "Why were composite tools significant?",
+                    order: 21,
+                    difficulty: 2,
+                    id: 90022070,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "They were made from a single material",
+                      },
+                      {
+                        correct: true,
+                        text: "They combined different materials for greater efficiency",
+                      },
+                      { correct: false, text: "They were purely decorative" },
+                      { correct: false, text: "They were used for farming" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the use of bone and antler in tool-making benefit early humans?",
+                    order: 22,
+                    difficulty: 2,
+                    id: 90022071,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "These materials were harder to work with",
+                      },
+                      {
+                        correct: true,
+                        text: "They provided greater flexibility and resilience",
+                      },
+                      {
+                        correct: false,
+                        text: "They were less durable than stone",
+                      },
+                      { correct: false, text: "They were more colorful" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What is the significance of finding tools at archaeological sites?",
+                    order: 23,
+                    difficulty: 2,
+                    id: 90022072,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It shows the artistic abilities of early humans",
+                      },
+                      {
+                        correct: true,
+                        text: "It provides evidence of early human activities and adaptations",
+                      },
+                      { correct: false, text: "It is not significant" },
+                      { correct: false, text: "It indicates trade routes" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What is the importance of the discovery of early human tools in Africa?",
+                    order: 24,
+                    difficulty: 2,
+                    id: 90022073,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It is the only place tools were found",
+                      },
+                      {
+                        correct: true,
+                        text: "It supports the theory that Africa is the cradle of humankind",
+                      },
+                      { correct: false, text: "It disproves human evolution" },
+                      {
+                        correct: false,
+                        text: "It suggests humans originated elsewhere",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which tool would early humans most likely use for fishing?",
+                    order: 25,
+                    difficulty: 2,
+                    id: 90022074,
+                    challengeOptions: [
+                      { correct: false, text: "Bow and arrow" },
+                      {
+                        correct: true,
+                        text: "Fishing hooks made of bone or wood",
+                      },
+                      { correct: false, text: "Hand axe" },
+                      { correct: false, text: "Grinding stone" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was a major advancement in tool-making during the Mesolithic era?",
+                    order: 26,
+                    difficulty: 2,
+                    id: 90022075,
+                    challengeOptions: [
+                      { correct: false, text: "Use of metal tools" },
+                      {
+                        correct: true,
+                        text: "Creation of smaller, more complex tools like microliths",
+                      },
+                      {
+                        correct: false,
+                        text: "Development of electronic devices",
+                      },
+                      {
+                        correct: false,
+                        text: "Construction of large buildings",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why is the study of early human tools important?",
+                    order: 27,
+                    difficulty: 2,
+                    id: 90022076,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It shows the level of technological advancement",
+                      },
+                      {
+                        correct: true,
+                        text: "It helps understand the daily lives and survival strategies of early humans",
+                      },
+                      { correct: false, text: "It has no historical value" },
+                      {
+                        correct: false,
+                        text: "It is only of interest to tool makers",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did early humans use the natural environment to create tools?",
+                    order: 28,
+                    difficulty: 2,
+                    id: 90022077,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "They relied solely on imported materials",
+                      },
+                      {
+                        correct: true,
+                        text: "They used locally available materials like stone, wood, and bone",
+                      },
+                      {
+                        correct: false,
+                        text: "They created synthetic materials",
+                      },
+                      {
+                        correct: false,
+                        text: "They avoided using natural materials",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What was a 'burin' used for by early humans?",
+                    order: 29,
+                    difficulty: 2,
+                    id: 90022078,
+                    challengeOptions: [
+                      { correct: false, text: "Hunting large animals" },
+                      { correct: true, text: "Engraving or carving" },
+                      { correct: false, text: "Grinding grains" },
+                      { correct: false, text: "Building structures" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which advancement marks the transition from the Paleolithic to the Neolithic period?",
+                    order: 30,
+                    difficulty: 2,
+                    id: 90022079,
+                    challengeOptions: [
+                      { correct: false, text: "Use of electronic tools" },
+                      {
+                        correct: true,
+                        text: "Development of agriculture and more advanced tools",
+                      },
+                      { correct: false, text: "Invention of the wheel" },
+                      { correct: false, text: "Use of iron" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What is the significance of the Acheulean hand axe?",
+                    order: 31,
+                    difficulty: 3,
+                    id: 90022080,
+                    challengeOptions: [
+                      { correct: false, text: "It was the first metal tool" },
+                      {
+                        correct: true,
+                        text: "It represents a major advancement in tool-making with its standardized design",
+                      },
+                      { correct: false, text: "It was used for writing" },
+                      { correct: false, text: "It was made of plastic" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the development of tool-making skills impact early human societies?",
+                    order: 32,
+                    difficulty: 3,
+                    id: 90022081,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It made them more dependent on other species",
+                      },
+                      {
+                        correct: true,
+                        text: "It enhanced their ability to adapt and survive in diverse environments",
+                      },
+                      {
+                        correct: false,
+                        text: "It isolated them from one another",
+                      },
+                      { correct: false, text: "It limited their mobility" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What does the term 'Oldowan' refer to?",
+                    order: 33,
+                    difficulty: 3,
+                    id: 90022082,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "A type of advanced electronic device",
+                      },
+                      {
+                        correct: true,
+                        text: "The earliest known stone tool industry",
+                      },
+                      {
+                        correct: false,
+                        text: "A modern tool-making technique",
+                      },
+                      { correct: false, text: "A type of Neolithic pottery" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What innovation is associated with the Upper Paleolithic period?",
+                    order: 34,
+                    difficulty: 3,
+                    id: 90022083,
+                    challengeOptions: [
+                      { correct: false, text: "Simple stone flakes" },
+                      {
+                        correct: true,
+                        text: "Sophisticated tools like blades and burins",
+                      },
+                      { correct: false, text: "Iron tools" },
+                      { correct: false, text: "Wooden tools" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the discovery of controlled use of fire affect early tool-making?",
+                    order: 35,
+                    difficulty: 3,
+                    id: 90022084,
+                    challengeOptions: [
+                      { correct: false, text: "It had no impact" },
+                      {
+                        correct: true,
+                        text: "It allowed for the hardening of wooden tools and the development of new techniques",
+                      },
+                      { correct: false, text: "It made tools less effective" },
+                      { correct: false, text: "It was only used for cooking" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What is a 'biface' and why is it important?",
+                    order: 36,
+                    difficulty: 3,
+                    id: 90022085,
+                    challengeOptions: [
+                      { correct: false, text: "A single-edged tool" },
+                      {
+                        correct: true,
+                        text: "A stone tool flaked on both sides, showing advanced skill",
+                      },
+                      { correct: false, text: "A tool made of metal" },
+                      { correct: false, text: "A decorative item" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why is the Levallois technique significant in the study of early tools?",
+                    order: 37,
+                    difficulty: 3,
+                    id: 90022086,
+                    challengeOptions: [
+                      { correct: false, text: "It was the first use of metal" },
+                      {
+                        correct: true,
+                        text: "It shows a sophisticated method of producing uniformly shaped flakes",
+                      },
+                      {
+                        correct: false,
+                        text: "It was used for creating pottery",
+                      },
+                      { correct: false, text: "It was a method of fishing" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What does the presence of specialized tools at an archaeological site indicate?",
+                    order: 38,
+                    difficulty: 3,
+                    id: 90022087,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "The site was used for recreational purposes",
+                      },
+                      {
+                        correct: true,
+                        text: "Early humans had diverse activities and roles",
+                      },
+                      { correct: false, text: "Tools were used as currency" },
+                      {
+                        correct: false,
+                        text: "The site was abandoned quickly",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was the purpose of early human tools like the atlatl?",
+                    order: 39,
+                    difficulty: 3,
+                    id: 90022088,
+                    challengeOptions: [
+                      { correct: false, text: "Writing" },
+                      {
+                        correct: true,
+                        text: "Throwing spears with greater force and accuracy",
+                      },
+                      { correct: false, text: "Cooking" },
+                      { correct: false, text: "Building shelters" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What evidence suggests that early humans had a deep understanding of material properties?",
+                    order: 40,
+                    difficulty: 3,
+                    id: 90022089,
+                    challengeOptions: [
+                      { correct: false, text: "Randomly selected materials" },
+                      {
+                        correct: true,
+                        text: "Choice of specific stones for different tools based on hardness and sharpness",
+                      },
+                      { correct: false, text: "Avoidance of stone tools" },
+                      {
+                        correct: false,
+                        text: "Use of materials that were aesthetically pleasing",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did early humans adapt their tools to different environments?",
+                    order: 41,
+                    difficulty: 3,
+                    id: 90022090,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "They used the same tools everywhere",
+                      },
+                      {
+                        correct: true,
+                        text: "They developed region-specific tools using local materials",
+                      },
+                      { correct: false, text: "They avoided making tools" },
+                      {
+                        correct: false,
+                        text: "They traded tools across continents",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What does the variety of tools found at archaeological sites suggest about early human behavior?",
+                    order: 42,
+                    difficulty: 3,
+                    id: 90022091,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "They had a simple, monotonous lifestyle",
+                      },
+                      {
+                        correct: true,
+                        text: "They had complex social structures and division of labor",
+                      },
+                      { correct: false, text: "They did not use tools often" },
+                      {
+                        correct: false,
+                        text: "They were highly dependent on other animals",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What is the significance of finding wear patterns on early tools?",
+                    order: 43,
+                    difficulty: 3,
+                    id: 90022092,
+                    challengeOptions: [
+                      { correct: false, text: "It has no significance" },
+                      {
+                        correct: true,
+                        text: "It helps determine how tools were used and for what purposes",
+                      },
+                      {
+                        correct: false,
+                        text: "It indicates poor craftsmanship",
+                      },
+                      {
+                        correct: false,
+                        text: "It shows they were used as currency",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the development of tools influence early human migration?",
+                    order: 44,
+                    difficulty: 3,
+                    id: 90022093,
+                    challengeOptions: [
+                      { correct: false, text: "It restricted their movement" },
+                      {
+                        correct: true,
+                        text: "It enabled them to exploit new environments and expand their territories",
+                      },
+                      { correct: false, text: "It had no impact" },
+                      {
+                        correct: false,
+                        text: "It caused them to settle permanently",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What can the study of tool-making techniques tell us about early human cognition?",
+                    order: 45,
+                    difficulty: 3,
+                    id: 90022094,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It reveals nothing about their thinking",
+                      },
+                      {
+                        correct: true,
+                        text: "It provides insights into their problem-solving abilities and creativity",
+                      },
+                      {
+                        correct: false,
+                        text: "It shows they were not intelligent",
+                      },
+                      {
+                        correct: false,
+                        text: "It is irrelevant to their cognitive abilities",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                id: 313,
+                title: "Discovery of Fire",
+                order: 3,
+                challenges: [
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "How did early humans discover fire?",
+                    order: 1,
+                    difficulty: 1,
+                    id: 900320100,
+                    challengeOptions: [
+                      {
+                        correct: true,
+                        text: "By rubbing two stones together",
+                      },
+                      {
+                        correct: false,
+                        text: "By mixing chemicals",
+                      },
+                      {
+                        correct: false,
+                        text: "By striking iron tools",
+                      },
+                      {
+                        correct: false,
+                        text: "By boiling water",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was one of the first uses of fire by early humans?",
+                    order: 2,
+                    difficulty: 1,
+                    id: 900320101,
+                    challengeOptions: [
+                      {
+                        correct: true,
+                        text: "Cooking food",
+                      },
+                      {
+                        correct: false,
+                        text: "Building houses",
+                      },
+                      {
+                        correct: false,
+                        text: "Writing",
+                      },
+                      {
+                        correct: false,
+                        text: "Transporting goods",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What did fire help early humans to do at night?",
+                    order: 3,
+                    difficulty: 1,
+                    id: 900320102,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Travel long distances",
+                      },
+                      {
+                        correct: false,
+                        text: "Sleep comfortably",
+                      },
+                      {
+                        correct: true,
+                        text: "Keep wild animals away",
+                      },
+                      {
+                        correct: false,
+                        text: "Gather food",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Fire was essential for early humans primarily for which of the following activities?",
+                    order: 4,
+                    difficulty: 1,
+                    id: 900320103,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Fishing",
+                      },
+                      {
+                        correct: false,
+                        text: "Drawing",
+                      },
+                      {
+                        correct: true,
+                        text: "Cooking and warmth",
+                      },
+                      {
+                        correct: false,
+                        text: "Singing",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following was NOT a use of fire by early humans?",
+                    order: 5,
+                    difficulty: 1,
+                    id: 900320104,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Keeping warm",
+                      },
+                      {
+                        correct: false,
+                        text: "Lighting up caves",
+                      },
+                      {
+                        correct: true,
+                        text: "Writing books",
+                      },
+                      {
+                        correct: false,
+                        text: "Cooking food",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What material did early humans use to create fire?",
+                    order: 6,
+                    difficulty: 1,
+                    id: 900320105,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Paper",
+                      },
+                      {
+                        correct: false,
+                        text: "Metal",
+                      },
+                      {
+                        correct: true,
+                        text: "Stone and wood",
+                      },
+                      {
+                        correct: false,
+                        text: "Plastic",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What natural occurrence might have first introduced early humans to fire?",
+                    order: 7,
+                    difficulty: 1,
+                    id: 900320106,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Volcanic eruption",
+                      },
+                      {
+                        correct: true,
+                        text: "Lightning strike",
+                      },
+                      {
+                        correct: false,
+                        text: "Solar eclipse",
+                      },
+                      {
+                        correct: false,
+                        text: "Earthquake",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was a secondary benefit of fire apart from cooking?",
+                    order: 8,
+                    difficulty: 1,
+                    id: 900320107,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Growing plants faster",
+                      },
+                      {
+                        correct: true,
+                        text: "Protection from predators",
+                      },
+                      {
+                        correct: false,
+                        text: "Increased rainfall",
+                      },
+                      {
+                        correct: false,
+                        text: "Easier hunting",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the discovery of fire change the dietary habits of early humans?",
+                    order: 9,
+                    difficulty: 2,
+                    id: 900320108,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "They started eating raw food",
+                      },
+                      {
+                        correct: false,
+                        text: "They stopped eating meat",
+                      },
+                      {
+                        correct: true,
+                        text: "They began cooking their food, making it easier to digest",
+                      },
+                      {
+                        correct: false,
+                        text: "They started eating plants only",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following statements is true about the discovery of fire?",
+                    order: 10,
+                    difficulty: 2,
+                    id: 900320109,
+                    challengeOptions: [
+                      {
+                        correct: true,
+                        text: "It was discovered by chance and later controlled for various uses",
+                      },
+                      {
+                        correct: false,
+                        text: "It was invented using advanced technology",
+                      },
+                      {
+                        correct: false,
+                        text: "It was used only for warmth",
+                      },
+                      {
+                        correct: false,
+                        text: "It had no significant impact on early human life",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What impact did the discovery of fire have on the social life of early humans?",
+                    order: 11,
+                    difficulty: 2,
+                    id: 900320110,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It led to isolation as people stayed inside",
+                      },
+                      {
+                        correct: false,
+                        text: "It encouraged people to live separately",
+                      },
+                      {
+                        correct: true,
+                        text: "It promoted social gatherings around the fire",
+                      },
+                      {
+                        correct: false,
+                        text: "It made communication difficult",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why was the control of fire considered a significant achievement for early humans?",
+                    order: 12,
+                    difficulty: 2,
+                    id: 900320111,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It allowed them to create new tools",
+                      },
+                      {
+                        correct: false,
+                        text: "It made travel unnecessary",
+                      },
+                      {
+                        correct: true,
+                        text: "It provided a source of light and heat, improving their quality of life",
+                      },
+                      {
+                        correct: false,
+                        text: "It led to the invention of the wheel",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did fire influence the settlement patterns of early humans?",
+                    order: 13,
+                    difficulty: 2,
+                    id: 900320112,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "They avoided areas with natural resources",
+                      },
+                      {
+                        correct: false,
+                        text: "They settled only near water bodies",
+                      },
+                      {
+                        correct: true,
+                        text: "They began to live in larger groups for safety and warmth",
+                      },
+                      {
+                        correct: false,
+                        text: "They started living underground",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following was a benefit of cooking food with fire?",
+                    order: 14,
+                    difficulty: 2,
+                    id: 900320113,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It made food spoil faster",
+                      },
+                      {
+                        correct: true,
+                        text: "It made food easier to chew and digest",
+                      },
+                      {
+                        correct: false,
+                        text: "It made food less nutritious",
+                      },
+                      {
+                        correct: false,
+                        text: "It made food poisonous",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What other discoveries were made possible by the control of fire?",
+                    order: 15,
+                    difficulty: 2,
+                    id: 900320114,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Invention of the wheel",
+                      },
+                      {
+                        correct: true,
+                        text: "Development of pottery and metalworking",
+                      },
+                      {
+                        correct: false,
+                        text: "Discovery of agriculture",
+                      },
+                      {
+                        correct: false,
+                        text: "Domestication of animals",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which aspect of fire usage improved the safety of early human settlements?",
+                    order: 16,
+                    difficulty: 2,
+                    id: 900320115,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It provided entertainment",
+                      },
+                      {
+                        correct: true,
+                        text: "It increased visibility at night and deterred predators",
+                      },
+                      {
+                        correct: false,
+                        text: "It made them invisible to enemies",
+                      },
+                      {
+                        correct: false,
+                        text: "It reduced the need for shelter",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "In what way did the use of fire influence the migration of early humans?",
+                    order: 17,
+                    difficulty: 3,
+                    id: 900320116,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It restricted them to one area",
+                      },
+                      {
+                        correct: true,
+                        text: "It allowed them to move to colder climates",
+                      },
+                      {
+                        correct: false,
+                        text: "It prevented them from crossing rivers",
+                      },
+                      {
+                        correct: false,
+                        text: "It made them dependent on forests",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following was a technological advancement linked to the control of fire?",
+                    order: 18,
+                    difficulty: 3,
+                    id: 900320117,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Invention of the wheel",
+                      },
+                      {
+                        correct: true,
+                        text: "Creation of metal tools through metallurgy",
+                      },
+                      {
+                        correct: false,
+                        text: "Development of agriculture",
+                      },
+                      {
+                        correct: false,
+                        text: "Domestication of animals",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What archaeological evidence suggests the use of fire by early humans?",
+                    order: 19,
+                    difficulty: 3,
+                    id: 900320118,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Stone carvings",
+                      },
+                      {
+                        correct: true,
+                        text: "Charred bones and hearths found in ancient caves",
+                      },
+                      {
+                        correct: false,
+                        text: "Written records",
+                      },
+                      {
+                        correct: false,
+                        text: "Fossilized remains of plants",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the discovery and use of fire affect the health of early humans?",
+                    order: 20,
+                    difficulty: 3,
+                    id: 900320119,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It made them more prone to diseases",
+                      },
+                      {
+                        correct: false,
+                        text: "It had no impact on their health",
+                      },
+                      {
+                        correct: true,
+                        text: "It improved their nutrition by making food easier to digest and safer to eat",
+                      },
+                      {
+                        correct: false,
+                        text: "It caused respiratory issues due to smoke",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which theory about early human development is supported by the discovery of fire?",
+                    order: 21,
+                    difficulty: 3,
+                    id: 900320120,
+                    challengeOptions: [
+                      {
+                        correct: true,
+                        text: "Fire allowed humans to develop larger brains by providing cooked food",
+                      },
+                      {
+                        correct: false,
+                        text: "Fire was primarily used for hunting purposes",
+                      },
+                      {
+                        correct: false,
+                        text: "Fire led to the extinction of certain species",
+                      },
+                      {
+                        correct: false,
+                        text: "Fire discouraged the development of language",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What role did fire play in the development of early human societies?",
+                    order: 22,
+                    difficulty: 3,
+                    id: 900320121,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It had no role",
+                      },
+                      {
+                        correct: true,
+                        text: "It was central to the development of social structures and community living",
+                      },
+                      {
+                        correct: false,
+                        text: "It led to the extinction of human societies",
+                      },
+                      {
+                        correct: false,
+                        text: "It was only used for ceremonial purposes",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the use of fire influence early human cognitive and cultural development?",
+                    order: 23,
+                    difficulty: 3,
+                    id: 900320122,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It slowed down cognitive development",
+                      },
+                      {
+                        correct: false,
+                        text: "It had no influence",
+                      },
+                      {
+                        correct: true,
+                        text: "It promoted technological and cultural innovations, such as cooking and tool-making",
+                      },
+                      {
+                        correct: false,
+                        text: "It made humans less social",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What evidence of fire usage has been found in prehistoric archaeological sites?",
+                    order: 24,
+                    difficulty: 3,
+                    id: 900320123,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Fossilized water bodies",
+                      },
+                      {
+                        correct: true,
+                        text: "Charred wood, ashes, and hearths",
+                      },
+                      {
+                        correct: false,
+                        text: "Metal artifacts",
+                      },
+                      {
+                        correct: false,
+                        text: "Written inscriptions",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why is the ability to control fire considered a major milestone in human evolution?",
+                    order: 25,
+                    difficulty: 3,
+                    id: 900320124,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It was the first form of technology invented",
+                      },
+                      {
+                        correct: true,
+                        text: "It significantly improved survival and living conditions",
+                      },
+                      {
+                        correct: false,
+                        text: "It led to the development of modern languages",
+                      },
+                      {
+                        correct: false,
+                        text: "It allowed humans to travel to space",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                id: 314,
+                title: "Beginning of Agriculture and Domestication of Animals",
+                order: 4,
+                challenges: [
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What is the term used for growing crops?",
+                    order: 1,
+                    difficulty: 1,
+                    id: 900420125,
+                    challengeOptions: [
+                      { correct: false, text: "Hunting" },
+                      { correct: false, text: "Fishing" },
+                      { correct: true, text: "Agriculture" },
+                      { correct: false, text: "Gathering" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following animals was one of the first to be domesticated?",
+                    order: 2,
+                    difficulty: 1,
+                    id: 900420126,
+                    challengeOptions: [
+                      { correct: false, text: "Tiger" },
+                      { correct: true, text: "Dog" },
+                      { correct: false, text: "Elephant" },
+                      { correct: false, text: "Lion" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What does the term 'domestication' refer to?",
+                    order: 3,
+                    difficulty: 1,
+                    id: 900420127,
+                    challengeOptions: [
+                      { correct: false, text: "Training animals to hunt" },
+                      { correct: true, text: "Taming animals for human use" },
+                      { correct: false, text: "Building homes for animals" },
+                      { correct: false, text: "None of the above" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which crop was among the first to be cultivated by early humans?",
+                    order: 4,
+                    difficulty: 1,
+                    id: 900420128,
+                    challengeOptions: [
+                      { correct: true, text: "Wheat" },
+                      { correct: false, text: "Cotton" },
+                      { correct: false, text: "Coffee" },
+                      { correct: false, text: "Tea" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What is the primary purpose of domesticating animals?",
+                    order: 5,
+                    difficulty: 1,
+                    id: 900420129,
+                    challengeOptions: [
+                      { correct: false, text: "For companionship" },
+                      {
+                        correct: true,
+                        text: "For food, labor, and other resources",
+                      },
+                      { correct: false, text: "To use as guards" },
+                      { correct: false, text: "For entertainment" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following is NOT a result of the beginning of agriculture?",
+                    order: 6,
+                    difficulty: 1,
+                    id: 900420130,
+                    challengeOptions: [
+                      { correct: false, text: "Permanent settlements" },
+                      { correct: false, text: "Increased food supply" },
+                      { correct: true, text: "Nomadic lifestyle" },
+                      { correct: false, text: "Growth of communities" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which tool is closely associated with early agriculture?",
+                    order: 7,
+                    difficulty: 1,
+                    id: 900420131,
+                    challengeOptions: [
+                      { correct: false, text: "Bow and arrow" },
+                      { correct: true, text: "Plough" },
+                      { correct: false, text: "Spear" },
+                      { correct: false, text: "Fishing net" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why was the domestication of animals important for early humans?",
+                    order: 8,
+                    difficulty: 1,
+                    id: 900420132,
+                    challengeOptions: [
+                      {
+                        correct: true,
+                        text: "It provided a source of labor and food",
+                      },
+                      { correct: false, text: "It made travel impossible" },
+                      {
+                        correct: false,
+                        text: "It led to the extinction of wild animals",
+                      },
+                      {
+                        correct: false,
+                        text: "It was only for entertainment purposes",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What change occurred as a result of the shift from hunting-gathering to agriculture?",
+                    order: 9,
+                    difficulty: 2,
+                    id: 900420133,
+                    challengeOptions: [
+                      { correct: false, text: "Decrease in food production" },
+                      {
+                        correct: true,
+                        text: "Establishment of permanent settlements",
+                      },
+                      { correct: false, text: "Increased nomadic behavior" },
+                      { correct: false, text: "Reduced use of tools" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following best describes the process of domestication?",
+                    order: 10,
+                    difficulty: 2,
+                    id: 900420134,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "Catching wild animals and keeping them in cages",
+                      },
+                      {
+                        correct: true,
+                        text: "Training animals to perform tasks and live in close association with humans",
+                      },
+                      { correct: false, text: "Hunting animals for sport" },
+                      {
+                        correct: false,
+                        text: "Keeping animals away from human settlements",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the domestication of plants and animals contribute to the development of human societies?",
+                    order: 11,
+                    difficulty: 2,
+                    id: 900420135,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It decreased social interactions",
+                      },
+                      {
+                        correct: true,
+                        text: "It led to the creation of complex societies and trade",
+                      },
+                      { correct: false, text: "It had no significant impact" },
+                      { correct: false, text: "It caused frequent wars" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which area is considered one of the earliest centers of agriculture?",
+                    order: 12,
+                    difficulty: 2,
+                    id: 900420136,
+                    challengeOptions: [
+                      { correct: false, text: "Antarctica" },
+                      { correct: true, text: "Mesopotamia" },
+                      { correct: false, text: "Australia" },
+                      { correct: false, text: "Sahara Desert" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was the impact of agriculture on the lifestyle of early humans?",
+                    order: 13,
+                    difficulty: 2,
+                    id: 900420137,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It encouraged a nomadic lifestyle",
+                      },
+                      {
+                        correct: true,
+                        text: "It led to settled communities and the growth of villages",
+                      },
+                      { correct: false, text: "It reduced the need for tools" },
+                      { correct: false, text: "It decreased food security" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did agriculture affect the social structure of early human communities?",
+                    order: 14,
+                    difficulty: 2,
+                    id: 900420138,
+                    challengeOptions: [
+                      { correct: false, text: "It led to social equality" },
+                      {
+                        correct: true,
+                        text: "It created differences in social status and roles",
+                      },
+                      {
+                        correct: false,
+                        text: "It eliminated the need for leadership",
+                      },
+                      {
+                        correct: false,
+                        text: "It made social structures irrelevant",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following is a direct result of the domestication of animals?",
+                    order: 15,
+                    difficulty: 2,
+                    id: 900420139,
+                    challengeOptions: [
+                      { correct: false, text: "Development of the wheel" },
+                      {
+                        correct: true,
+                        text: "Increased mobility and transport",
+                      },
+                      { correct: false, text: "Invention of writing" },
+                      { correct: false, text: "Construction of cities" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which domesticated animal was primarily used for ploughing fields?",
+                    order: 16,
+                    difficulty: 2,
+                    id: 900420140,
+                    challengeOptions: [
+                      { correct: false, text: "Dog" },
+                      { correct: false, text: "Elephant" },
+                      { correct: true, text: "Ox" },
+                      { correct: false, text: "Horse" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What evidence suggests the beginning of agriculture in ancient times?",
+                    order: 17,
+                    difficulty: 3,
+                    id: 900420141,
+                    challengeOptions: [
+                      { correct: false, text: "Cave paintings" },
+                      {
+                        correct: false,
+                        text: "Fossilized remains of dinosaurs",
+                      },
+                      {
+                        correct: true,
+                        text: "Archaeological findings of grain storage and farming tools",
+                      },
+                      {
+                        correct: false,
+                        text: "Ancient scripts on hunting techniques",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the domestication of animals influence early human trade?",
+                    order: 18,
+                    difficulty: 3,
+                    id: 900420142,
+                    challengeOptions: [
+                      { correct: false, text: "It reduced trade activities" },
+                      {
+                        correct: true,
+                        text: "It facilitated the transport of goods over long distances",
+                      },
+                      { correct: false, text: "It made trade unnecessary" },
+                      { correct: false, text: "It only affected local trade" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What role did women play in the early agricultural societies?",
+                    order: 19,
+                    difficulty: 3,
+                    id: 900420143,
+                    challengeOptions: [
+                      { correct: false, text: "Primarily hunters" },
+                      { correct: true, text: "Gatherers and farmers" },
+                      { correct: false, text: "Warriors" },
+                      { correct: false, text: "Toolmakers" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which domesticated plant was crucial for the development of settled agricultural communities?",
+                    order: 20,
+                    difficulty: 3,
+                    id: 900420144,
+                    challengeOptions: [
+                      { correct: true, text: "Wheat" },
+                      { correct: false, text: "Cotton" },
+                      { correct: false, text: "Tea" },
+                      { correct: false, text: "Coffee" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following statements is true about the beginning of agriculture?",
+                    order: 21,
+                    difficulty: 3,
+                    id: 900420145,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It began simultaneously across all continents",
+                      },
+                      {
+                        correct: true,
+                        text: "It started in specific regions and spread gradually",
+                      },
+                      {
+                        correct: false,
+                        text: "It had no impact on human settlements",
+                      },
+                      {
+                        correct: false,
+                        text: "It led to immediate urbanization",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why is the Neolithic Revolution considered a turning point in human history?",
+                    order: 22,
+                    difficulty: 3,
+                    id: 900420146,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It marked the beginning of tool-making",
+                      },
+                      {
+                        correct: true,
+                        text: "It led to the establishment of agriculture and permanent settlements",
+                      },
+                      {
+                        correct: false,
+                        text: "It resulted in the discovery of fire",
+                      },
+                      {
+                        correct: false,
+                        text: "It initiated the practice of hunting",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the beginning of agriculture affect the environment?",
+                    order: 23,
+                    difficulty: 3,
+                    id: 900420147,
+                    challengeOptions: [
+                      { correct: false, text: "It had no impact" },
+                      {
+                        correct: true,
+                        text: "It led to deforestation and changes in land use",
+                      },
+                      {
+                        correct: false,
+                        text: "It preserved natural landscapes",
+                      },
+                      {
+                        correct: false,
+                        text: "It decreased human impact on nature",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which domesticated animal was integral to early human societies for transportation and labor?",
+                    order: 24,
+                    difficulty: 3,
+                    id: 900420148,
+                    challengeOptions: [
+                      { correct: false, text: "Sheep" },
+                      { correct: true, text: "Camel" },
+                      { correct: false, text: "Dog" },
+                      { correct: false, text: "Fish" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was the significance of irrigation in the development of agriculture?",
+                    order: 25,
+                    difficulty: 3,
+                    id: 900420149,
+                    challengeOptions: [
+                      { correct: false, text: "It made agriculture difficult" },
+                      {
+                        correct: true,
+                        text: "It allowed for the cultivation of crops in arid regions",
+                      },
+                      {
+                        correct: false,
+                        text: "It was irrelevant to agriculture",
+                      },
+                      { correct: false, text: "It only helped in hunting" },
+                    ],
+                  },
+                ],
+              },
+              {
+                id: 315,
+                title: "Settlements and community life ",
+                order: 5,
+                challenges: [
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What does the term 'settlement' refer to?",
+                    order: 1,
+                    difficulty: 1,
+                    id: 900520150,
+                    challengeOptions: [
+                      { correct: true, text: "A place where people live" },
+                      { correct: false, text: "A place where animals live" },
+                      { correct: false, text: "A place where people hunt" },
+                      { correct: false, text: "A place where crops are grown" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why did early humans start settling in one place?",
+                    order: 2,
+                    difficulty: 1,
+                    id: 900520151,
+                    challengeOptions: [
+                      { correct: false, text: "Because they ran out of food" },
+                      {
+                        correct: true,
+                        text: "Because they discovered agriculture",
+                      },
+                      {
+                        correct: false,
+                        text: "Because they wanted to travel less",
+                      },
+                      {
+                        correct: false,
+                        text: "Because they found better tools",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was one of the main reasons for the development of community life?",
+                    order: 3,
+                    difficulty: 1,
+                    id: 900520152,
+                    challengeOptions: [
+                      { correct: false, text: "Discovery of fire" },
+                      { correct: true, text: "Beginning of agriculture" },
+                      { correct: false, text: "Development of language" },
+                      { correct: false, text: "Domestication of animals" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question: "What type of houses did early settlers build?",
+                    order: 4,
+                    difficulty: 1,
+                    id: 900520153,
+                    challengeOptions: [
+                      { correct: false, text: "Stone houses" },
+                      { correct: true, text: "Mud houses" },
+                      { correct: false, text: "Wooden houses" },
+                      { correct: false, text: "Brick houses" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which of the following is NOT a characteristic of early settlements?",
+                    order: 5,
+                    difficulty: 1,
+                    id: 900520154,
+                    challengeOptions: [
+                      { correct: false, text: "Permanent houses" },
+                      { correct: false, text: "Growing their own food" },
+                      { correct: true, text: "Moving constantly" },
+                      { correct: false, text: "Living in groups" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What activity became possible because of settled life?",
+                    order: 6,
+                    difficulty: 1,
+                    id: 900520155,
+                    challengeOptions: [
+                      { correct: false, text: "Hunting" },
+                      { correct: true, text: "Trade and exchange" },
+                      { correct: false, text: "Fishing" },
+                      { correct: false, text: "Painting" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "In early settlements, what did people use to build their homes?",
+                    order: 7,
+                    difficulty: 1,
+                    id: 900520156,
+                    challengeOptions: [
+                      { correct: false, text: "Metal and glass" },
+                      { correct: true, text: "Mud, wood, and stone" },
+                      { correct: false, text: "Plastic and concrete" },
+                      { correct: false, text: "Leaves and straw" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which development led to the formation of villages?",
+                    order: 8,
+                    difficulty: 1,
+                    id: 900520157,
+                    challengeOptions: [
+                      { correct: false, text: "Use of advanced tools" },
+                      {
+                        correct: true,
+                        text: "Start of agriculture and settled life",
+                      },
+                      { correct: false, text: "Domestication of animals" },
+                      { correct: false, text: "Discovery of fire" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the development of agriculture impact community life?",
+                    order: 9,
+                    difficulty: 2,
+                    id: 900520158,
+                    challengeOptions: [
+                      { correct: false, text: "It reduced food supply" },
+                      {
+                        correct: false,
+                        text: "It increased the need for hunting",
+                      },
+                      {
+                        correct: true,
+                        text: "It allowed people to stay in one place and form communities",
+                      },
+                      { correct: false, text: "It made people more nomadic" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What role did surplus food production play in early communities?",
+                    order: 10,
+                    difficulty: 2,
+                    id: 900520159,
+                    challengeOptions: [
+                      { correct: false, text: "It led to food shortages" },
+                      {
+                        correct: true,
+                        text: "It allowed trade and specialization of labor",
+                      },
+                      { correct: false, text: "It made people travel more" },
+                      {
+                        correct: false,
+                        text: "It decreased the need for cooperation",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did early communities ensure their security?",
+                    order: 11,
+                    difficulty: 2,
+                    id: 900520160,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "By building high walls around their settlements",
+                      },
+                      {
+                        correct: false,
+                        text: "By relying on individual protection",
+                      },
+                      { correct: false, text: "By migrating constantly" },
+                      {
+                        correct: true,
+                        text: "By forming large groups for mutual protection",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What is a key feature of community life that emerged with settled agriculture?",
+                    order: 12,
+                    difficulty: 2,
+                    id: 900520161,
+                    challengeOptions: [
+                      { correct: false, text: "Individualistic living" },
+                      {
+                        correct: true,
+                        text: "Collective effort and cooperation",
+                      },
+                      { correct: false, text: "Isolation from others" },
+                      { correct: false, text: "Constant conflict" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did early humans' social structures change with the advent of settled life?",
+                    order: 13,
+                    difficulty: 2,
+                    id: 900520162,
+                    challengeOptions: [
+                      { correct: false, text: "They became more egalitarian" },
+                      {
+                        correct: true,
+                        text: "They became more complex with defined roles and hierarchies",
+                      },
+                      { correct: false, text: "They became less organized" },
+                      { correct: false, text: "They eliminated social roles" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which innovation was crucial for the development of larger communities and cities?",
+                    order: 14,
+                    difficulty: 2,
+                    id: 900520163,
+                    challengeOptions: [
+                      { correct: false, text: "Fishing nets" },
+                      { correct: true, text: "Writing and record-keeping" },
+                      { correct: false, text: "Hunting tools" },
+                      { correct: false, text: "Stone tools" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the formation of early settlements influence the environment?",
+                    order: 15,
+                    difficulty: 2,
+                    id: 900520164,
+                    challengeOptions: [
+                      { correct: false, text: "It had no impact" },
+                      {
+                        correct: true,
+                        text: "It led to deforestation and changes in land use",
+                      },
+                      { correct: false, text: "It preserved natural habitats" },
+                      {
+                        correct: false,
+                        text: "It decreased human impact on nature",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was one of the major economic activities in early settled communities besides agriculture?",
+                    order: 16,
+                    difficulty: 2,
+                    id: 900520165,
+                    challengeOptions: [
+                      { correct: false, text: "Industrial production" },
+                      { correct: true, text: "Trade and exchange of goods" },
+                      { correct: false, text: "High-tech manufacturing" },
+                      { correct: false, text: "Software development" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What evidence do archaeologists use to study early human settlements?",
+                    order: 17,
+                    difficulty: 3,
+                    id: 900520166,
+                    challengeOptions: [
+                      { correct: false, text: "Modern buildings" },
+                      {
+                        correct: true,
+                        text: "Remains of houses, tools, and pottery",
+                      },
+                      {
+                        correct: false,
+                        text: "Written documents from the time",
+                      },
+                      {
+                        correct: false,
+                        text: "Fossilized remains of ancient plants",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which early settlement is known for being one of the first to practice advanced agriculture and animal domestication?",
+                    order: 18,
+                    difficulty: 3,
+                    id: 900520167,
+                    challengeOptions: [
+                      { correct: false, text: "Ancient Egypt" },
+                      { correct: true, text: "Mesopotamia" },
+                      { correct: false, text: "Indus Valley" },
+                      { correct: false, text: "Sahara Desert" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the practice of settled agriculture lead to technological advancements?",
+                    order: 19,
+                    difficulty: 3,
+                    id: 900520168,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It decreased the need for innovation",
+                      },
+                      {
+                        correct: true,
+                        text: "It created a surplus of food, allowing people time to develop new tools and technologies",
+                      },
+                      { correct: false, text: "It made technology irrelevant" },
+                      {
+                        correct: false,
+                        text: "It led to technological decline",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What role did religion play in early settled communities?",
+                    order: 20,
+                    difficulty: 3,
+                    id: 900520169,
+                    challengeOptions: [
+                      { correct: false, text: "It had no role" },
+                      {
+                        correct: true,
+                        text: "It became a central part of community life, influencing social and political structures",
+                      },
+                      { correct: false, text: "It was only for entertainment" },
+                      {
+                        correct: false,
+                        text: "It discouraged community living",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "What was the impact of the Neolithic Revolution on human population?",
+                    order: 21,
+                    difficulty: 3,
+                    id: 900520170,
+                    challengeOptions: [
+                      { correct: false, text: "Population remained static" },
+                      {
+                        correct: true,
+                        text: "Population increased significantly due to stable food supplies",
+                      },
+                      {
+                        correct: false,
+                        text: "Population decreased due to wars",
+                      },
+                      {
+                        correct: false,
+                        text: "Population dispersed and became nomadic again",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did the formation of settlements influence the development of culture and arts?",
+                    order: 22,
+                    difficulty: 3,
+                    id: 900520171,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It led to the decline of cultural activities",
+                      },
+                      {
+                        correct: true,
+                        text: "It provided stability and resources that allowed for the development of culture and arts",
+                      },
+                      {
+                        correct: false,
+                        text: "It had no effect on cultural development",
+                      },
+                      { correct: false, text: "It made arts irrelevant" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Which social changes accompanied the transition from nomadic to settled life?",
+                    order: 23,
+                    difficulty: 3,
+                    id: 900520172,
+                    challengeOptions: [
+                      { correct: false, text: "Increase in social equality" },
+                      {
+                        correct: true,
+                        text: "Emergence of defined social roles and hierarchies",
+                      },
+                      {
+                        correct: false,
+                        text: "Reduction in social interactions",
+                      },
+                      {
+                        correct: false,
+                        text: "Elimination of leadership roles",
+                      },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "Why were early settled communities often located near rivers?",
+                    order: 24,
+                    difficulty: 3,
+                    id: 900520173,
+                    challengeOptions: [
+                      { correct: false, text: "For aesthetic beauty" },
+                      {
+                        correct: true,
+                        text: "For access to water for drinking, irrigation, and transportation",
+                      },
+                      { correct: false, text: "To avoid predators" },
+                      { correct: false, text: "To isolate themselves" },
+                    ],
+                  },
+                  {
+                    type: schema.challengesEnum.enumValues[0],
+                    question:
+                      "How did settled life contribute to the development of government and administration?",
+                    order: 25,
+                    difficulty: 3,
+                    id: 900520174,
+                    challengeOptions: [
+                      {
+                        correct: false,
+                        text: "It eliminated the need for governance",
+                      },
+                      {
+                        correct: true,
+                        text: "It required organized leadership and administrative systems to manage resources and people",
+                      },
+                      { correct: false, text: "It made governance chaotic" },
+                      {
+                        correct: false,
+                        text: "It had no effect on administration",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ];
 
     // Insert courses
