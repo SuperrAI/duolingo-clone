@@ -6,7 +6,7 @@ import {
   required,
 } from "react-admin";
 
-export const CourseEdit = () => {
+export const SubjectEdit = () => {
   return (
     <Edit>
       <SimpleForm>

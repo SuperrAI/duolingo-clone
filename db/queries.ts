@@ -10,17 +10,17 @@ import {
   challengeProgress,
   challenges,
   chapters,
-  courses,
   skillProgress,
   skills,
+  subjects,
   userProgress,
   userSubscription,
 } from "./schema";
 
 const DAY_IN_MS = 86_400_000;
 
-export const getCourses = cache(async () => {
-  const data = await db.query.courses.findMany();
+export const getSubjects = cache(async () => {
+  const data = await db.query.subjects.findMany();
 
   return data;
 });
@@ -33,7 +33,7 @@ export const getUserProgress = cache(async () => {
   const data = await db.query.userProgress.findFirst({
     where: eq(userProgress.userId, userId),
     with: {
-      activeCourse: true,
+      activeSubject: true,
     },
   });
 
@@ -44,10 +44,10 @@ export const getChapters = cache(async () => {
   const { userId } = auth();
   const userProgress = await getUserProgress();
 
-  if (!userId || !userProgress?.activeCourseId) return [];
+  if (!userId || !userProgress?.activeSubjectId) return [];
 
   const data = await db.query.chapters.findMany({
-    where: eq(chapters.courseId, userProgress.activeCourseId),
+    where: eq(chapters.subjectId, userProgress.activeSubjectId),
     orderBy: (chapters, { asc }) => [asc(chapters.order)],
     with: {
       skills: {
@@ -91,9 +91,9 @@ export const getChapters = cache(async () => {
   return normalizedData;
 });
 
-export const getCourseById = cache(async (courseId: number) => {
-  const data = await db.query.courses.findFirst({
-    where: eq(courses.id, courseId),
+export const getSubjectById = cache(async (subjectId: number) => {
+  const data = await db.query.subjects.findFirst({
+    where: eq(subjects.id, subjectId),
     with: {
       chapters: {
         orderBy: (chapters, { asc }) => [asc(chapters.order)],
@@ -109,15 +109,15 @@ export const getCourseById = cache(async (courseId: number) => {
   return data;
 });
 
-export const getCourseProgress = cache(async () => {
+export const getSubjectProgress = cache(async () => {
   const { userId } = auth();
   const userProgress = await getUserProgress();
 
-  if (!userId || !userProgress?.activeCourseId) return null;
+  if (!userId || !userProgress?.activeSubjectId) return null;
 
-  const chaptersInActiveCourse = await db.query.chapters.findMany({
+  const chaptersInActiveSubject = await db.query.chapters.findMany({
     orderBy: (chapters, { asc }) => [asc(chapters.order)],
-    where: eq(chapters.courseId, userProgress.activeCourseId),
+    where: eq(chapters.subjectId, userProgress.activeSubjectId),
     with: {
       skills: {
         orderBy: (skills, { asc }) => [asc(skills.order)],
@@ -135,7 +135,7 @@ export const getCourseProgress = cache(async () => {
     },
   });
 
-  const firstUncompletedSkill = chaptersInActiveCourse
+  const firstUncompletedSkill = chaptersInActiveSubject
     .flatMap((chapter) => chapter.skills)
     .find((skill) => {
       const completedChallenges = skill.challenges.filter((challenge) => {
@@ -159,8 +159,8 @@ export const getSkill = cache(async (id?: number) => {
 
   if (!userId) return null;
 
-  const courseProgress = await getCourseProgress();
-  const skillId = id || courseProgress?.activeSkillId;
+  const subjectProgress = await getSubjectProgress();
+  const skillId = id || subjectProgress?.activeSkillId;
 
   if (!skillId) return null;
 
@@ -216,11 +216,11 @@ export const getSkill = cache(async (id?: number) => {
 });
 
 export const getSkillPercentage = cache(async () => {
-  const courseProgress = await getCourseProgress();
+  const subjectProgress = await getSubjectProgress();
 
-  if (!courseProgress?.activeSkillId) return 0;
+  if (!subjectProgress?.activeSkillId) return 0;
 
-  const skill = await getSkill(courseProgress?.activeSkillId);
+  const skill = await getSkill(subjectProgress?.activeSkillId);
 
   if (!skill) return 0;
 

@@ -9,9 +9,9 @@ import { ChallengeList } from "./challenge/list";
 import { ChallengeOptionCreate } from "./challengeOption/create";
 import { ChallengeOptionEdit } from "./challengeOption/edit";
 import { ChallengeOptionsList } from "./challengeOption/list";
-import { CourseCreate } from "./course/create";
-import { CourseEdit } from "./course/edit";
-import { CourseList } from "./course/list";
+import { SubjectCreate } from "./subject/create";
+import { SubjectEdit } from "./subject/edit";
+import { SubjectList } from "./subject/list";
 import { SkillCreate } from "./skill/create";
 import { SkillEdit } from "./skill/edit";
 import { SkillList } from "./skill/list";
@@ -25,11 +25,11 @@ const App = () => {
   return (
     <Admin dataProvider={dataProvider}>
       <Resource
-        name="courses"
+        name="subjects"
         recordRepresentation="title"
-        list={CourseList}
-        create={CourseCreate}
-        edit={CourseEdit}
+        list={SubjectList}
+        create={SubjectCreate}
+        edit={SubjectEdit}
       />
 
       <Resource

@@ -3,28 +3,28 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { courses } from "@/db/schema";
+import { subjects } from "@/db/schema";
 
 type UserProgressProps = {
-  activeCourse: typeof courses.$inferSelect;
+  activeSubject: typeof subjects.$inferSelect;
   hearts: number;
   points: number;
   hasActiveSubscription: boolean;
 };
 
 export const UserProgress = ({
-  activeCourse,
+  activeSubject,
   hearts,
   points,
   hasActiveSubscription,
 }: UserProgressProps) => {
   return (
     <div className="flex w-full items-center justify-between gap-x-2">
-      <Link href="/courses">
+      <Link href="/subjects">
         <Button variant="ghost">
           <Image
-            src={activeCourse.imageSrc}
-            alt={activeCourse.title}
+            src={activeSubject.imageSrc}
+            alt={activeSubject.title}
             className="rounded-md border"
             width={32}
             height={32}

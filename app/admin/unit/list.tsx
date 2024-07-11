@@ -13,7 +13,7 @@ export const ChapterList = () => {
         <NumberField source="id" />
         <TextField source="title" />
         <TextField source="description" />
-        <ReferenceField source="courseId" reference="courses" />
+        <ReferenceField source="subjectId" reference="subjects" />
         <TextField source="order" />
       </Datagrid>
     </List>

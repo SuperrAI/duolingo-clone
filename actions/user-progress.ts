@@ -8,47 +8,47 @@ import { redirect } from "next/navigation";
 import { MAX_HEARTS, POINTS_TO_REFILL } from "@/constants";
 import db from "@/db/drizzle";
 import {
-  getCourseById,
+  getSubjectById,
   getUserProgress,
   getUserSubscription,
 } from "@/db/queries";
 import { challengeProgress, challenges, userProgress } from "@/db/schema";
 
-export const upsertUserProgress = async (courseId: number) => {
+export const upsertUserProgress = async (subjectId: number) => {
   const { userId } = auth();
   const user = await currentUser();
 
   if (!userId || !user) throw new Error("Unauthorized.");
 
-  const course = await getCourseById(courseId);
+  const subject = await getSubjectById(subjectId);
 
-  if (!course) throw new Error("Course not found.");
+  if (!subject) throw new Error("Subject not found.");
 
-  if (!course.chapters.length || !course.chapters[0].skills.length)
-    throw new Error("Course is empty.");
+  if (!subject.chapters.length || !subject.chapters[0].skills.length)
+    throw new Error("Subject is empty.");
 
   const existingUserProgress = await getUserProgress();
 
   if (existingUserProgress) {
     await db.update(userProgress).set({
-      activeCourseId: courseId,
+      activeSubjectId: subjectId,
       userName: user.firstName || "User",
       userImageSrc: user.imageUrl || "/mascot.svg",
     });
 
-    revalidatePath("/courses");
+    revalidatePath("/subjects");
     revalidatePath("/learn");
     redirect("/learn");
   }
 
   await db.insert(userProgress).values({
     userId,
-    activeCourseId: courseId,
+    activeSubjectId: subjectId,
     userName: user.firstName || "User",
     userImageSrc: user.imageUrl || "/mascot.svg",
   });
 
-  revalidatePath("/courses");
+  revalidatePath("/subjects");
   revalidatePath("/learn");
   redirect("/learn");
 };

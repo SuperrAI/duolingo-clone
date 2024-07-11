@@ -2,18 +2,18 @@ import { eq } from "drizzle-orm";
 import { NextResponse, type NextRequest } from "next/server";
 
 import db from "@/db/drizzle";
-import { courses } from "@/db/schema";
+import { subjects } from "@/db/schema";
 import { getIsAdmin } from "@/lib/admin";
 
 export const GET = async (
   _req: NextRequest,
-  { params }: { params: { courseId: number } }
+  { params }: { params: { subjectId: number } }
 ) => {
   const isAdmin = getIsAdmin();
   if (!isAdmin) return new NextResponse("Unauthorized.", { status: 401 });
 
-  const data = await db.query.courses.findFirst({
-    where: eq(courses.id, params.courseId),
+  const data = await db.query.subjects.findFirst({
+    where: eq(subjects.id, params.subjectId),
   });
 
   return NextResponse.json(data);
@@ -21,18 +21,18 @@ export const GET = async (
 
 export const PUT = async (
   req: NextRequest,
-  { params }: { params: { courseId: number } }
+  { params }: { params: { subjectId: number } }
 ) => {
   const isAdmin = getIsAdmin();
   if (!isAdmin) return new NextResponse("Unauthorized.", { status: 401 });
 
-  const body = (await req.json()) as typeof courses.$inferSelect;
+  const body = (await req.json()) as typeof subjects.$inferSelect;
   const data = await db
-    .update(courses)
+    .update(subjects)
     .set({
       ...body,
     })
-    .where(eq(courses.id, params.courseId))
+    .where(eq(subjects.id, params.subjectId))
     .returning();
 
   return NextResponse.json(data[0]);
@@ -40,14 +40,14 @@ export const PUT = async (
 
 export const DELETE = async (
   _req: NextRequest,
-  { params }: { params: { courseId: number } }
+  { params }: { params: { subjectId: number } }
 ) => {
   const isAdmin = getIsAdmin();
   if (!isAdmin) return new NextResponse("Unauthorized.", { status: 401 });
 
   const data = await db
-    .delete(courses)
-    .where(eq(courses.id, params.courseId))
+    .delete(subjects)
+    .where(eq(subjects.id, params.subjectId))
     .returning();
 
   return NextResponse.json(data[0]);

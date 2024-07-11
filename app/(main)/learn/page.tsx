@@ -6,7 +6,7 @@ import { Quests } from "@/components/quests";
 import { StickyWrapper } from "@/components/sticky-wrapper";
 import { UserProgress } from "@/components/user-progress";
 import {
-  getCourseProgress,
+  getSubjectProgress,
   getSkillPercentage,
   getChapters,
   getUserProgress,
@@ -18,7 +18,7 @@ import { Chapter } from "./chapter";
 
 const LearnPage = async () => {
   const userProgressData = getUserProgress();
-  const courseProgressData = getCourseProgress();
+  const subjectProgressData = getSubjectProgress();
   const skillPercentageData = getSkillPercentage();
   const chaptersData = getChapters();
   const userSubscriptionData = getUserSubscription();
@@ -26,19 +26,19 @@ const LearnPage = async () => {
   const [
     userProgress,
     chapters,
-    courseProgress,
+    subjectProgress,
     skillPercentage,
     userSubscription,
   ] = await Promise.all([
     userProgressData,
     chaptersData,
-    courseProgressData,
+    subjectProgressData,
     skillPercentageData,
     userSubscriptionData,
   ]);
 
-  if (!courseProgress || !userProgress || !userProgress.activeCourse)
-    redirect("/courses");
+  if (!subjectProgress || !userProgress || !userProgress.activeSubject)
+    redirect("/subjects");
 
   const isPro = !!userSubscription?.isActive;
 
@@ -46,7 +46,7 @@ const LearnPage = async () => {
     <div className="flex flex-row-reverse gap-[48px] px-6">
       <StickyWrapper>
         <UserProgress
-          activeCourse={userProgress.activeCourse}
+          activeSubject={userProgress.activeSubject}
           hearts={userProgress.hearts}
           points={userProgress.points}
           hasActiveSubscription={isPro}
@@ -56,7 +56,7 @@ const LearnPage = async () => {
         <Quests points={userProgress.points} />
       </StickyWrapper>
       <FeedWrapper>
-        <Header title={userProgress.activeCourse.title} />
+        <Header title={userProgress.activeSubject.title} />
         {chapters.map((chapter) => (
           <div key={chapter.id} className="mb-10">
             <Chapter
@@ -65,7 +65,7 @@ const LearnPage = async () => {
               description={chapter.description}
               title={chapter.title}
               skills={chapter.skills}
-              activeSkill={courseProgress.activeSkill}
+              activeSkill={subjectProgress.activeSkill}
               activeSkillPercentage={skillPercentage}
             />
           </div>

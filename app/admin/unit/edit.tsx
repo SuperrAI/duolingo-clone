@@ -18,7 +18,7 @@ export const ChapterEdit = () => {
           validate={[required()]}
           label="Description"
         />
-        <ReferenceInput source="courseId" reference="courses" />
+        <ReferenceInput source="subjectId" reference="subjects" />
         <NumberInput source="order" validate={required()} label="Order" />
       </SimpleForm>
     </Edit>

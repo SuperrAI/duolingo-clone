@@ -11,13 +11,13 @@ import {
 
 import { MAX_HEARTS } from "@/constants";
 
-export const courses = pgTable("courses", {
+export const subjects = pgTable("subjects", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   imageSrc: text("image_src").notNull(),
 });
 
-export const coursesRelations = relations(courses, ({ many }) => ({
+export const subjectsRelations = relations(subjects, ({ many }) => ({
   userProgress: many(userProgress),
   chapters: many(chapters),
 }));
@@ -26,8 +26,8 @@ export const chapters = pgTable("chapters", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(), // Chapter 1
   description: text("description").notNull(), // Learn the basics of spanish
-  courseId: integer("course_id")
-    .references(() => courses.id, {
+  subjectId: integer("subject_id")
+    .references(() => subjects.id, {
       onDelete: "cascade",
     })
     .notNull(),
@@ -35,9 +35,9 @@ export const chapters = pgTable("chapters", {
 });
 
 export const chaptersRelations = relations(chapters, ({ many, one }) => ({
-  course: one(courses, {
-    fields: [chapters.courseId],
-    references: [courses.id],
+  subject: one(subjects, {
+    fields: [chapters.subjectId],
+    references: [subjects.id],
   }),
   skills: many(skills),
 }));
@@ -163,7 +163,7 @@ export const userProgress = pgTable("user_progress", {
   userId: text("user_id").primaryKey(),
   userName: text("user_name").notNull().default("User"),
   userImageSrc: text("user_image_src").notNull().default("/mascot.svg"),
-  activeCourseId: integer("active_course_id").references(() => courses.id, {
+  activeSubjectId: integer("active_subject_id").references(() => subjects.id, {
     onDelete: "cascade",
   }),
   hearts: integer("hearts").notNull().default(MAX_HEARTS),
@@ -175,9 +175,9 @@ export const userProgress = pgTable("user_progress", {
 });
 
 export const userProgressRelations = relations(userProgress, ({ one }) => ({
-  activeCourse: one(courses, {
-    fields: [userProgress.activeCourseId],
-    references: [courses.id],
+  activeSubject: one(subjects, {
+    fields: [userProgress.activeSubjectId],
+    references: [subjects.id],
   }),
 }));
 

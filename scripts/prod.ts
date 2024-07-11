@@ -20,7 +20,7 @@ const createTables = async () => {
 
   await sql`CREATE TABLE IF NOT EXISTS chapters (
     id SERIAL PRIMARY KEY,
-    course_id INTEGER,
+    subject_id INTEGER,
     title VARCHAR(255),
     description TEXT,
     chapter_order INTEGER
@@ -33,11 +33,11 @@ const createTables = async () => {
     skill_order INTEGER
   );`;
 
-  await sql`CREATE TABLE IF NOT EXISTS courses (
+  await sql`CREATE TABLE IF NOT EXISTS subjects (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255),
     image_src VARCHAR(255),
-    course_order INTEGER
+    subject_order INTEGER
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS challenge_options (
@@ -84,7 +84,7 @@ const createTables = async () => {
     user_id TEXT PRIMARY KEY,
     user_name TEXT NOT NULL DEFAULT 'User',
     user_image_src TEXT NOT NULL DEFAULT '/man.svg',
-    active_course_id INTEGER REFERENCES courses(id) ON DELETE CASCADE,
+    active_subject_id INTEGER REFERENCES subjects(id) ON DELETE CASCADE,
     current_skill_id INTEGER REFERENCES skills(id),
     last_attempted_challenge_id INTEGER REFERENCES challenges(id),
     hearts INTEGER NOT NULL DEFAULT 50,
@@ -95,15 +95,15 @@ const createTables = async () => {
 const main = async () => {
   try {
     // Delete all existing data
-    // await Promise.all([
-    //   db.delete(schema.userProgress),
-    //   db.delete(schema.challenges),
-    //   db.delete(schema.chapters),
-    //   db.delete(schema.skills),
-    //   db.delete(schema.courses),
-    //   db.delete(schema.challengeOptions),
-    //   db.delete(schema.userSubscription),
-    // ]);
+    await Promise.all([
+      db.delete(schema.userProgress),
+      db.delete(schema.challenges),
+      db.delete(schema.chapters),
+      db.delete(schema.skills),
+      db.delete(schema.subjects),
+      db.delete(schema.challengeOptions),
+      db.delete(schema.userSubscription),
+    ]);
 
     console.log("Creating tables");
     await createTables();
@@ -112,11 +112,11 @@ const main = async () => {
     console.log("Seeding database");
 
     /**
-     * Maths data
+     * Subject data
      */
-    const coursesData = [
+    const subjectsData = [
       {
-        courseId: 1,
+        subjectId: 1,
         title: "Math",
         imageSrc: "/man.svg",
         chapters: [
@@ -3812,7 +3812,7 @@ const main = async () => {
         ],
       },
       {
-        courseId: 2,
+        subjectId: 2,
         title: "Science",
         imageSrc: "/man.svg",
         chapters: [
@@ -7168,7 +7168,7 @@ const main = async () => {
         ],
       },
       {
-        courseId: 3,
+        subjectId: 3,
         title: "History",
         imageSrc: "/man.svg",
         chapters: [
@@ -10735,59 +10735,57 @@ const main = async () => {
       },
     ];
 
-    // Insert courses
-    const courses = await db
-      .insert(schema.courses)
-      // .values([{ title: "Math", imageSrc: "/man.svg" }, { title: "Science", imageSrc: "/man.svg" }])
+    // Insert subjects
+    const subjects = await db
+      .insert(schema.subjects)
       .values(
-        coursesData.map((eachCourse) => {
+        subjectsData.map((eachSubject) => {
           return {
-            id: eachCourse.courseId,
-            title: eachCourse.title,
-            imageSrc: eachCourse.imageSrc,
+            id: eachSubject.subjectId,
+            title: eachSubject.title,
+            imageSrc: eachSubject.imageSrc,
           };
         })
       )
       .returning();
 
-    console.log(`Inserted ${courses.length} courses.`);
+    console.log(`Inserted ${subjects.length} subjects.`);
 
-    // For each course, insert chapters
-    for (const course of coursesData) {
+    // For each subject, insert chapters
+    for (const subject of subjectsData) {
       const chapters = await db
         .insert(schema.chapters)
         .values(
-          course.chapters.map((eachChapter) => {
-            return { courseId: course.courseId, ...eachChapter };
+          subject.chapters.map((eachChapter) => {
+            return { subjectId: subject.subjectId, ...eachChapter };
           })
         )
         .returning();
 
-      console.log(`Inserted ${chapters.length} chapters of course "${course.title}"`);
+      console.log(`Inserted ${chapters.length} chapter(s): subject "${subject.title}"`);
 
       // For each chapter, insert skills
-      for (const courseChapters of course.chapters) {
+      for (const chapter of subject.chapters) {
         const skills = await db
           .insert(schema.skills)
           .values(
-            courseChapters.skills.map((eachSkill) => {
-              return { chapterId: courseChapters.id, ...eachSkill };
+            chapter.skills.map((eachSkill) => {
+              return { chapterId: chapter.id, ...eachSkill };
             })
           )
           .returning();
         console.log(
-          `Inserted ${skills.length} skills of chapter "${courseChapters.title}"`
+          `Inserted ${skills.length} skill(s): ${subject.title}/${chapter.title}`
         );
 
         // For each skill, insert challenges
-        for (const skill of courseChapters.skills) {
+        for (const skill of chapter.skills) {
           const challenges = await db
             .insert(schema.challenges)
             .values(
               skill.challenges.map((eachChallenge) => {
                 return {
                   skillId: skill.id,
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                   type: eachChallenge.type,
                   question: eachChallenge.question,
                   order: eachChallenge.order,
@@ -10798,7 +10796,7 @@ const main = async () => {
             )
             .returning();
           console.log(
-            `Inserted ${challenges.length} challenges of skill "${skill.title}"`
+            `Inserted ${challenges.length} challenges: ${subject.title}/${chapter.title}/${skill.title}"`
           );
 
           // For each challenge, insert challenge options
