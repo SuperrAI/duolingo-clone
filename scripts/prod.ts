@@ -115,7 +115,7 @@ const main = async () => {
                 order: 1,
                 challenges: [
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Write 5 million, 3 thousand, and 21 in numerals.",
                     order: 1,
@@ -163,7 +163,7 @@ const main = async () => {
                 order: 1,
                 challenges: [
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which nutrient is abundantly found in rice and wheat?",
                     order: 1,
@@ -177,7 +177,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "What is the primary nutrient found in dal (lentils)?",
                     order: 2,
@@ -191,7 +191,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "Which of these foods is rich in fats?",
                     order: 3,
                     difficulty: 1,
@@ -204,7 +204,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which vitamin is found in abundant quantities in citrus fruits like oranges?",
                     order: 4,
@@ -218,7 +218,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which mineral is found in good quantities in milk and milk products?",
                     order: 5,
@@ -232,7 +232,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which of these foods is a good source of dietary fiber?",
                     order: 6,
@@ -246,7 +246,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which nutrient is found in large quantities in eggs?",
                     order: 7,
@@ -260,7 +260,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which of these foods contains all major nutrients in good proportions?",
                     order: 8,
@@ -274,7 +274,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "What is the main nutrient found in cooking oils?",
                     order: 9,
@@ -288,7 +288,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "Which of these foods is rich in Vitamin A?",
                     order: 10,
                     difficulty: 2,
@@ -308,7 +308,7 @@ const main = async () => {
                 order: 2,
                 challenges: [
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "What is the primary function of carbohydrates in our body?",
                     order: 1,
@@ -334,7 +334,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which of these is NOT a function of proteins in our body?",
                     order: 2,
@@ -360,7 +360,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "What do fats do in our body?",
                     order: 3,
                     difficulty: 1,
@@ -385,7 +385,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which nutrient helps in the absorption of calcium and phosphorus?",
                     order: 4,
@@ -411,7 +411,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "What is the role of iron in our body?",
                     order: 5,
                     difficulty: 3,
@@ -436,7 +436,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "What is the main function of dietary fiber?",
                     order: 6,
                     difficulty: 1,
@@ -461,7 +461,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which vitamin is important for maintaining healthy skin and good eyesight?",
                     order: 7,
@@ -487,7 +487,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "What is the function of iodine in our body?",
                     order: 8,
                     difficulty: 3,
@@ -512,7 +512,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "What is the primary function of water in our body?",
                     order: 9,
@@ -538,7 +538,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "Which nutrient is essential for blood clotting?",
                     order: 10,
                     difficulty: 2,
@@ -570,7 +570,7 @@ const main = async () => {
                 order: 3,
                 challenges: [
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "What is a balanced diet?",
                     order: 1,
                     difficulty: 1,
@@ -595,7 +595,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which of these is NOT a characteristic of a balanced diet?",
                     order: 2,
@@ -621,7 +621,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "Why is a balanced diet important?",
                     order: 3,
                     difficulty: 1,
@@ -646,7 +646,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which nutrient should form the largest portion of a balanced diet?",
                     order: 4,
@@ -672,7 +672,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which of these combinations represents a balanced meal?",
                     order: 5,
@@ -698,7 +698,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "How many major food groups are there in a balanced diet?",
                     order: 6,
@@ -724,7 +724,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which of these is NOT a major food group in a balanced diet?",
                     order: 7,
@@ -750,7 +750,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "What happens if a person's diet lacks variety?",
                     order: 8,
                     difficulty: 3,
@@ -775,7 +775,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which food group provides us with most of our energy?",
                     order: 9,
@@ -801,7 +801,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Why are fruits and vegetables important in a balanced diet?",
                     order: 10,
@@ -834,7 +834,7 @@ const main = async () => {
                 order: 4,
                 challenges: [
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "What are deficiency diseases?",
                     order: 1,
                     difficulty: 1,
@@ -859,7 +859,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which deficiency disease is caused by lack of Vitamin C?",
                     order: 2,
@@ -885,7 +885,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "What is the deficiency disease caused by lack of both proteins and carbohydrates?",
                     order: 3,
@@ -911,7 +911,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which nutrient deficiency causes night blindness?",
                     order: 4,
@@ -937,7 +937,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "What is the main symptom of anaemia?",
                     order: 5,
                     difficulty: 2,
@@ -962,7 +962,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which deficiency disease affects the thyroid gland?",
                     order: 6,
@@ -988,7 +988,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which vitamin deficiency can lead to poor wound healing?",
                     order: 7,
@@ -1014,7 +1014,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "What is the main cause of rickets?",
                     order: 8,
                     difficulty: 2,
@@ -1039,7 +1039,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which deficiency disease is characterized by swollen belly and changes in hair color?",
                     order: 9,
@@ -1065,7 +1065,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "Which mineral deficiency causes anaemia?",
                     order: 10,
                     difficulty: 1,
@@ -1097,7 +1097,7 @@ const main = async () => {
                 order: 5,
                 challenges: [
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "What color does iodine solution turn when starch is present?",
                     order: 1,
@@ -1123,7 +1123,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which solution is used to test for the presence of proteins?",
                     order: 2,
@@ -1149,7 +1149,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "What color change indicates the presence of proteins in the biuret test?",
                     order: 3,
@@ -1175,7 +1175,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which food component turns blue-black with iodine?",
                     order: 4,
@@ -1201,7 +1201,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "What is the paper test used to detect?",
                     order: 5,
                     difficulty: 2,
@@ -1226,7 +1226,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "In the paper test for fats, what happens to the paper?",
                     order: 6,
@@ -1252,7 +1252,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "Which of these is NOT a common food test?",
                     order: 7,
                     difficulty: 1,
@@ -1277,7 +1277,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "What component does Benedict's solution test for?",
                     order: 8,
@@ -1303,7 +1303,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "What color change indicates a positive result in Benedict's test?",
                     order: 9,
@@ -1329,7 +1329,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "Which test involves rubbing the food on paper?",
                     order: 10,
                     difficulty: 1,
@@ -1361,7 +1361,7 @@ const main = async () => {
                 order: 6,
                 challenges: [
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "What is another term for roughage?",
                     order: 1,
                     difficulty: 1,
@@ -1386,7 +1386,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which of these is NOT a good source of roughage?",
                     order: 2,
@@ -1412,7 +1412,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "How does roughage help in digestion?",
                     order: 3,
                     difficulty: 3,
@@ -1437,7 +1437,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "Can humans digest roughage?",
                     order: 4,
                     difficulty: 1,
@@ -1462,7 +1462,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which of these is a benefit of including roughage in diet?",
                     order: 5,
@@ -1488,7 +1488,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "How does roughage help in weight management?",
                     order: 6,
                     difficulty: 3,
@@ -1513,7 +1513,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question:
                       "Which part of a fruit often contains the most roughage?",
                     order: 7,
@@ -1539,7 +1539,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "What happens if a person's diet lacks roughage?",
                     order: 8,
                     difficulty: 2,
@@ -1564,7 +1564,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "How does roughage affect blood sugar levels?",
                     order: 9,
                     difficulty: 3,
@@ -1589,7 +1589,7 @@ const main = async () => {
                     ],
                   },
                   {
-                    type: "SELECT",
+                    type: schema.challengesEnum.enumValues[0],
                     question: "Which of these foods is rich in roughage?",
                     order: 10,
                     difficulty: 1,
