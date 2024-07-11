@@ -15,9 +15,9 @@ import { CourseList } from "./course/list";
 import { LessonCreate } from "./lesson/create";
 import { LessonEdit } from "./lesson/edit";
 import { LessonList } from "./lesson/list";
-import { UnitCreate } from "./unit/create";
-import { UnitEdit } from "./unit/edit";
-import { UnitList } from "./unit/list";
+import { ChapterCreate } from "./chapter/create";
+import { ChapterEdit } from "./chapter/edit";
+import { ChapterList } from "./chapter/list";
 
 const dataProvider = simpleRestProvider("/api");
 
@@ -33,11 +33,11 @@ const App = () => {
       />
 
       <Resource
-        name="units"
+        name="chapters"
         recordRepresentation="title"
-        list={UnitList}
-        create={UnitCreate}
-        edit={UnitEdit}
+        list={ChapterList}
+        create={ChapterCreate}
+        edit={ChapterEdit}
       />
 
       <Resource

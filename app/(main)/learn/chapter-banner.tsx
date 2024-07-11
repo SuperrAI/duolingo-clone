@@ -3,12 +3,12 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
-type UnitBannerProps = {
+type ChapterBannerProps = {
   title: string;
   description: string;
 };
 
-export const UnitBanner = ({ title, description }: UnitBannerProps) => {
+export const ChapterBanner = ({ title, description }: ChapterBannerProps) => {
   return (
     <div className="flex w-full items-center justify-between rounded-xl bg-orange-500 p-5 text-white">
       <div className="space-y-2.5">

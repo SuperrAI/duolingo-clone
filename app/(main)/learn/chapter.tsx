@@ -1,9 +1,9 @@
-import { lessons, units } from "@/db/schema";
+import { lessons, chapters } from "@/db/schema";
 
 import { LessonButton } from "./lesson-button";
-import { UnitBanner } from "./unit-banner";
+import { ChapterBanner } from "./chapter-banner";
 
-type UnitProps = {
+type ChapterProps = {
   id: number;
   order: number;
   title: string;
@@ -13,22 +13,22 @@ type UnitProps = {
   })[];
   activeLesson:
     | (typeof lessons.$inferSelect & {
-        unit: typeof units.$inferSelect;
+        chapter: typeof chapters.$inferSelect;
       })
     | undefined;
   activeLessonPercentage: number;
 };
 
-export const Unit = ({
+export const Chapter = ({
   title,
   description,
   lessons,
   activeLesson,
   activeLessonPercentage,
-}: UnitProps) => {
+}: ChapterProps) => {
   return (
     <>
-      <UnitBanner title={title} description={description} />
+      <ChapterBanner title={title} description={description} />
 
       <div className="relative flex flex-col items-center">
         {lessons.map((lesson, i) => {

@@ -7,7 +7,7 @@ import {
   required,
 } from "react-admin";
 
-export const UnitCreate = () => {
+export const ChapterCreate = () => {
   return (
     <Create>
       <SimpleForm>

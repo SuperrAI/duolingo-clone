@@ -18,17 +18,17 @@ const createTables = async () => {
     difficulty INTEGER
   );`;
 
-  await sql`CREATE TABLE IF NOT EXISTS units (
+  await sql`CREATE TABLE IF NOT EXISTS chapters (
     id SERIAL PRIMARY KEY,
     course_id INTEGER,
     title VARCHAR(255),
     description TEXT,
-    unit_order INTEGER
+    chapter_order INTEGER
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS lessons (
     id SERIAL PRIMARY KEY,
-    unit_id INTEGER,
+    chapter_id INTEGER,
     title VARCHAR(255),
     lesson_order INTEGER
   );`;
@@ -95,15 +95,15 @@ const createTables = async () => {
 const main = async () => {
   try {
     // Delete all existing data
-    await Promise.all([
-      db.delete(schema.userProgress),
-      db.delete(schema.challenges),
-      db.delete(schema.units),
-      db.delete(schema.lessons),
-      db.delete(schema.courses),
-      db.delete(schema.challengeOptions),
-      db.delete(schema.userSubscription),
-    ]);
+    // await Promise.all([
+    //   db.delete(schema.userProgress),
+    //   db.delete(schema.challenges),
+    //   db.delete(schema.chapters),
+    //   db.delete(schema.lessons),
+    //   db.delete(schema.courses),
+    //   db.delete(schema.challengeOptions),
+    //   db.delete(schema.userSubscription),
+    // ]);
 
     console.log("Creating tables");
     await createTables();
@@ -119,12 +119,12 @@ const main = async () => {
         courseId: 1,
         title: "Math",
         imageSrc: "/man.svg",
-        units: [
+        chapters: [
           {
             id: 11,
             description: `Knowing Our Numbers`,
             order: 1,
-            title: "Unit 1",
+            title: "Chapter 1",
             lessons: [
               {
                 id: 111,
@@ -3815,12 +3815,12 @@ const main = async () => {
         courseId: 2,
         title: "Science",
         imageSrc: "/man.svg",
-        units: [
+        chapters: [
           {
             id: 21,
             description: `Components of Food`,
             order: 1,
-            title: "Unit 1",
+            title: "Chapter 1",
             lessons: [
               {
                 id: 211,
@@ -7171,12 +7171,12 @@ const main = async () => {
         courseId: 3,
         title: "History",
         imageSrc: "/man.svg",
-        units: [
+        chapters: [
           {
             id: 31,
             description: `From Hunting-Gathering to Growing Food`,
             order: 1,
-            title: "Unit 1",
+            title: "Chapter 1",
             lessons: [
               {
                 id: 311,
@@ -10752,35 +10752,35 @@ const main = async () => {
 
     console.log(`Inserted ${courses.length} courses.`);
 
-    // For each course, insert units
+    // For each course, insert chapters
     for (const course of coursesData) {
-      const units = await db
-        .insert(schema.units)
+      const chapters = await db
+        .insert(schema.chapters)
         .values(
-          course.units.map((eachUnit) => {
-            return { courseId: course.courseId, ...eachUnit };
+          course.chapters.map((eachChapter) => {
+            return { courseId: course.courseId, ...eachChapter };
           })
         )
         .returning();
 
-      console.log(`Inserted ${units.length} units of course "${course.title}"`);
+      console.log(`Inserted ${chapters.length} chapters of course "${course.title}"`);
 
-      // For each unit, insert lessons
-      for (const courseUnits of course.units) {
+      // For each chapter, insert lessons
+      for (const courseChapters of course.chapters) {
         const lessons = await db
           .insert(schema.lessons)
           .values(
-            courseUnits.lessons.map((eachLesson) => {
-              return { unitId: courseUnits.id, ...eachLesson };
+            courseChapters.lessons.map((eachLesson) => {
+              return { chapterId: courseChapters.id, ...eachLesson };
             })
           )
           .returning();
         console.log(
-          `Inserted ${lessons.length} units of unit "${courseUnits.title}"`
+          `Inserted ${lessons.length} lessons of chapter "${courseChapters.title}"`
         );
 
         // For each lesson, insert challenges
-        for (const lesson of courseUnits.lessons) {
+        for (const lesson of courseChapters.lessons) {
           const challenges = await db
             .insert(schema.challenges)
             .values(

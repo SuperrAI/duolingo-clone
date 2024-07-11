@@ -8,30 +8,30 @@ import { UserProgress } from "@/components/user-progress";
 import {
   getCourseProgress,
   getLessonPercentage,
-  getUnits,
+  getChapters,
   getUserProgress,
   getUserSubscription,
 } from "@/db/queries";
 
 import { Header } from "./header";
-import { Unit } from "./unit";
+import { Chapter } from "./chapter";
 
 const LearnPage = async () => {
   const userProgressData = getUserProgress();
   const courseProgressData = getCourseProgress();
   const lessonPercentageData = getLessonPercentage();
-  const unitsData = getUnits();
+  const chaptersData = getChapters();
   const userSubscriptionData = getUserSubscription();
 
   const [
     userProgress,
-    units,
+    chapters,
     courseProgress,
     lessonPercentage,
     userSubscription,
   ] = await Promise.all([
     userProgressData,
-    unitsData,
+    chaptersData,
     courseProgressData,
     lessonPercentageData,
     userSubscriptionData,
@@ -57,14 +57,14 @@ const LearnPage = async () => {
       </StickyWrapper>
       <FeedWrapper>
         <Header title={userProgress.activeCourse.title} />
-        {units.map((unit) => (
-          <div key={unit.id} className="mb-10">
-            <Unit
-              id={unit.id}
-              order={unit.order}
-              description={unit.description}
-              title={unit.title}
-              lessons={unit.lessons}
+        {chapters.map((chapter) => (
+          <div key={chapter.id} className="mb-10">
+            <Chapter
+              id={chapter.id}
+              order={chapter.order}
+              description={chapter.description}
+              title={chapter.title}
+              lessons={chapter.lessons}
               activeLesson={courseProgress.activeLesson}
               activeLessonPercentage={lessonPercentage}
             />
