@@ -7,9 +7,17 @@ import { revalidatePath } from "next/cache";
 import { MAX_HEARTS } from "@/constants";
 import db from "@/db/drizzle";
 import { getUserProgress, getUserSubscription } from "@/db/queries";
-import { challengeProgress, challenges, userProgress } from "@/db/schema";
+import {
+  challengeProgress,
+  challenges,
+  lessonProgress,
+  userProgress,
+} from "@/db/schema";
 
-export const upsertChallengeProgress = async (challengeId: number) => {
+export const upsertChallengeProgress = async (
+  challengeId: number,
+  isCorrect: boolean
+) => {
   const { userId } = auth();
 
   if (!userId) throw new Error("Unauthorized.");
@@ -72,6 +80,47 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     userId,
     completed: true,
   });
+
+  const lessonProgressData = await db.query.lessonProgress.findFirst({
+    where: and(
+      eq(lessonProgress.userId, userId),
+      eq(lessonProgress.lessonId, lessonId)
+    ),
+  });
+
+  if (!lessonProgressData) {
+    // Create new lesson progress if it doesn't exist
+    await db.insert(lessonProgress).values({
+      userId,
+      lessonId,
+      currentDifficulty: 1,
+      correctAnswers: isCorrect ? 1 : 0,
+      totalAttempts: 1,
+    });
+  } else {
+    // Update existing lesson progress
+    const newCorrectAnswers = isCorrect
+      ? lessonProgressData.correctAnswers + 1
+      : lessonProgressData.correctAnswers;
+    const newTotalAttempts = lessonProgressData.totalAttempts + 1;
+    const accuracy = newCorrectAnswers / newTotalAttempts;
+
+    let newDifficulty = lessonProgressData.currentDifficulty;
+    if (accuracy > 0.8 && newDifficulty < 3) {
+      newDifficulty++;
+    } else if (accuracy < 0.5 && newDifficulty > 1) {
+      newDifficulty--;
+    }
+
+    await db
+      .update(lessonProgress)
+      .set({
+        currentDifficulty: newDifficulty,
+        correctAnswers: newCorrectAnswers,
+        totalAttempts: newTotalAttempts,
+      })
+      .where(eq(lessonProgress.id, lessonProgressData.id));
+  }
 
   await db
     .update(userProgress)

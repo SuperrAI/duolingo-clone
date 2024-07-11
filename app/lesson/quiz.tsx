@@ -114,15 +114,17 @@ export const Quiz = ({
 
     if (!correctOption) return;
 
-    if (correctOption.id === selectedOption) {
-      startTransition(() => {
-        upsertChallengeProgress(challenge.id)
-          .then((response) => {
-            if (response?.error === "hearts") {
-              openHeartsModal();
-              return;
-            }
+    const isCorrect = correctOption.id === selectedOption;
 
+    startTransition(() => {
+      upsertChallengeProgress(challenge.id, isCorrect)
+        .then((response) => {
+          if (response?.error === "hearts") {
+            openHeartsModal();
+            return;
+          }
+
+          if (isCorrect) {
             void correctControls.play();
             setStatus("correct");
             setPercentage((prev) => prev + 100 / challenges.length);
@@ -131,26 +133,15 @@ export const Quiz = ({
             if (initialPercentage === 100) {
               setHearts((prev) => Math.min(prev + 1, MAX_HEARTS));
             }
-          })
-          .catch(() => toast.error("Something went wrong. Please try again."));
-      });
-    } else {
-      startTransition(() => {
-        reduceHearts(challenge.id)
-          .then((response) => {
-            if (response?.error === "hearts") {
-              openHeartsModal();
-              return;
-            }
-
+          } else {
             void incorrectControls.play();
             setStatus("wrong");
 
             if (!response?.error) setHearts((prev) => Math.max(prev - 1, 0));
-          })
-          .catch(() => toast.error("Something went wrong. Please try again."));
-      });
-    }
+          }
+        })
+        .catch(() => toast.error("Something went wrong. Please try again."));
+    });
   };
 
   if (!challenge) {
@@ -206,7 +197,7 @@ export const Quiz = ({
   const title =
     challenge.type === "ASSIST"
       ? "Select the correct meaning"
-      : challenge.question;
+      : `${challenge.question} (Difficulty: ${challenge.difficulty})`;
 
   return (
     <>

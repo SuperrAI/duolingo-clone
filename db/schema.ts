@@ -117,6 +117,10 @@ export const challengeProgress = pgTable("challenge_progress", {
     })
     .notNull(),
   completed: boolean("completed").notNull().default(false),
+  attempts: integer("attempts").notNull().default(0),
+  lastAttemptCorrect: boolean("last_attempt_correct"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
 export const challengeProgressRelations = relations(
@@ -129,6 +133,32 @@ export const challengeProgressRelations = relations(
   })
 );
 
+export const lessonProgress = pgTable("lesson_progress", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  lessonId: integer("lesson_id")
+    .references(() => lessons.id, {
+      onDelete: "cascade",
+    })
+    .notNull(),
+  currentDifficulty: integer("current_difficulty").notNull().default(1),
+  correctAnswers: integer("correct_answers").notNull().default(0),
+  totalAttempts: integer("total_attempts").notNull().default(0),
+  completed: boolean("completed").notNull().default(false),
+  lastAttemptedAt: timestamp("last_attempted_at").notNull().defaultNow(),
+});
+
+export const lessonProgressRelations = relations(lessonProgress, ({ one }) => ({
+  user: one(userProgress, {
+    fields: [lessonProgress.userId],
+    references: [userProgress.userId],
+  }),
+  lesson: one(lessons, {
+    fields: [lessonProgress.lessonId],
+    references: [lessons.id],
+  }),
+}));
+
 export const userProgress = pgTable("user_progress", {
   userId: text("user_id").primaryKey(),
   userName: text("user_name").notNull().default("User"),
@@ -138,6 +168,10 @@ export const userProgress = pgTable("user_progress", {
   }),
   hearts: integer("hearts").notNull().default(MAX_HEARTS),
   points: integer("points").notNull().default(0),
+  currentLessonId: integer("current_lesson_id").references(() => lessons.id),
+  lastAttemptedChallengeId: integer("last_attempted_challenge_id").references(
+    () => challenges.id
+  ),
 });
 
 export const userProgressRelations = relations(userProgress, ({ one }) => ({

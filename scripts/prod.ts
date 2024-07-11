@@ -9,15 +9,6 @@ const sql = neon(process.env.DATABASE_URL);
 const db = drizzle(sql, { schema });
 
 const createTables = async () => {
-  await sql`CREATE TABLE IF NOT EXISTS user_progress (
-    user_id TEXT PRIMARY KEY,
-    user_name TEXT NOT NULL DEFAULT 'User',
-    user_image_src TEXT NOT NULL DEFAULT '/man.svg',
-    active_course_id INTEGER REFERENCES courses(id) ON DELETE CASCADE,
-    hearts INTEGER NOT NULL DEFAULT 50,
-    points INTEGER NOT NULL DEFAULT 0
-  );`;
-
   await sql`CREATE TABLE IF NOT EXISTS challenges (
     id SERIAL PRIMARY KEY,
     lesson_id INTEGER,
@@ -68,25 +59,51 @@ const createTables = async () => {
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS challenge_progress (
-      id SERIAL PRIMARY KEY,
-      user_id TEXT NOT NULL,
-      challenge_id INTEGER NOT NULL REFERENCES challenges(id) ON DELETE CASCADE,
-      completed BOOLEAN NOT NULL DEFAULT FALSE
-    );`;
+    id SERIAL PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    challenge_id INTEGER NOT NULL REFERENCES challenges(id) ON DELETE CASCADE,
+    completed BOOLEAN NOT NULL DEFAULT FALSE,
+    attempts INTEGER NOT NULL DEFAULT 0,
+    last_attempt_correct BOOLEAN,
+    created_at TIMESTAMP NOT NULL DEFAULT now(),
+    updated_at TIMESTAMP NOT NULL DEFAULT now()
+  );`;
+
+  await sql`CREATE TABLE IF NOT EXISTS lesson_progress (
+    id SERIAL PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    lesson_id INTEGER NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
+    current_difficulty INTEGER,
+    correct_answers INTEGER,
+    total_attempts INTEGER,
+    completed BOOLEAN NOT NULL DEFAULT FALSE,
+    last_attempted_at TIMESTAMP NOT NULL DEFAULT now()
+  );`;
+
+  await sql`CREATE TABLE IF NOT EXISTS user_progress (
+    user_id TEXT PRIMARY KEY,
+    user_name TEXT NOT NULL DEFAULT 'User',
+    user_image_src TEXT NOT NULL DEFAULT '/man.svg',
+    active_course_id INTEGER REFERENCES courses(id) ON DELETE CASCADE,
+    current_lesson_id INTEGER REFERENCES lessons(id),
+    last_attempted_challenge_id INTEGER REFERENCES challenges(id),
+    hearts INTEGER NOT NULL DEFAULT 50,
+    points INTEGER NOT NULL DEFAULT 0
+  );`;
 };
 
 const main = async () => {
   try {
     // Delete all existing data
-    await Promise.all([
-      db.delete(schema.userProgress),
-      db.delete(schema.challenges),
-      db.delete(schema.units),
-      db.delete(schema.lessons),
-      db.delete(schema.courses),
-      db.delete(schema.challengeOptions),
-      db.delete(schema.userSubscription),
-    ]);
+    // await Promise.all([
+    //   db.delete(schema.userProgress),
+    //   db.delete(schema.challenges),
+    //   db.delete(schema.units),
+    //   db.delete(schema.lessons),
+    //   db.delete(schema.courses),
+    //   db.delete(schema.challengeOptions),
+    //   db.delete(schema.userSubscription),
+    // ]);
 
     console.log("Creating tables");
     await createTables();
