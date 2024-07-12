@@ -4,6 +4,7 @@ import {
   integer,
   pgEnum,
   pgTable,
+  real,
   serial,
   text,
   timestamp,
@@ -11,6 +12,9 @@ import {
 
 import { MAX_HEARTS } from "@/constants";
 
+/**
+ * Subjects
+ */
 export const subjects = pgTable("subjects", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
@@ -22,6 +26,9 @@ export const subjectsRelations = relations(subjects, ({ many }) => ({
   chapters: many(chapters),
 }));
 
+/**
+ * Chapters
+ */
 export const chapters = pgTable("chapters", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(), // Chapter 1
@@ -42,6 +49,9 @@ export const chaptersRelations = relations(chapters, ({ many, one }) => ({
   topics: many(topics),
 }));
 
+/**
+ * Topics
+ */
 export const topics = pgTable("topics", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
@@ -61,6 +71,9 @@ export const topicsRelations = relations(topics, ({ one, many }) => ({
   challenges: many(challenges),
 }));
 
+/**
+ * Challenges
+ */
 export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST"]);
 
 export const challenges = pgTable("challenges", {
@@ -85,6 +98,9 @@ export const challengesRelations = relations(challenges, ({ one, many }) => ({
   challengeProgress: many(challengeProgress),
 }));
 
+/**
+ * Challenge Options
+ */
 export const challengeOptions = pgTable("challenge_options", {
   id: serial("id").primaryKey(),
   challengeId: integer("challenge_id")
@@ -108,6 +124,9 @@ export const challengeOptionsRelations = relations(
   })
 );
 
+/**
+ * Progress: Challenge
+ */
 export const challengeProgress = pgTable("challenge_progress", {
   id: serial("id").primaryKey(),
   userId: text("user_id").notNull(),
@@ -133,6 +152,9 @@ export const challengeProgressRelations = relations(
   })
 );
 
+/**
+ * Progress: Topic
+ */
 export const topicProgress = pgTable("topic_progress", {
   id: serial("id").primaryKey(),
   userId: text("user_id").notNull(),
@@ -146,6 +168,9 @@ export const topicProgress = pgTable("topic_progress", {
   totalAttempts: integer("total_attempts").notNull().default(0),
   completed: boolean("completed").notNull().default(false),
   lastAttemptedAt: timestamp("last_attempted_at").notNull().defaultNow(),
+  abilityEstimate: real("ability_estimate").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
 export const topicProgressRelations = relations(topicProgress, ({ one }) => ({
@@ -159,19 +184,80 @@ export const topicProgressRelations = relations(topicProgress, ({ one }) => ({
   }),
 }));
 
+/**
+ * Progress: Chapter
+ */
+export const chapterProgress = pgTable("chapter_progress", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  chapterId: integer("chapter_id")
+    .references(() => chapters.id, {
+      onDelete: "cascade",
+    })
+    .notNull(),
+  completed: boolean("completed").notNull().default(false),
+  abilityEstimate: real("ability_estimate").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const chapterProgressRelations = relations(chapterProgress, ({ one }) => ({
+  user: one(userProgress, {
+    fields: [chapterProgress.userId],
+    references: [userProgress.userId],
+  }),
+  subject: one(chapters, {
+    fields: [chapterProgress.chapterId],
+    references: [chapters.id],
+  }),
+}));
+
+/**
+ * Progress: Subject
+ */
+export const subjectProgress = pgTable("subject_progress", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  subjectId: integer("subject_id")
+    .references(() => subjects.id, {
+      onDelete: "cascade",
+    })
+    .notNull(),
+  completed: boolean("completed").notNull().default(false),
+  abilityEstimate: real("ability_estimate").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const subjectProgressRelations = relations(subjectProgress, ({ one }) => ({
+  user: one(userProgress, {
+    fields: [subjectProgress.userId],
+    references: [userProgress.userId],
+  }),
+  subject: one(subjects, {
+    fields: [subjectProgress.subjectId],
+    references: [subjects.id],
+  }),
+}));
+
+
+/**
+ * Progress: User
+ */
 export const userProgress = pgTable("user_progress", {
   userId: text("user_id").primaryKey(),
   userName: text("user_name").notNull().default("User"),
   userImageSrc: text("user_image_src").notNull().default("/mascot.svg"),
-  activeSubjectId: integer("active_subject_id").references(() => subjects.id, {
-    onDelete: "cascade",
-  }),
+  activeSubjectId: integer("active_subject_id").references(() => subjects.id),
+  activeChapterId: integer("active_chapter_id").references(() => chapters.id),
+  activeTopicId: integer("active_topic_id").references(() => topics.id),
   hearts: integer("hearts").notNull().default(MAX_HEARTS),
   points: integer("points").notNull().default(0),
   currentTopicId: integer("current_topic_id").references(() => topics.id),
   lastAttemptedChallengeId: integer("last_attempted_challenge_id").references(
     () => challenges.id
   ),
+  abilityEstimate: real("ability_estimate").notNull().default(0),
 });
 
 export const userProgressRelations = relations(userProgress, ({ one }) => ({
@@ -181,6 +267,9 @@ export const userProgressRelations = relations(userProgress, ({ one }) => ({
   }),
 }));
 
+/**
+ * Subscriptions
+ */
 export const userSubscription = pgTable("user_subscription", {
   id: serial("id").primaryKey(),
   userId: text("user_id").notNull().unique(),

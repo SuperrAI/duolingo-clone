@@ -19,27 +19,36 @@ import {
 
 const DAY_IN_MS = 86_400_000;
 
+/**
+ * Subjects
+ */
 export const getSubjects = cache(async () => {
   const data = await db.query.subjects.findMany();
 
   return data;
 });
 
-export const getUserProgress = cache(async () => {
-  const { userId } = auth();
-
-  if (!userId) return null;
-
-  const data = await db.query.userProgress.findFirst({
-    where: eq(userProgress.userId, userId),
+export const getSubjectById = cache(async (subjectId: number) => {
+  const data = await db.query.subjects.findFirst({
+    where: eq(subjects.id, subjectId),
     with: {
-      activeSubject: true,
+      chapters: {
+        orderBy: (chapters, { asc }) => [asc(chapters.order)],
+        with: {
+          topics: {
+            orderBy: (topics, { asc }) => [asc(topics.order)],
+          },
+        },
+      },
     },
   });
 
   return data;
 });
 
+/**
+ * Chapters
+ */
 export const getChapters = cache(async () => {
   const { userId } = auth();
   const userProgress = await getUserProgress();
@@ -91,18 +100,104 @@ export const getChapters = cache(async () => {
   return normalizedData;
 });
 
-export const getSubjectById = cache(async (subjectId: number) => {
-  const data = await db.query.subjects.findFirst({
-    where: eq(subjects.id, subjectId),
+/**
+ * Topics
+ */
+export const getTopic = cache(async (id?: number) => {
+  const { userId } = auth();
+
+  if (!userId) return null;
+
+  const subjectProgress = await getSubjectProgress();
+  const topicId = id || subjectProgress?.activeTopicId;
+
+  if (!topicId) return null;
+
+  // Fetch user progress
+  const userProgressData = await db.query.userProgress.findFirst({
+    where: eq(userProgress.userId, userId),
+  });
+
+  if (!userProgressData) return null;
+
+  const abilityEstimate = userProgressData.abilityEstimate;
+
+  const data = await db.query.topics.findFirst({
+    where: eq(topics.id, topicId),
     with: {
-      chapters: {
-        orderBy: (chapters, { asc }) => [asc(chapters.order)],
+      challenges: {
+        orderBy: (challenges, { asc }) => [asc(challenges.order)],
+        limit: 10, // Increased from 5 to have more options
         with: {
-          topics: {
-            orderBy: (topics, { asc }) => [asc(topics.order)],
+          challengeOptions: true,
+          challengeProgress: {
+            where: eq(challengeProgress.userId, userId),
           },
         },
       },
+    },
+  });
+
+  if (!data || !data.challenges) return null;
+
+  // Sort challenges based on how close their difficulty is to the user's ability
+  const sortedChallenges = data.challenges.sort((a, b) => 
+    Math.abs(a.difficulty - abilityEstimate) - Math.abs(b.difficulty - abilityEstimate)
+  );
+
+  // Select the top 5 most appropriate challenges
+  const selectedChallenges = sortedChallenges.slice(0, 5);
+
+  const normalizedChallenges = selectedChallenges.map((challenge) => {
+    const completed =
+      challenge.challengeProgress &&
+      challenge.challengeProgress.length > 0 &&
+      challenge.challengeProgress.every((progress) => progress.completed);
+
+    return { ...challenge, completed };
+  });
+
+  return { ...data, challenges: normalizedChallenges };
+});
+
+export const getTopicProgress = cache(async (userId: string, topicId: number) => {
+  return db.query.topicProgress.findFirst({
+    where: and(
+      eq(topicProgress.userId, userId),
+      eq(topicProgress.topicId, topicId)
+    ),
+  });
+});
+
+export const getChallengesForTopic = cache(async (topicId: number, abilityEstimate: number) => {
+  const challengesOfTopic = await db.query.challenges.findMany({
+    where: eq(challenges.topicId, topicId),
+    with: {
+      challengeOptions: true,
+    },
+  });
+
+  // Sort challenges based on how close their difficulty is to the user's ability
+  const sortedChallenges = challengesOfTopic.sort((a, b) => 
+    Math.abs(a.difficulty - abilityEstimate) - Math.abs(b.difficulty - abilityEstimate)
+  );
+
+  // Select the top 5 most appropriate challenges
+  return sortedChallenges.slice(0, 5);
+});
+
+/**
+ * Progresses
+ */
+export const getUserProgress = cache(async () => {
+  const { userId } = auth();
+
+  if (!userId) return null;
+
+  const data = await db.query.userProgress.findFirst({
+    where: eq(userProgress.userId, userId),
+    with: {
+      activeSubject: true,
     },
   });
 
@@ -154,67 +249,6 @@ export const getSubjectProgress = cache(async () => {
   };
 });
 
-export const getTopic = cache(async (id?: number) => {
-  const { userId } = auth();
-
-  if (!userId) return null;
-
-  const subjectProgress = await getSubjectProgress();
-  const topicId = id || subjectProgress?.activeTopicId;
-
-  if (!topicId) return null;
-
-  // Fetch user progress
-  const userProgressData = await db.query.userProgress.findFirst({
-    where: eq(userProgress.userId, userId),
-  });
-
-  if (!userProgressData) {
-    return null;
-  }
-
-  // Fetch topic progress
-  const topicProgressData = await db.query.topicProgress.findFirst({
-    where: and(
-      eq(topicProgress.userId, userId),
-      eq(topicProgress.topicId, topicId)
-    ),
-  });
-
-  // Determine difficulty level based on topic progress
-  const difficulty = topicProgressData?.currentDifficulty || 1;
-
-  const data = await db.query.topics.findFirst({
-    where: eq(topics.id, topicId),
-    with: {
-      challenges: {
-        where: eq(challenges.difficulty, difficulty),
-        orderBy: (challenges, { asc }) => [asc(challenges.order)],
-        limit: 5,
-        with: {
-          challengeOptions: true,
-          challengeProgress: {
-            where: eq(challengeProgress.userId, userId),
-          },
-        },
-      },
-    },
-  });
-
-  if (!data || !data.challenges) return null;
-
-  const normalizedChallenges = data.challenges.map((challenge) => {
-    const completed =
-      challenge.challengeProgress &&
-      challenge.challengeProgress.length > 0 &&
-      challenge.challengeProgress.every((progress) => progress.completed);
-
-    return { ...challenge, completed };
-  });
-
-  return { ...data, challenges: normalizedChallenges };
-});
-
 export const getTopicPercentage = cache(async () => {
   const subjectProgress = await getSubjectProgress();
 
@@ -235,6 +269,31 @@ export const getTopicPercentage = cache(async () => {
   return percentage;
 });
 
+/**
+ * Misc
+ */
+export const getTopTenUsers = cache(async () => {
+  const { userId } = auth();
+
+  if (!userId) return [];
+
+  const data = await db.query.userProgress.findMany({
+    orderBy: (userProgress, { desc }) => [desc(userProgress.points)],
+    limit: 10,
+    columns: {
+      userId: true,
+      userName: true,
+      userImageSrc: true,
+      points: true,
+    },
+  });
+
+  return data;
+});
+
+/**
+ * Subscriptions
+ */
 export const getUserSubscription = cache(async () => {
   const { userId } = auth();
 
@@ -254,23 +313,4 @@ export const getUserSubscription = cache(async () => {
     ...data,
     isActive: !!isActive,
   };
-});
-
-export const getTopTenUsers = cache(async () => {
-  const { userId } = auth();
-
-  if (!userId) return [];
-
-  const data = await db.query.userProgress.findMany({
-    orderBy: (userProgress, { desc }) => [desc(userProgress.points)],
-    limit: 10,
-    columns: {
-      userId: true,
-      userName: true,
-      userImageSrc: true,
-      points: true,
-    },
-  });
-
-  return data;
 });
