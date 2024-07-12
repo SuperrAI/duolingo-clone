@@ -29,7 +29,7 @@ const createTables = async () => {
     title TEXT NOT NULL,
     topic_order INTEGER NOT NULL
   );`;
-  
+
   await sql`CREATE TABLE IF NOT EXISTS challenges (
     id SERIAL PRIMARY KEY,
     topic_id INTEGER NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
@@ -175,11 +175,11 @@ const main = async () => {
                         text: "600",
                       },
                       {
-                        correct: true,
+                        correct: false,
                         text: "6000",
                       },
                       {
-                        correct: false,
+                        correct: true,
                         text: "60000",
                       },
                     ],
