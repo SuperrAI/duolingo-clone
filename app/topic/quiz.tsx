@@ -19,6 +19,9 @@ import { Footer } from "./footer";
 import { Header } from "./header";
 import { QuestionBubble } from "./question-bubble";
 import { ResultCard } from "./result-card";
+import { getNextChallenge } from "@/actions/get-next-challenge";
+
+const TOTAL_CHALLENGES = 10;
 
 type QuizProps = {
   initialPercentage: number;
@@ -28,6 +31,7 @@ type QuizProps = {
     completed: boolean;
     challengeOptions: (typeof challengeOptions.$inferSelect)[];
   })[];
+  initialChallenge: any;
   userSubscription:
     | (typeof userSubscription.$inferSelect & {
         isActive: boolean;
@@ -40,6 +44,7 @@ export const Quiz = ({
   initialHearts,
   initialTopicId,
   initialTopicChallenges,
+  initialChallenge,
   userSubscription,
 }: QuizProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -80,8 +85,18 @@ export const Quiz = ({
   const [selectedOption, setSelectedOption] = useState<number>();
   const [status, setStatus] = useState<"none" | "wrong" | "correct">("none");
 
-  const challenge = challenges[activeIndex];
-  const options = challenge?.challengeOptions ?? [];
+  const [currentChallenge, setCurrentChallenge] = useState(initialChallenge);
+
+  const fetchNextChallenge = async () => {
+    try {
+      const nextChallenge = await getNextChallenge(topicId);
+      setCurrentChallenge(nextChallenge);
+    } catch (error) {
+      toast.error("Failed to fetch the next question. Please try again.");
+    }
+  };
+
+  const options = currentChallenge?.challengeOptions ?? [];
 
   const onNext = () => {
     setActiveIndex((current) => current + 1);
@@ -103,20 +118,20 @@ export const Quiz = ({
     }
 
     if (status === "correct") {
-      onNext();
+      fetchNextChallenge();
       setStatus("none");
       setSelectedOption(undefined);
       return;
     }
 
-    const correctOption = options.find((option) => option.correct);
+    const correctOption = currentChallenge.challengeOptions.find((option: any) => option.correct);
 
     if (!correctOption) return;
 
     const isCorrect = correctOption.id === selectedOption;
 
     startTransition(() => {
-      upsertChallengeProgress(challenge.id, isCorrect)
+      upsertChallengeProgress(currentChallenge.id, isCorrect)
         .then((response) => {
           if (response?.error === "hearts") {
             openHeartsModal();
@@ -126,9 +141,8 @@ export const Quiz = ({
           if (isCorrect) {
             void correctControls.play();
             setStatus("correct");
-            setPercentage((prev) => prev + 100 / challenges.length);
+            setPercentage((prev) => prev + 100 / TOTAL_CHALLENGES); // You'll need to define totalChallenges
 
-            // This is a practice
             if (initialPercentage === 100) {
               setHearts((prev) => Math.min(prev + 1, MAX_HEARTS));
             }
@@ -143,7 +157,7 @@ export const Quiz = ({
     });
   };
 
-  if (!challenge) {
+  if (!currentChallenge) {
     return (
       <>
         {finishAudio}
@@ -194,9 +208,9 @@ export const Quiz = ({
   }
 
   const title =
-    challenge.type === "ASSIST"
+    currentChallenge.type === "ASSIST"
       ? "Select the correct meaning"
-      : `${challenge.question} (Difficulty: ${challenge.difficulty})`;
+      : `${currentChallenge.question} (Difficulty: ${currentChallenge.difficulty})`;
 
   return (
     <>
@@ -216,8 +230,8 @@ export const Quiz = ({
             </h1>
 
             <div>
-              {challenge.type === "ASSIST" && (
-                <QuestionBubble question={challenge.question} />
+              {currentChallenge.type === "ASSIST" && (
+                <QuestionBubble question={currentChallenge.question} />
               )}
 
               <Challenge
@@ -226,7 +240,7 @@ export const Quiz = ({
                 status={status}
                 selectedOption={selectedOption}
                 disabled={pending}
-                type={challenge.type}
+                type={currentChallenge.type}
               />
             </div>
           </div>

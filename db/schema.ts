@@ -168,7 +168,7 @@ export const topicProgress = pgTable("topic_progress", {
   totalAttempts: integer("total_attempts").notNull().default(0),
   completed: boolean("completed").notNull().default(false),
   lastAttemptedAt: timestamp("last_attempted_at").notNull().defaultNow(),
-  abilityEstimate: real("ability_estimate").notNull().default(0),
+  abilityEstimate: real("ability_estimate").notNull().default(1),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
@@ -196,7 +196,8 @@ export const chapterProgress = pgTable("chapter_progress", {
     })
     .notNull(),
   completed: boolean("completed").notNull().default(false),
-  abilityEstimate: real("ability_estimate").notNull().default(0),
+  currentDifficulty: integer("current_difficulty").notNull().default(1),
+  abilityEstimate: real("ability_estimate").notNull().default(1),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
@@ -224,7 +225,8 @@ export const subjectProgress = pgTable("subject_progress", {
     })
     .notNull(),
   completed: boolean("completed").notNull().default(false),
-  abilityEstimate: real("ability_estimate").notNull().default(0),
+  abilityEstimate: real("ability_estimate").notNull().default(1),
+  currentDifficulty: integer("current_difficulty").notNull().default(1),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
@@ -257,7 +259,7 @@ export const userProgress = pgTable("user_progress", {
   lastAttemptedChallengeId: integer("last_attempted_challenge_id").references(
     () => challenges.id
   ),
-  abilityEstimate: real("ability_estimate").notNull().default(0),
+  abilityEstimate: real("ability_estimate").notNull().default(1),
 });
 
 export const userProgressRelations = relations(userProgress, ({ one }) => ({

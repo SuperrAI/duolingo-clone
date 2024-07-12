@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getTopic, getUserProgress, getUserSubscription } from "@/db/queries";
 
 import { Quiz } from "./quiz";
+import { getNextChallenge } from "@/actions/get-next-challenge";
 
 const TopicPage = async () => {
   const topicData = getTopic();
@@ -17,6 +18,8 @@ const TopicPage = async () => {
 
   if (!topic || !userProgress) return redirect("/learn");
 
+  const initialChallenge = await getNextChallenge(topic.id);
+  
   const initialPercentage =
     (topic.challenges.filter((challenge) => challenge.completed).length /
       topic.challenges.length) *
@@ -26,6 +29,7 @@ const TopicPage = async () => {
     <Quiz
       initialTopicId={topic.id}
       initialTopicChallenges={topic.challenges}
+      initialChallenge={initialChallenge}
       initialHearts={userProgress.hearts}
       initialPercentage={initialPercentage}
       userSubscription={userSubscription}

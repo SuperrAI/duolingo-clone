@@ -9,44 +9,43 @@ const sql = neon(process.env.DATABASE_URL);
 const db = drizzle(sql, { schema });
 
 const createTables = async () => {
-  await sql`CREATE TABLE IF NOT EXISTS challenges (
+  await sql`CREATE TABLE IF NOT EXISTS subjects (
     id SERIAL PRIMARY KEY,
-    topic_id INTEGER,
-    type VARCHAR(50),
-    question TEXT,
-    challenge_order INTEGER,
-    difficulty INTEGER
+    title TEXT NOT NULL,
+    image_src TEXT NOT NULL
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS chapters (
     id SERIAL PRIMARY KEY,
-    subject_id INTEGER,
-    title VARCHAR(255),
-    description TEXT,
-    chapter_order INTEGER
+    subject_id INTEGER NOT NULL REFERENCES subjects(id) ON DELETE CASCADE,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    chapter_order INTEGER NOT NULL
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS topics (
     id SERIAL PRIMARY KEY,
-    chapter_id INTEGER,
-    title VARCHAR(255),
-    topic_order INTEGER
+    chapter_id INTEGER NOT NULL REFERENCES chapters(id) ON DELETE CASCADE,
+    title TEXT NOT NULL,
+    topic_order INTEGER NOT NULL
   );`;
-
-  await sql`CREATE TABLE IF NOT EXISTS subjects (
+  
+  await sql`CREATE TABLE IF NOT EXISTS challenges (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(255),
-    image_src VARCHAR(255),
-    subject_order INTEGER
+    topic_id INTEGER NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
+    type VARCHAR(50) NOT NULL,
+    question TEXT NOT NULL,
+    challenge_order INTEGER NOT NULL,
+    difficulty INTEGER NOT NULL
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS challenge_options (
     id SERIAL PRIMARY KEY,
-    challenge_id INTEGER,
-    correct BOOLEAN,
-    text TEXT,
-    image_src VARCHAR(255),
-    audio_src VARCHAR(255)
+    challenge_id INTEGER NOT NULL REFERENCES challenges(id) ON DELETE CASCADE,
+    correct BOOLEAN NOT NULL,
+    text TEXT NOT NULL,
+    image_src TEXT,
+    audio_src TEXT
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS user_subscription (
@@ -73,22 +72,50 @@ const createTables = async () => {
     id SERIAL PRIMARY KEY,
     user_id TEXT NOT NULL,
     topic_id INTEGER NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
-    current_difficulty INTEGER,
-    correct_answers INTEGER,
-    total_attempts INTEGER,
+    current_difficulty INTEGER NOT NULL DEFAULT 1,
+    correct_answers INTEGER NOT NULL DEFAULT 0,
+    total_attempts INTEGER NOT NULL DEFAULT 0,
     completed BOOLEAN NOT NULL DEFAULT FALSE,
-    last_attempted_at TIMESTAMP NOT NULL DEFAULT now()
+    last_attempted_at TIMESTAMP NOT NULL DEFAULT now(),
+    ability_estimate REAL NOT NULL DEFAULT 1,
+    created_at TIMESTAMP NOT NULL DEFAULT now(),
+    updated_at TIMESTAMP NOT NULL DEFAULT now()
+  );`;
+
+  await sql`CREATE TABLE IF NOT EXISTS chapter_progress (
+    id SERIAL PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    chapter_id INTEGER NOT NULL REFERENCES chapters(id) ON DELETE CASCADE,
+    completed BOOLEAN NOT NULL DEFAULT FALSE,
+    current_difficulty INTEGER NOT NULL DEFAULT 1,
+    ability_estimate REAL NOT NULL DEFAULT 1,
+    created_at TIMESTAMP NOT NULL DEFAULT now(),
+    updated_at TIMESTAMP NOT NULL DEFAULT now()
+  );`;
+
+  await sql`CREATE TABLE IF NOT EXISTS subject_progress (
+    id SERIAL PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    subject_id INTEGER NOT NULL REFERENCES subjects(id) ON DELETE CASCADE,
+    completed BOOLEAN NOT NULL DEFAULT FALSE,
+    current_difficulty INTEGER NOT NULL DEFAULT 1,
+    ability_estimate REAL NOT NULL DEFAULT 1,
+    created_at TIMESTAMP NOT NULL DEFAULT now(),
+    updated_at TIMESTAMP NOT NULL DEFAULT now()
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS user_progress (
     user_id TEXT PRIMARY KEY,
     user_name TEXT NOT NULL DEFAULT 'User',
-    user_image_src TEXT NOT NULL DEFAULT '/man.svg',
-    active_subject_id INTEGER REFERENCES subjects(id) ON DELETE CASCADE,
+    user_image_src TEXT NOT NULL DEFAULT '/mascot.svg',
+    active_subject_id INTEGER REFERENCES subjects(id),
+    active_chapter_id INTEGER REFERENCES chapters(id),
+    active_topic_id INTEGER REFERENCES topics(id),
+    hearts INTEGER NOT NULL DEFAULT 50,
+    points INTEGER NOT NULL DEFAULT 0,
     current_topic_id INTEGER REFERENCES topics(id),
     last_attempted_challenge_id INTEGER REFERENCES challenges(id),
-    hearts INTEGER NOT NULL DEFAULT 50,
-    points INTEGER NOT NULL DEFAULT 0
+    ability_estimate REAL NOT NULL DEFAULT 1
   );`;
 };
 
@@ -10735,7 +10762,7 @@ const main = async () => {
       },
     ];
 
-    // Insert subjects
+    // // Insert subjects
     const subjects = await db
       .insert(schema.subjects)
       .values(
