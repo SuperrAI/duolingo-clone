@@ -325,11 +325,11 @@ const main = async () => {
                         text: "3003",
                       },
                       {
-                        correct: true,
+                        correct: false,
                         text: "33330",
                       },
                       {
-                        correct: false,
+                        correct: true,
                         text: "303030",
                       },
                       {
@@ -352,7 +352,7 @@ const main = async () => {
                       },
                       {
                         correct: true,
-                        text: "4325",
+                        text: "44361",
                       },
                       {
                         correct: false,
@@ -386,7 +386,7 @@ const main = async () => {
                       },
                       {
                         correct: true,
-                        text: "487362",
+                        text: "467832",
                       },
                     ],
                   },
@@ -598,26 +598,26 @@ const main = async () => {
                   {
                     type: schema.challengesEnum.enumValues[0],
                     question:
-                      "If you have the digits 5, 3, 7, 1, what is the smallest even number you can form?",
+                      "If you have the digits 5, 3, 7, 2, what is the smallest even number you can form?",
                     order: 18,
                     difficulty: 3,
                     id: 1128,
                     challengeOptions: [
                       {
                         correct: false,
-                        text: "1357",
+                        text: "2357",
                       },
                       {
                         correct: false,
-                        text: "1375",
+                        text: "5372",
                       },
                       {
                         correct: true,
-                        text: "1537",
+                        text: "3572",
                       },
                       {
                         correct: false,
-                        text: "1573",
+                        text: "7352",
                       },
                     ],
                   },
@@ -721,7 +721,7 @@ const main = async () => {
                       },
                       {
                         correct: true,
-                        text: "9835",
+                        text: "9853",
                       },
                     ],
                   },
@@ -764,11 +764,11 @@ const main = async () => {
                         text: "5032",
                       },
                       {
-                        correct: false,
+                        correct: true,
                         text: "5320",
                       },
                       {
-                        correct: true,
+                        correct: false,
                         text: "5230",
                       },
                       {
@@ -813,7 +813,7 @@ const main = async () => {
                     challengeOptions: [
                       {
                         correct: true,
-                        text: "64764",
+                        text: "73953",
                       },
                       {
                         correct: false,
@@ -842,11 +842,11 @@ const main = async () => {
                         text: "63421",
                       },
                       {
-                        correct: true,
+                        correct: false,
                         text: "61342",
                       },
                       {
-                        correct: false,
+                        correct: true,
                         text: "63142",
                       },
                       {
@@ -889,20 +889,20 @@ const main = async () => {
                     id: 1139,
                     challengeOptions: [
                       {
-                        correct: false,
+                        correct: true,
                         text: "745",
                       },
                       {
                         correct: false,
-                        text: "665",
+                        text: "645",
                       },
                       {
                         correct: false,
-                        text: "699",
+                        text: "599",
                       },
                       {
-                        correct: true,
-                        text: "720",
+                        correct: false,
+                        text: "801",
                       },
                     ],
                   },
@@ -967,11 +967,11 @@ const main = async () => {
                     challengeOptions: [
                       {
                         correct: false,
-                        text: "116",
+                        text: "114",
                       },
                       {
                         correct: false,
-                        text: "123",
+                        text: "126",
                       },
                       {
                         correct: true,
@@ -979,7 +979,7 @@ const main = async () => {
                       },
                       {
                         correct: false,
-                        text: "124",
+                        text: "100",
                       },
                     ],
                   },
@@ -991,7 +991,7 @@ const main = async () => {
                     id: 1143,
                     challengeOptions: [
                       {
-                        correct: false,
+                        correct: true,
                         text: "68000",
                       },
                       {
@@ -1003,7 +1003,7 @@ const main = async () => {
                         text: "67900",
                       },
                       {
-                        correct: true,
+                        correct: false,
                         text: "70000",
                       },
                     ],
@@ -1043,11 +1043,11 @@ const main = async () => {
                     id: 1145,
                     challengeOptions: [
                       {
-                        correct: false,
+                        correct: true,
                         text: "34520",
                       },
                       {
-                        correct: true,
+                        correct: false,
                         text: "34530",
                       },
                       {
@@ -1063,26 +1063,26 @@ const main = async () => {
                   {
                     type: schema.challengesEnum.enumValues[0],
                     question:
-                      "What is the estimated quotient when 9567 is divided by 123 and rounded to the nearest tenth?",
+                      "A number is greater than 4000 but less than 5000. When rounded to the nearest hundred, it becomes 4600. Which of the following could be this number?",
                     order: 36,
                     difficulty: 3,
                     id: 1146,
                     challengeOptions: [
                       {
                         correct: false,
-                        text: "77.5",
-                      },
-                      {
-                        correct: false,
-                        text: "77.8",
+                        text: "4549",
                       },
                       {
                         correct: true,
-                        text: "77.7",
+                        text: "4631",
                       },
                       {
                         correct: false,
-                        text: "77.9",
+                        text: "4512",
+                      },
+                      {
+                        correct: false,
+                        text: "4651",
                       },
                     ],
                   },
@@ -1132,7 +1132,7 @@ const main = async () => {
                       },
                       {
                         correct: true,
-                        text: "4000000 + 500000 + 3000 + 200 + 1",
+                        text: "4000000 + 500000 + 300 + 20 + 1",
                       },
                       {
                         correct: false,
@@ -1331,11 +1331,11 @@ const main = async () => {
                     id: 1209,
                     challengeOptions: [
                       {
-                        correct: false,
+                        correct: true,
                         text: "10,00,000",
                       },
                       {
-                        correct: true,
+                        correct: false,
                         text: "1,00,000",
                       },
                       {
@@ -1386,11 +1386,11 @@ const main = async () => {
                         text: "580245",
                       },
                       {
-                        correct: true,
+                        correct: false,
                         text: "578245",
                       },
                       {
-                        correct: false,
+                        correct: true,
                         text: "580245",
                       },
                       {
@@ -1408,7 +1408,7 @@ const main = async () => {
                     challengeOptions: [
                       {
                         correct: true,
-                        text: "1560789",
+                        text: "1566789",
                       },
                       {
                         correct: false,
@@ -1459,7 +1459,7 @@ const main = async () => {
                     challengeOptions: [
                       {
                         correct: true,
-                        text: "15745682",
+                        text: "15762552",
                       },
                       {
                         correct: false,
@@ -1483,7 +1483,7 @@ const main = async () => {
                     id: 1215,
                     challengeOptions: [
                       {
-                        correct: true,
+                        correct: false,
                         text: "11111121",
                       },
                       {
@@ -1491,7 +1491,7 @@ const main = async () => {
                         text: "111111111",
                       },
                       {
-                        correct: false,
+                        correct: true,
                         text: "11111111",
                       },
                       {
@@ -1521,7 +1521,7 @@ const main = async () => {
                       },
                       {
                         correct: true,
-                        text: "125226",
+                        text: "125084",
                       },
                     ],
                   },
@@ -1534,7 +1534,7 @@ const main = async () => {
                     challengeOptions: [
                       {
                         correct: true,
-                        text: "700539660",
+                        text: "700776260",
                       },
                       {
                         correct: false,
@@ -1671,7 +1671,7 @@ const main = async () => {
                       },
                       {
                         correct: true,
-                        text: "135000",
+                        text: "134000",
                       },
                       {
                         correct: false,
@@ -1715,7 +1715,7 @@ const main = async () => {
                     challengeOptions: [
                       {
                         correct: true,
-                        text: "27047",
+                        text: "27059",
                       },
                       {
                         correct: false,
@@ -1739,7 +1739,7 @@ const main = async () => {
                     id: 1224,
                     challengeOptions: [
                       {
-                        correct: false,
+                        correct: true,
                         text: "17654320",
                       },
                       {
@@ -1751,7 +1751,7 @@ const main = async () => {
                         text: "17654310",
                       },
                       {
-                        correct: true,
+                        correct: false,
                         text: "17654330",
                       },
                     ],
@@ -1918,7 +1918,7 @@ const main = async () => {
                     challengeOptions: [
                       {
                         correct: true,
-                        text: "5154135",
+                        text: "5148145",
                       },
                       {
                         correct: false,
@@ -1955,7 +1955,7 @@ const main = async () => {
                       },
                       {
                         correct: true,
-                        text: "2726488912",
+                        text: "2726825472",
                       },
                     ],
                   },
@@ -1967,11 +1967,11 @@ const main = async () => {
                     id: 1233,
                     challengeOptions: [
                       {
-                        correct: false,
+                        correct: true,
                         text: "2544444",
                       },
                       {
-                        correct: true,
+                        correct: false,
                         text: "2544434",
                       },
                       {
@@ -2002,7 +2002,7 @@ const main = async () => {
                       },
                       {
                         correct: true,
-                        text: "18198",
+                        text: "18182",
                       },
                       {
                         correct: false,
@@ -2378,7 +2378,7 @@ const main = async () => {
                     id: 1314,
                     challengeOptions: [
                       {
-                        correct: true,
+                        correct: false,
                         text: "7",
                       },
                       {
@@ -2386,7 +2386,7 @@ const main = async () => {
                         text: "5",
                       },
                       {
-                        correct: false,
+                        correct: true,
                         text: "10",
                       },
                       {
@@ -2404,7 +2404,7 @@ const main = async () => {
                     challengeOptions: [
                       {
                         correct: true,
-                        text: "8",
+                        text: "9",
                       },
                       {
                         correct: false,
@@ -2462,7 +2462,7 @@ const main = async () => {
                       },
                       {
                         correct: true,
-                        text: "27",
+                        text: "20",
                       },
                       {
                         correct: false,
@@ -2657,7 +2657,7 @@ const main = async () => {
                         text: "6",
                       },
                       {
-                        correct: false,
+                        correct: true,
                         text: "10",
                       },
                       {
@@ -2665,7 +2665,7 @@ const main = async () => {
                         text: "8",
                       },
                       {
-                        correct: true,
+                        correct: false,
                         text: "5",
                       },
                     ],
@@ -2873,7 +2873,7 @@ const main = async () => {
                   {
                     type: schema.challengesEnum.enumValues[0],
                     question:
-                      "Calculate the value of: 20 ÷ {2 + [3 × (7 - 5)]}",
+                      "Calculate the value of: 24 ÷ {2 + [3 × (7 - 5)]}",
                     order: 35,
                     difficulty: 3,
                     id: 1334,
@@ -10789,7 +10789,9 @@ const main = async () => {
         )
         .returning();
 
-      console.log(`Inserted ${chapters.length} chapter(s): subject "${subject.title}"`);
+      console.log(
+        `Inserted ${chapters.length} chapter(s): subject "${subject.title}"`
+      );
 
       // For each chapter, insert topics
       for (const chapter of subject.chapters) {
