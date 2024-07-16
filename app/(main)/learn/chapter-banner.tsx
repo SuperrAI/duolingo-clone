@@ -16,7 +16,7 @@ export const ChapterBanner = ({ title, description }: ChapterBannerProps) => {
         <p className="text-lg">{description}</p>
       </div>
 
-      <Link href="/topic">
+      <Link href="/lesson">
         <Button
           size="lg"
           variant="secondary"

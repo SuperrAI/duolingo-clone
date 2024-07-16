@@ -26,7 +26,7 @@ export const ChallengeList = () => {
             },
           ]}
         />
-        <ReferenceField source="topicId" reference="topics" />
+        <ReferenceField source="lessonId" reference="lessons" />
         <NumberField source="order" />
       </Datagrid>
     </List>

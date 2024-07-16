@@ -27,7 +27,7 @@ export const ChallengeEdit = () => {
             },
           ]}
         />
-        <ReferenceInput source="topicId" reference="topics" />
+        <ReferenceInput source="lessonId" reference="lessons" />
         <NumberInput source="order" validate={required()} label="Order" />
       </SimpleForm>
     </Edit>
