@@ -23,16 +23,16 @@ const createTables = async () => {
     chapter_order INTEGER NOT NULL
   );`;
 
-  await sql`CREATE TABLE IF NOT EXISTS topics (
+  await sql`CREATE TABLE IF NOT EXISTS lessons (
     id SERIAL PRIMARY KEY,
     chapter_id INTEGER NOT NULL REFERENCES chapters(id) ON DELETE CASCADE,
     title TEXT NOT NULL,
-    topic_order INTEGER NOT NULL
+    lesson_order INTEGER NOT NULL
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS challenges (
     id SERIAL PRIMARY KEY,
-    topic_id INTEGER NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
+    lesson_id INTEGER NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
     type VARCHAR(50) NOT NULL,
     question TEXT NOT NULL,
     challenge_order INTEGER NOT NULL,
@@ -68,10 +68,10 @@ const createTables = async () => {
     updated_at TIMESTAMP NOT NULL DEFAULT now()
   );`;
 
-  await sql`CREATE TABLE IF NOT EXISTS topic_progress (
+  await sql`CREATE TABLE IF NOT EXISTS lesson_progress (
     id SERIAL PRIMARY KEY,
     user_id TEXT NOT NULL,
-    topic_id INTEGER NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
+    lesson_id INTEGER NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
     current_difficulty INTEGER NOT NULL DEFAULT 1,
     correct_answers INTEGER NOT NULL DEFAULT 0,
     total_attempts INTEGER NOT NULL DEFAULT 0,
@@ -110,10 +110,10 @@ const createTables = async () => {
     user_image_src TEXT NOT NULL DEFAULT '/mascot.svg',
     active_subject_id INTEGER REFERENCES subjects(id),
     active_chapter_id INTEGER REFERENCES chapters(id),
-    active_topic_id INTEGER REFERENCES topics(id),
+    active_lesson_id INTEGER REFERENCES lessons(id),
     hearts INTEGER NOT NULL DEFAULT 50,
     points INTEGER NOT NULL DEFAULT 0,
-    current_topic_id INTEGER REFERENCES topics(id),
+    current_lesson_id INTEGER REFERENCES lessons(id),
     last_attempted_challenge_id INTEGER REFERENCES challenges(id),
     ability_estimate REAL NOT NULL DEFAULT 1
   );`;
@@ -126,7 +126,7 @@ const main = async () => {
     //   db.delete(schema.userProgress),
     //   db.delete(schema.challenges),
     //   db.delete(schema.chapters),
-    //   db.delete(schema.topics),
+    //   db.delete(schema.lessons),
     //   db.delete(schema.subjects),
     //   db.delete(schema.challengeOptions),
     //   db.delete(schema.userSubscription),
@@ -152,7 +152,7 @@ const main = async () => {
             description: `Knowing Our Numbers`,
             order: 1,
             title: "Chapter 1",
-            topics: [
+            lessons: [
               {
                 id: 111,
                 title: "Comparing Large and Small Numbers",
@@ -3848,7 +3848,7 @@ const main = async () => {
             description: `Components of Food`,
             order: 1,
             title: "Chapter 1",
-            topics: [
+            lessons: [
               {
                 id: 211,
                 title: "What do different food items contain?",
@@ -7204,7 +7204,7 @@ const main = async () => {
             description: `From Hunting-Gathering to Growing Food`,
             order: 1,
             title: "Chapter 1",
-            topics: [
+            lessons: [
               {
                 id: 311,
                 title: "Hunter-gatherers and their lifestyle ",
@@ -10793,28 +10793,28 @@ const main = async () => {
         `Inserted ${chapters.length} chapter(s): subject "${subject.title}"`
       );
 
-      // For each chapter, insert topics
+      // For each chapter, insert lessons
       for (const chapter of subject.chapters) {
-        const topics = await db
-          .insert(schema.topics)
+        const lessons = await db
+          .insert(schema.lessons)
           .values(
-            chapter.topics.map((eachTopic) => {
-              return { chapterId: chapter.id, ...eachTopic };
+            chapter.lessons.map((eachLesson) => {
+              return { chapterId: chapter.id, ...eachLesson };
             })
           )
           .returning();
         console.log(
-          `Inserted ${topics.length} topic(s): ${subject.title}/${chapter.title}`
+          `Inserted ${lessons.length} lesson(s): ${subject.title}/${chapter.title}`
         );
 
-        // For each topic, insert challenges
-        for (const topic of chapter.topics) {
+        // For each lesson, insert challenges
+        for (const lesson of chapter.lessons) {
           const challenges = await db
             .insert(schema.challenges)
             .values(
-              topic.challenges.map((eachChallenge) => {
+              lesson.challenges.map((eachChallenge) => {
                 return {
-                  topicId: topic.id,
+                  lessonId: lesson.id,
                   type: eachChallenge.type,
                   question: eachChallenge.question,
                   order: eachChallenge.order,
@@ -10825,11 +10825,11 @@ const main = async () => {
             )
             .returning();
           console.log(
-            `Inserted ${challenges.length} challenges: ${subject.title}/${chapter.title}/${topic.title}`
+            `Inserted ${challenges.length} challenges: ${subject.title}/${chapter.title}/${lesson.title}`
           );
 
           // For each challenge, insert challenge options
-          for (const challenge of topic.challenges) {
+          for (const challenge of lesson.challenges) {
             await db.insert(schema.challengeOptions).values(
               challenge.challengeOptions.map((eachOption) => {
                 return { challengeId: challenge.id, ...eachOption };

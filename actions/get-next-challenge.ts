@@ -4,29 +4,29 @@ import { auth } from "@clerk/nextjs";
 import { and, eq, exists, not } from "drizzle-orm";
 
 import db from "@/db/drizzle";
-import { challengeProgress, challenges, topicProgress } from "@/db/schema";
+import { challengeProgress, challenges, lessonProgress } from "@/db/schema";
 
-export async function getNextChallenge(topicId: number) {
+export async function getNextChallenge(lessonId: number) {
   const { userId } = auth();
 
   if (!userId) throw new Error("Unauthorized");
 
   let difficulty = 1;
 
-  const userTopicProgress = await db.query.topicProgress.findFirst({
+  const userLessonProgress = await db.query.lessonProgress.findFirst({
     where: and(
-      eq(topicProgress.userId, userId),
-      eq(topicProgress.topicId, topicId)
+      eq(lessonProgress.userId, userId),
+      eq(lessonProgress.lessonId, lessonId)
     ),
   });
 
-  if (userTopicProgress) {
-    difficulty = userTopicProgress.currentDifficulty;
+  if (userLessonProgress) {
+    difficulty = userLessonProgress.currentDifficulty;
   }
 
   const nextChallenge = await db.query.challenges.findFirst({
     where: and(
-      eq(challenges.topicId, topicId),
+      eq(challenges.lessonId, lessonId),
       eq(challenges.difficulty, difficulty),
       not(
         exists(
@@ -51,7 +51,7 @@ export async function getNextChallenge(topicId: number) {
     // If no challenge found at current difficulty, try to find one at any difficulty
     const anyDifficultyChallenge = await db.query.challenges.findFirst({
       where: and(
-        eq(challenges.topicId, topicId),
+        eq(challenges.lessonId, lessonId),
         not(
           exists(
             db

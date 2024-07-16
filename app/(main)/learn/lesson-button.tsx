@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 import "react-circular-progressbar/dist/styles.css";
 
-type TopicButtonProps = {
+type LessonButtonProps = {
   id: number;
   index: number;
   totalCount: number;
@@ -18,14 +18,14 @@ type TopicButtonProps = {
   percentage: number;
 };
 
-export const TopicButton = ({
+export const LessonButton = ({
   id,
   index,
   totalCount,
   locked,
   current,
   percentage,
-}: TopicButtonProps) => {
+}: LessonButtonProps) => {
   const cycleLength = 8;
   const cycleIndex = index % cycleLength;
 
@@ -44,7 +44,7 @@ export const TopicButton = ({
 
   const Icon = isCompleted ? Check : isLast ? Crown : Star;
 
-  const href = isCompleted ? `/topic/${id}` : "/topic";
+  const href = isCompleted ? `/lesson/${id}` : "/lesson";
 
   return (
     <Link

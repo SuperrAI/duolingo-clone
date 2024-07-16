@@ -12,12 +12,12 @@ import { ChallengeOptionsList } from "./challengeOption/list";
 import { ChapterCreate } from "./chapter/create";
 import { ChapterEdit } from "./chapter/edit";
 import { ChapterList } from "./chapter/list";
+import { LessonCreate } from "./lesson/create";
+import { LessonEdit } from "./lesson/edit";
+import { LessonList } from "./lesson/list";
 import { SubjectCreate } from "./subject/create";
 import { SubjectEdit } from "./subject/edit";
 import { SubjectList } from "./subject/list";
-import { TopicCreate } from "./topic/create";
-import { TopicEdit } from "./topic/edit";
-import { TopicList } from "./topic/list";
 
 const dataProvider = simpleRestProvider("/api");
 
@@ -41,11 +41,11 @@ const App = () => {
       />
 
       <Resource
-        name="topics"
+        name="lessons"
         recordRepresentation="title"
-        list={TopicList}
-        create={TopicCreate}
-        edit={TopicEdit}
+        list={LessonList}
+        create={LessonCreate}
+        edit={LessonEdit}
       />
 
       <Resource
