@@ -46,6 +46,29 @@ export const chaptersRelations = relations(chapters, ({ many, one }) => ({
     fields: [chapters.subjectId],
     references: [subjects.id],
   }),
+  topics: many(topics),
+}));
+
+/**
+ * Topics
+ */
+export const topics = pgTable("topics", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  chapterId: integer("chapter_id")
+    .references(() => chapters.id, {
+      onDelete: "cascade",
+    })
+    .notNull(),
+  order: integer("topic_order").notNull(),
+});
+
+export const topicsRelations = relations(topics, ({ one, many }) => ({
+  chapter: one(chapters, {
+    fields: [topics.chapterId],
+    references: [chapters.id],
+  }),
   lessons: many(lessons),
 }));
 
@@ -55,8 +78,8 @@ export const chaptersRelations = relations(chapters, ({ many, one }) => ({
 export const lessons = pgTable("lessons", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
-  chapterId: integer("chapter_id")
-    .references(() => chapters.id, {
+  topicId: integer("topic_id")
+    .references(() => topics.id, {
       onDelete: "cascade",
     })
     .notNull(),
@@ -64,9 +87,9 @@ export const lessons = pgTable("lessons", {
 });
 
 export const lessonsRelations = relations(lessons, ({ one, many }) => ({
-  chapter: one(chapters, {
-    fields: [lessons.chapterId],
-    references: [chapters.id],
+  topic: one(topics, {
+    fields: [lessons.topicId],
+    references: [topics.id],
   }),
   challenges: many(challenges),
 }));
@@ -185,6 +208,35 @@ export const lessonProgressRelations = relations(lessonProgress, ({ one }) => ({
 }));
 
 /**
+ * Progress: Topic
+ */
+export const topicProgress = pgTable("topic_progress", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  topicId: integer("topic_id")
+    .references(() => topics.id, {
+      onDelete: "cascade",
+    })
+    .notNull(),
+  completed: boolean("completed").notNull().default(false),
+  currentDifficulty: integer("current_difficulty").notNull().default(1),
+  abilityEstimate: real("ability_estimate").notNull().default(1),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const topicProgressRelations = relations(topicProgress, ({ one }) => ({
+  user: one(userProgress, {
+    fields: [topicProgress.userId],
+    references: [userProgress.userId],
+  }),
+  topic: one(topics, {
+    fields: [topicProgress.topicId],
+    references: [topics.id],
+  }),
+}));
+
+/**
  * Progress: Chapter
  */
 export const chapterProgress = pgTable("chapter_progress", {
@@ -252,6 +304,7 @@ export const userProgress = pgTable("user_progress", {
   userImageSrc: text("user_image_src").notNull().default("/mascot.svg"),
   activeSubjectId: integer("active_subject_id").references(() => subjects.id),
   activeChapterId: integer("active_chapter_id").references(() => chapters.id),
+  activeTopicId: integer("active_topic_id").references(() => topics.id),
   activeLessonId: integer("active_lesson_id").references(() => lessons.id),
   hearts: integer("hearts").notNull().default(MAX_HEARTS),
   points: integer("points").notNull().default(0),
@@ -266,6 +319,10 @@ export const userProgressRelations = relations(userProgress, ({ one }) => ({
   activeSubject: one(subjects, {
     fields: [userProgress.activeSubjectId],
     references: [subjects.id],
+  }),
+  activeTopic: one(topics, {
+    fields: [userProgress.activeTopicId],
+    references: [topics.id],
   }),
 }));
 

@@ -18,6 +18,9 @@ import { LessonList } from "./lesson/list";
 import { SubjectCreate } from "./subject/create";
 import { SubjectEdit } from "./subject/edit";
 import { SubjectList } from "./subject/list";
+import { TopicCreate } from "./topic/create";
+import { TopicEdit } from "./topic/edit";
+import { TopicList } from "./topic/list";
 
 const dataProvider = simpleRestProvider("/api");
 
@@ -38,6 +41,14 @@ const App = () => {
         list={ChapterList}
         create={ChapterCreate}
         edit={ChapterEdit}
+      />
+
+      <Resource
+        name="topics"
+        recordRepresentation="title"
+        list={TopicList}
+        create={TopicCreate}
+        edit={TopicEdit}
       />
 
       <Resource
