@@ -24,7 +24,7 @@ export const upsertUserProgress = async (subjectId: number) => {
 
   if (!subject) throw new Error("Subject not found.");
 
-  if (!subject.chapters.length || !subject.chapters[0].lessons.length)
+  if (!subject.chapters.length || !subject.chapters[0].topics.length)
     throw new Error("Subject is empty.");
 
   const existingUserProgress = await getUserProgress();

@@ -72,7 +72,7 @@ export async function getNextChallenge(lessonId: number) {
     });
 
     if (!anyDifficultyChallenge) throw new Error("No more challenges available");
-    
+
     return anyDifficultyChallenge;
   }
 

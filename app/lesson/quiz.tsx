@@ -21,7 +21,7 @@ import { Header } from "./header";
 import { QuestionBubble } from "./question-bubble";
 import { ResultCard } from "./result-card";
 
-const TOTAL_CHALLENGES = 10;
+export const TOTAL_CHALLENGES = 5;
 
 type QuizProps = {
   initialPercentage: number;
@@ -157,7 +157,7 @@ export const Quiz = ({
     });
   };
 
-  if (!currentChallenge) {
+  if (!currentChallenge || percentage >= 100) {
     return (
       <>
         {finishAudio}

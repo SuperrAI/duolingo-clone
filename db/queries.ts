@@ -9,6 +9,7 @@ import db from "./drizzle";
 import {
   challengeProgress,
   challenges,
+  topics,
   chapters,
   subjects,
   lessonProgress,
@@ -16,6 +17,7 @@ import {
   userProgress,
   userSubscription,
 } from "./schema";
+// import { TOTAL_CHALLENGES } from "../app/lesson/quiz";
 
 const DAY_IN_MS = 86_400_000;
 
@@ -35,15 +37,42 @@ export const getSubjectById = cache(async (subjectId: number) => {
       chapters: {
         orderBy: (chapters, { asc }) => [asc(chapters.order)],
         with: {
-          lessons: {
-            orderBy: (lessons, { asc }) => [asc(lessons.order)],
-          },
+          topics: {
+            orderBy: (topics, { asc }) => [asc(topics.order)],
+            with: {
+              lessons: {
+                orderBy: (lessons, { asc }) => [asc(lessons.order)],
+              },
+            }
+          }
         },
       },
     },
   });
 
   return data;
+});
+
+export const getTopicPercentage = cache(async () => {
+  const subjectProgress = await getSubjectProgress();
+
+  if (!subjectProgress?.activeTopicId) return 0;
+
+  const topics = await getTopics(subjectProgress.activeTopicId);
+
+  if (!topics || topics.length == 0) return 0;
+
+  const [topic] = topics;
+
+  const completedLessons = topic.lessons.filter(
+    (lesson) => lesson.completed
+  );
+
+  const percentage = Math.round(
+    (completedLessons.length / topic.lessons.length) * 100
+  );
+
+  return percentage;
 });
 
 /**
@@ -58,6 +87,64 @@ export const getChapters = cache(async () => {
   const data = await db.query.chapters.findMany({
     where: eq(chapters.subjectId, userProgress.activeSubjectId),
     orderBy: (chapters, { asc }) => [asc(chapters.order)],
+    with: {
+      topics: {
+        orderBy: (topics, { asc }) => [asc(topics.order)],
+        with: {
+          lessons: {
+            orderBy: (lessons, { asc }) => [asc(lessons.order)],
+            with: {
+              challenges: {
+                orderBy: (challenges, { asc }) => [asc(challenges.order)],
+                with: {
+                  challengeProgress: {
+                    where: eq(challengeProgress.userId, userId),
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+
+  const normalizedData = data.map((chapter) => {
+    const topicsWithCompletedStatus = chapter.topics.map((topic) => {
+      const completedLessons = topic.lessons.filter((lesson) => {
+        const completedChallenges = lesson.challenges.filter((challenge) => {
+          return (
+            challenge.challengeProgress &&
+            challenge.challengeProgress.length > 0 &&
+            challenge.challengeProgress.every((progress) => progress.completed)
+          );
+        });
+        return completedChallenges.length >= CHALLENGES_FOR_LESSON_COMPLETION;
+      });
+
+      return {
+        ...topic,
+        completed: completedLessons.length === topic.lessons.length,
+      };
+    });
+
+    return { ...chapter, topics: topicsWithCompletedStatus };
+  });
+
+  return normalizedData;
+});
+
+/**
+ * Topics
+ */
+export const getTopics = cache(async (topicId: number) => {
+  const { userId } = auth();
+
+  if (!userId) return [];
+
+  const data = await db.query.topics.findMany({
+    where: eq(topics.id, topicId),
+    orderBy: (topics, { asc }) => [asc(topics.order)],
     with: {
       lessons: {
         orderBy: (lessons, { asc }) => [asc(lessons.order)],
@@ -75,8 +162,8 @@ export const getChapters = cache(async () => {
     },
   });
 
-  const normalizedData = data.map((chapter) => {
-    const lessonsWithCompletedStatus = chapter.lessons.map((lesson) => {
+  const normalizedData = data.map((topic) => {
+    const lessonsWithCompletedStatus = topic.lessons.map((lesson) => {
       if (lesson.challenges.length < 5) return { ...lesson, completed: false };
 
       const completedChallenges = lesson.challenges.filter((challenge) => {
@@ -94,7 +181,7 @@ export const getChapters = cache(async () => {
       };
     });
 
-    return { ...chapter, lessons: lessonsWithCompletedStatus };
+    return { ...topic, lessons: lessonsWithCompletedStatus };
   });
 
   return normalizedData;
@@ -125,9 +212,10 @@ export const getLesson = cache(async (id?: number) => {
   const data = await db.query.lessons.findFirst({
     where: eq(lessons.id, lessonId),
     with: {
+      topic: true,
       challenges: {
         orderBy: (challenges, { asc }) => [asc(challenges.order)],
-        limit: 10, // Increased from 5 to have more options
+        limit: 5,
         with: {
           challengeOptions: true,
           challengeProgress: {
@@ -214,14 +302,19 @@ export const getSubjectProgress = cache(async () => {
     orderBy: (chapters, { asc }) => [asc(chapters.order)],
     where: eq(chapters.subjectId, userProgress.activeSubjectId),
     with: {
-      lessons: {
-        orderBy: (lessons, { asc }) => [asc(lessons.order)],
+      topics: {
+        orderBy: (topics, { asc }) => [asc(topics.order)],
         with: {
-          chapter: true,
-          challenges: {
+          lessons: {
+            orderBy: (lessons, { asc }) => [asc(lessons.order)],
             with: {
-              challengeProgress: {
-                where: eq(challengeProgress.userId, userId),
+              topic: true,
+              challenges: {
+                with: {
+                  challengeProgress: {
+                    where: eq(challengeProgress.userId, userId),
+                  },
+                },
               },
             },
           },
@@ -230,20 +323,36 @@ export const getSubjectProgress = cache(async () => {
     },
   });
 
-  const firstUncompletedLesson = chaptersInActiveSubject
-    .flatMap((chapter) => chapter.lessons)
-    .find((lesson) => {
-      const completedChallenges = lesson.challenges.filter((challenge) => {
-        return (
-          challenge.challengeProgress &&
-          challenge.challengeProgress.length > 0 &&
-          challenge.challengeProgress.every((progress) => progress.completed)
-        );
+  const firstUncompletedTopic = chaptersInActiveSubject
+    .flatMap((chapter) => chapter.topics)
+    .find((topic) => {
+      const completedLessons = topic.lessons.filter((lesson) => {
+        const completedChallenges = lesson.challenges.filter((challenge) => {
+          return (
+            challenge.challengeProgress &&
+            challenge.challengeProgress.length > 0 &&
+            challenge.challengeProgress.every((progress) => progress.completed)
+          );
+        });
+        return completedChallenges.length >= CHALLENGES_FOR_LESSON_COMPLETION;
       });
-      return completedChallenges.length < CHALLENGES_FOR_LESSON_COMPLETION;
+      return completedLessons.length < topic.lessons.length;
     });
 
+  const firstUncompletedLesson = firstUncompletedTopic?.lessons.find((lesson) => {
+    const completedChallenges = lesson.challenges.filter((challenge) => {
+      return (
+        challenge.challengeProgress &&
+        challenge.challengeProgress.length > 0 &&
+        challenge.challengeProgress.every((progress) => progress.completed)
+      );
+    });
+    return completedChallenges.length < CHALLENGES_FOR_LESSON_COMPLETION;
+  });
+
   return {
+    activeTopic: firstUncompletedTopic,
+    activeTopicId: firstUncompletedTopic?.id,
     activeLesson: firstUncompletedLesson,
     activeLessonId: firstUncompletedLesson?.id,
   };
