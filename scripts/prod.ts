@@ -3,6 +3,7 @@ import "dotenv/config";
 import { drizzle } from "drizzle-orm/neon-http";
 
 import * as schema from "@/db/schema";
+import { contentBlockTypeEnum } from "@/db/schema";
 
 const sql = neon(process.env.DATABASE_URL);
 
@@ -35,7 +36,18 @@ const createTables = async () => {
     id SERIAL PRIMARY KEY,
     topic_id INTEGER NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
     title TEXT NOT NULL,
+    content_block_ids INTEGER[] NOT NULL
     lesson_order INTEGER NOT NULL
+  );`;
+
+  await sql`CREATE TYPE content_block_type AS ENUM ('CHALLENGE', 'CONTENT');`;
+
+  await sql`CREATE TABLE IF NOT EXISTS content_blocks (
+    id SERIAL PRIMARY KEY,
+    type content_block_type NOT NULL,
+    title TEXT,
+    body TEXT,
+    lesson_id INTEGER NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS challenges (
@@ -80,6 +92,7 @@ const createTables = async () => {
     id SERIAL PRIMARY KEY,
     user_id TEXT NOT NULL,
     lesson_id INTEGER NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
+    current_content_block_order INTEGER NOT NULL DEFAULT 0,
     current_difficulty INTEGER NOT NULL DEFAULT 1,
     correct_answers INTEGER NOT NULL DEFAULT 0,
     total_attempts INTEGER NOT NULL DEFAULT 0,
@@ -1116,6 +1129,44 @@ const main = async () => {
                         ],
                       },
                     ],
+                    blocks: [
+                      {
+                        id: 1,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: 'Test content 1',
+                        body: 'Test body',
+                      },
+                      {
+                        id: 2,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 3,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 4,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 1001,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: 'Test content 2',
+                        body: 'Test body 2',
+                      },
+                      {
+                        id: 1002,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 1003,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 1004,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                    ],
                   },
                   {
                     id: 112,
@@ -2043,6 +2094,26 @@ const main = async () => {
                         ],
                       },
                     ],
+                    blocks: [
+                      {
+                        id: 5,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: 'Test content 3',
+                        body: 'Test body',
+                      },
+                      {
+                        id: 6,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 7,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 8,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                    ],
                   },
                   {
                     id: 113,
@@ -2956,6 +3027,24 @@ const main = async () => {
                         ],
                       },
                     ],
+                    blocks: [
+                      {
+                        id: 9,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 10,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 11,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 12,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                    ],
                   },
                   {
                     id: 114,
@@ -3806,6 +3895,24 @@ const main = async () => {
                         text: "4651",
                       },
                     ],
+                    blocks: [
+                      {
+                        id: 13,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 14,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 15,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 16,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                    ],
                   },
                 ],
               },
@@ -3837,6 +3944,24 @@ const main = async () => {
                       {
                         correct: false,
                         text: "Two crore three lakh forty-five thousand four hundred seventy-eight",
+                      },
+                    ],
+                    blocks: [
+                      {
+                        id: 17,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 18,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 19,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 20,
+                        type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
@@ -6930,6 +7055,24 @@ const main = async () => {
                         ],
                       },
                     ],
+                    blocks: [
+                      {
+                        id: 21,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 22,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 23,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 24,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                    ],
                   },
                   {
                     id: 587,
@@ -7579,6 +7722,24 @@ const main = async () => {
                         ],
                       },
                     ],
+                    blocks: [
+                      {
+                        id: 25,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 26,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 27,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 28,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                    ],
                   },
                   {
                     id: 943,
@@ -8128,6 +8289,24 @@ const main = async () => {
                             text: "They are difficult to cook",
                           },
                         ],
+                      },
+                    ],
+                    blocks: [
+                      {
+                        id: 29,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 30,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 31,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 32,
+                        type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
@@ -8781,6 +8960,24 @@ const main = async () => {
                         ],
                       },
                     ],
+                    blocks: [
+                      {
+                        id: 33,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 34,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 35,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 36,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                    ],
                   },
                   {
                     id: 761,
@@ -9309,6 +9506,24 @@ const main = async () => {
                           { correct: false, text: "Transparency on paper" },
                           { correct: true, text: "Explosion" },
                         ],
+                      },
+                    ],
+                    blocks: [
+                      {
+                        id: 37,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 38,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 39,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 40,
+                        type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
@@ -9961,6 +10176,24 @@ const main = async () => {
                             text: "It provides no calories",
                           },
                         ],
+                      },
+                    ],
+                    blocks: [
+                      {
+                        id: 41,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 42,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 43,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 44,
+                        type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
@@ -11157,6 +11390,24 @@ const main = async () => {
                         ],
                       },
                     ],
+                    blocks: [
+                      {
+                        id: 45,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 46,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 47,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 48,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                    ],
                   },
                   {
                     id: 312,
@@ -12027,6 +12278,24 @@ const main = async () => {
                         ],
                       },
                     ],
+                    blocks: [
+                      {
+                        id: 49,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 50,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 51,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 52,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                    ],
                   },
                   {
                     id: 313,
@@ -12683,6 +12952,24 @@ const main = async () => {
                         ],
                       },
                     ],
+                    blocks: [
+                      {
+                        id: 53,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 54,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 55,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 56,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                    ],
                   },
                   {
                     id: 314,
@@ -13167,6 +13454,24 @@ const main = async () => {
                           },
                           { correct: false, text: "It only helped in hunting" },
                         ],
+                      },
+                    ],
+                    blocks: [
+                      {
+                        id: 57,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 58,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 59,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 60,
+                        type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
@@ -13678,6 +13983,24 @@ const main = async () => {
                         ],
                       },
                     ],
+                    blocks: [
+                      {
+                        id: 61,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 62,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 63,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 64,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                    ],
                   },
                 ],
               },
@@ -13687,7 +14010,7 @@ const main = async () => {
       },
     ];
 
-    // // Insert subjects
+    // Insert subjects
     const subjects = await db
       .insert(schema.subjects)
       .values(
@@ -13738,7 +14061,8 @@ const main = async () => {
             .insert(schema.lessons)
             .values(
               topic.lessons.map((eachLesson) => {
-                return { topicId: topic.id, ...eachLesson };
+                const contentBlockIds = eachLesson.blocks.map((contentBlock) => contentBlock.id);
+                return { topicId: topic.id, contentBlockIds, ...eachLesson };
               })
             )
             .returning();
@@ -13746,8 +14070,26 @@ const main = async () => {
             `Inserted ${lessons.length} lesson(s): ${subject.title}/${chapter.title}/${topic.title}`
           );
 
-          // For each lesson, insert challenges
+          // For each lesson, insert content blocks and challenges
           for (const lesson of topic.lessons) {
+            const contentBlocks = await db
+              .insert(schema.contentBlocks)
+              .values(
+                lesson.blocks.map((contentData) => {
+                  return {
+                    id: contentData.id,
+                    type: contentData.type,
+                    title: contentData.title,
+                    body: contentData.body,
+                    lessonId: lesson.id,
+                  }
+                })
+              )
+              .returning();
+            console.log(
+              `Inserted ${contentBlocks.length} content blocks: ${subject.title}/${chapter.title}/${topic.title}/${lesson.title}`
+            );
+
             const challenges = await db
               .insert(schema.challenges)
               .values(

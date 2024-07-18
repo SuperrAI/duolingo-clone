@@ -83,6 +83,7 @@ export const lessons = pgTable("lessons", {
       onDelete: "cascade",
     })
     .notNull(),
+  contentBlockIds: integer("content_block_ids").array().notNull(),
   order: integer("lesson_order").notNull(),
 });
 
@@ -92,6 +93,31 @@ export const lessonsRelations = relations(lessons, ({ one, many }) => ({
     references: [topics.id],
   }),
   challenges: many(challenges),
+  contentBlocks: many(contentBlocks),
+}));
+
+/**
+ * Content Blocks
+ */
+export const contentBlockTypeEnum = pgEnum("content_block_type", ["CHALLENGE", "CONTENT"]);
+
+export const contentBlocks = pgTable("content_blocks", {
+  id: serial("id").primaryKey(),
+  type: contentBlockTypeEnum("type").notNull(),
+  title: text("title"),
+  body: text("body"),
+  lessonId: integer("lesson_id")
+    .references(() => lessons.id, {
+      onDelete: "cascade",
+    })
+    .notNull(),
+});
+
+export const contentBlocksRelations = relations(contentBlocks, ({ one }) => ({
+  lesson: one(lessons, {
+    fields: [contentBlocks.lessonId],
+    references: [lessons.id],
+  }),
 }));
 
 /**
@@ -186,6 +212,7 @@ export const lessonProgress = pgTable("lesson_progress", {
       onDelete: "cascade",
     })
     .notNull(),
+  currentContentBlockOrder: integer("current_content_block_order").notNull().default(0),
   currentDifficulty: integer("current_difficulty").notNull().default(1),
   correctAnswers: integer("correct_answers").notNull().default(0),
   totalAttempts: integer("total_attempts").notNull().default(0),

@@ -17,7 +17,6 @@ import {
   userProgress,
   userSubscription,
 } from "./schema";
-// import { TOTAL_CHALLENGES } from "../app/lesson/quiz";
 
 const DAY_IN_MS = 86_400_000;
 
@@ -213,6 +212,7 @@ export const getLesson = cache(async (id?: number) => {
     where: eq(lessons.id, lessonId),
     with: {
       topic: true,
+      contentBlocks: true,
       challenges: {
         orderBy: (challenges, { asc }) => [asc(challenges.order)],
         limit: 5,

@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import { upsertChallengeProgress } from "@/actions/challenge-progress";
 import { getNextChallenge } from "@/actions/get-next-challenge";
 import { MAX_HEARTS } from "@/constants";
-import { challengeOptions, challenges, userSubscription } from "@/db/schema";
+import { challengeOptions, challenges, contentBlocks, userSubscription } from "@/db/schema";
 import { useHeartsModal } from "@/store/use-hearts-modal";
 import { usePracticeModal } from "@/store/use-practice-modal";
 
@@ -27,6 +27,9 @@ type QuizProps = {
   initialPercentage: number;
   initialHearts: number;
   initialLessonId: number;
+  currentContentBlockOrder: number;
+  contentBlockIds: number[];
+  contentBlocks: (typeof contentBlocks.$inferSelect)[],
   initialLessonChallenges: (typeof challenges.$inferSelect & {
     completed: boolean;
     challengeOptions: (typeof challengeOptions.$inferSelect)[];
@@ -43,6 +46,9 @@ export const Quiz = ({
   initialPercentage,
   initialHearts,
   initialLessonId,
+  currentContentBlockOrder,
+  contentBlockIds,
+  contentBlocks,
   initialLessonChallenges,
   initialChallenge,
   userSubscription,
