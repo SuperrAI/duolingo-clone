@@ -36,7 +36,7 @@ const createTables = async () => {
     id SERIAL PRIMARY KEY,
     topic_id INTEGER NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
     title TEXT NOT NULL,
-    content_block_ids INTEGER[] NOT NULL
+    content_block_ids INTEGER[] NOT NULL,
     lesson_order INTEGER NOT NULL
   );`;
 
@@ -47,7 +47,7 @@ const createTables = async () => {
     type content_block_type NOT NULL,
     title TEXT,
     body TEXT,
-    lesson_id INTEGER NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
+    lesson_id INTEGER NOT NULL REFERENCES lessons(id) ON DELETE CASCADE
   );`;
 
   await sql`CREATE TABLE IF NOT EXISTS challenges (
