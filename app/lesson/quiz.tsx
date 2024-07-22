@@ -11,11 +11,17 @@ import { toast } from "sonner";
 import { upsertChallengeProgress } from "@/actions/challenge-progress";
 import { getNextChallenge } from "@/actions/get-next-challenge";
 import { MAX_HEARTS } from "@/constants";
-import { challengeOptions, challenges, contentBlocks, userSubscription } from "@/db/schema";
+import {
+  challengeOptions,
+  challenges,
+  contentBlocks,
+  userSubscription,
+} from "@/db/schema";
 import { useHeartsModal } from "@/store/use-hearts-modal";
 import { usePracticeModal } from "@/store/use-practice-modal";
 
 import { Challenge } from "./challenge";
+import NavigableContainer from "./content";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import { QuestionBubble } from "./question-bubble";
@@ -29,7 +35,7 @@ type QuizProps = {
   initialLessonId: number;
   currentContentBlockOrder: number;
   contentBlockIds: number[];
-  contentBlocks: (typeof contentBlocks.$inferSelect)[],
+  contentBlocks: (typeof contentBlocks.$inferSelect)[];
   initialLessonChallenges: (typeof challenges.$inferSelect & {
     completed: boolean;
     challengeOptions: (typeof challengeOptions.$inferSelect)[];
@@ -92,6 +98,7 @@ export const Quiz = ({
   const [status, setStatus] = useState<"none" | "wrong" | "correct">("none");
 
   const [currentChallenge, setCurrentChallenge] = useState(initialChallenge);
+  const [showContent, setShowContent] = useState(true);
 
   const fetchNextChallenge = async () => {
     try {
@@ -130,7 +137,9 @@ export const Quiz = ({
       return;
     }
 
-    const correctOption = currentChallenge.challengeOptions.find((option: any) => option.correct);
+    const correctOption = currentChallenge.challengeOptions.find(
+      (option: any) => option.correct
+    );
 
     if (!correctOption) return;
 
@@ -162,6 +171,22 @@ export const Quiz = ({
         .catch(() => toast.error("Something went wrong. Please try again."));
     });
   };
+
+  const filteredContentData = contentBlocks
+    .filter((content) => content.type === "CONTENT")
+    .map((content) => ({
+      title: content.title ?? "",
+      body: content.body ?? "",
+    }));
+
+  if (percentage === 0 && showContent) {
+    return (
+      <NavigableContainer
+        data={filteredContentData}
+        setShowContent={setShowContent}
+      />
+    );
+  }
 
   if (!currentChallenge || percentage >= 100) {
     return (
