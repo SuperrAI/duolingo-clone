@@ -188,14 +188,14 @@ const main = async () => {
             title: "Chapter 1",
             topics: [
               {
-                id: 11111,
-                description: `T1`,
+                id: 10,
+                description: `Comparing Large and Small Numbers`,
                 order: 1,
                 title: "Topic 1",
                 lessons: [
                   {
                     id: 111,
-                    title: "Comparing Large and Small Numbers",
+                    title: "Comparing Numbers",
                     order: 1,
                     challenges: [
                       {
@@ -1131,46 +1131,105 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 1,
+                        id: 10,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Test content 1',
-                        body: 'Test body',
+                        title: "Introduction to Place Value",
+                        body: `In our number system, each digit in a number has a specific value based on its position. This is called place value. Let's explore how place value helps us understand and compare numbers.`,
                       },
                       {
-                        id: 2,
-                        type: contentBlockTypeEnum.enumValues[0],
-                      },
-                      {
-                        id: 3,
-                        type: contentBlockTypeEnum.enumValues[0],
-                      },
-                      {
-                        id: 4,
-                        type: contentBlockTypeEnum.enumValues[0],
-                      },
-                      {
-                        id: 1001,
+                        id: 20,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Test content 2',
-                        body: 'Test body 2',
+                        title: "Finding Place Value of Digits",
+                        body: `To find the place value of a digit in a number:\n1. Identify the position of the digit from right to left.\n2. The rightmost position is the ones place, then tens, hundreds, thousands, and so on.\n3. Multiply the digit by its place value (1, 10, 100, 1000, etc.).\n\nFor example, in the number 45,678:\n- 8 is in the ones place: 8 × 1 = 8\n- 7 is in the tens place: 7 × 10 = 70\n- 6 is in the hundreds place: 6 × 100 = 600\n- 5 is in the thousands place: 5 × 1,000 = 5,000\n- 4 is in the ten thousands place: 4 × 10,000 = 40,000`,
                       },
                       {
-                        id: 1002,
+                        id: 30,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Total Numbers from Given Digits",
+                        body: `To find the total numbers that can be made from given digits:\n1. Determine if repetition is allowed.\n2. If repetition is not allowed, count the arrangements systematically.\n3. If repetition is allowed, use the counting principle.\n\nFor example, with digits 1, 2, and 3 (no repetition):\nPossible numbers: 123, 132, 213, 231, 312, 321\nTotal: 6 different numbers\n\nWith repetition allowed:\nPossible numbers: 111, 112, 113, 121, 122, 123, 131, 132, 133, 211, 212, 213, 221, 222, 223, 231, 232, 233, 311, 312, 313, 321, 322, 323, 331, 332, 333\nTotal: 27 different numbers`,
+                      },
+                      {
+                        id: 40,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Arranging Digits for Smaller or Bigger Numbers",
+                        body: `To make the smallest number:\n1. Arrange the digits in ascending order.\n2. Place the smallest non-zero digit in the leftmost position.\n\nTo make the biggest number:\n1. Arrange the digits in descending order.\n\nFor example, with digits 3, 1, 4, 2:\n- Smallest number: 1234\n- Biggest number: 4321`,
+                      },
+                      {
+                        id: 50,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Adding 1 to Get the Smallest Next Digit Number",
+                        body: `When we add 1 to the greatest 1-digit, 2-digit, or 3-digit number, we get the smallest number with the next number of digits:\n- Greatest 1-digit number: 9\n  9 + 1 = 10 (smallest 2-digit number)\n- Greatest 2-digit number: 99\n  99 + 1 = 100 (smallest 3-digit number)\n- Greatest 3-digit number: 999\n  999 + 1 = 1000 (smallest 4-digit number)`,
+                      },
+                      {
+                        id: 60,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Expanding Numbers and Identifying Place Values",
+                        body: `To expand a number and identify place values:\n1. Write each digit multiplied by its place value.\n2. Add these values together.\n\nFor example, 45,678 can be expanded as:\n40,000 + 5,000 + 600 + 70 + 8\nor\n(4 × 10,000) + (5 × 1,000) + (6 × 100) + (7 × 10) + (8 × 1)`,
+                      },
+                      {
+                        id: 70,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title:
+                          "Writing 6-Digit Numbers in Expanded Form and Words",
+                        body: `Let's take the number 234,567 as an example:\n\nExpanded form:\n200,000 + 30,000 + 4,000 + 500 + 60 + 7\nor\n(2 × 100,000) + (3 × 10,000) + (4 × 1,000) + (5 × 100) + (6 × 10) + (7 × 1)\n\nIn words:\nTwo hundred thirty-four thousand, five hundred sixty-seven`,
+                      },
+                      {
+                        id: 80,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Understanding Predecessors and Successors",
+                        body: `The predecessor of a number is the number that comes just before it.\nThe successor of a number is the number that comes just after it.\n\nFor example:\n- For the number 50:\n  Predecessor: 49\n  Successor: 51\n\nNote: The predecessor of a number ending in 0 will end in 9, and all other digits to its left will decrease by 1.`,
+                      },
+                      {
+                        id: 90,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Adding Larger Numbers",
+                        body: `When adding larger numbers, we can use the column method:\n1. Align the numbers vertically by their place values.\n2. Start from the rightmost column (ones) and add upwards.\n3. If the sum in any column is 10 or more, carry over to the next column.\n\nFor example, adding 45,678 and 32,456:\n  45,678\n+ 32,456\n--------\n  78,134\n\nThis method helps us deal with situations involving larger numbers in real life, such as population counts or financial calculations.`,
+                      },
+                      {
+                        id: 100,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Using Place Values to Read Numbers Easily",
+                        body: `To read large numbers easily:\n1. Group the digits in sets of three from right to left.\n2. Use commas to separate these groups.\n3. Read each group followed by its place value name.\n\nFor example, 45678901 can be written as 45,678,901 and read as:\n'Forty-five million, six hundred seventy-eight thousand, nine hundred one'\n\nThis method helps in quickly understanding the magnitude of large numbers in various contexts, such as distances in space, national budgets, or global statistics.`,
+                      },
+                      {
+                        id: 110,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Conclusion",
+                        body: `In this lesson, we've explored various aspects of comparing numbers:\n- Understanding place value and its importance\n- Finding the total numbers that can be made from given digits\n- Arranging digits to form smaller or bigger numbers\n- Adding 1 to get the next digit number\n- Expanding numbers and identifying place values\n- Writing numbers in expanded form and words\n- Understanding predecessors and successors\n- Adding larger numbers\n- Using place values to read numbers easily\n\nThese skills are fundamental in mathematics and will help you in more advanced topics as well as in real-life situations involving large numbers.`,
+                      },
+                      {
+                        id: 120,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 1003,
+                        id: 130,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 1004,
+                        id: 140,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 150,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 160,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                id: 20,
+                description: `Understanding and Using Large Numbers in Practice`,
+                order: 2,
+                title: "Topic 2",
+                lessons: [
                   {
                     id: 112,
-                    title: "Understanding and Using Large Number in Practice",
+                    title: "Large Numbers in Practice",
                     order: 2,
                     challenges: [
                       {
@@ -2096,28 +2155,110 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 5,
+                        id: 170,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Test content 3',
-                        body: 'Test body',
+                        title: "1. What Are Large Numbers?",
+                        body: `Large numbers are numbers with many digits. We encounter them in various situations:\n• Population of countries\n• Distances in space\n• Money in national budgets\n• Number of cells in the human body\n\nUnderstanding large numbers helps us make sense of important information in the world around us.`,
                       },
                       {
-                        id: 6,
+                        id: 180,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "2. Indian Number System",
+                        body: `In India, we use a unique system to write and read large numbers:\n• 1,000 = One thousand\n• 10,000 = Ten thousand\n• 1,00,000 = One lakh\n• 10,00,000 = Ten lakh\n• 1,00,00,000 = One crore\n\nWe use commas to separate these groups, making large numbers easier to read.`,
+                      },
+                      {
+                        id: 190,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "3. Reading Large Numbers",
+                        body: `To read large numbers, follow these steps:\n1. Start from the rightmost comma\n2. Read each group of digits\n3. Add the place value (thousand, lakh, crore)\n\nExample: 23,45,678\n• 678 - six hundred seventy-eight\n• 45 - forty-five thousand\n• 23 - twenty-three lakh\n\nSo, we read it as 'twenty-three lakh, forty-five thousand, six hundred seventy-eight'`,
+                      },
+                      {
+                        id: 200,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "4. Writing Large Numbers in Words",
+                        body: `When writing large numbers in words:\n• Use hyphens for compound numbers (twenty-one, thirty-five)\n• Use commas to separate thousands, lakhs, and crores\n• Don't use 'and' except for decimal parts\n\nExample: 3,14,159\nThree lakh, fourteen thousand, one hundred fifty-nine`,
+                      },
+                      {
+                        id: 210,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "5. Comparing Large Numbers",
+                        body: `To compare large numbers:\n1. First, look at the number of digits\n2. If they have the same number of digits, compare from left to right\n3. Use symbols: > (greater than), < (less than), = (equal to)\n\nExamples:\n45,67,890 > 45,67,889\n12,34,567 < 23,45,678`,
+                      },
+                      {
+                        id: 220,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "6. Ordering Large Numbers",
+                        body: `To put large numbers in order:\n1. Compare the numbers using the method above\n2. Arrange them from smallest to largest (ascending order) or largest to smallest (descending order)\n\nExample (ascending order):\n12,34,567 < 23,45,678 < 45,67,890`,
+                      },
+                      {
+                        id: 230,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "7. Rounding Large Numbers",
+                        body: `Rounding makes large numbers easier to work with:\n1. Identify the place value to round to\n2. Look at the digit to its right\n3. If it's 5 or more, round up; if less than 5, round down\n\nExample: Round 3,456,789 to the nearest lakh\n1. We're rounding to the lakhs place (3rd digit from right)\n2. The digit to its right is 4\n3. Since 4 < 5, we round down\nResult: 3,400,000 or 34 lakh`,
+                      },
+                      {
+                        id: 240,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "8. Estimating with Large Numbers",
+                        body: `Estimating is useful when we don't need exact numbers:\n1. Round the numbers to make them easier to work with\n2. Do the calculation with the rounded numbers\n3. Use words like 'about' or 'approximately' with the answer\n\nExample: Estimate 3,456,789 + 2,987,654\nRound both to nearest million: 3,000,000 + 3,000,000\nEstimated sum: about 6,000,000 or approximately 6 million`,
+                      },
+                      {
+                        id: 250,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "9. Simple Calculations with Large Numbers",
+                        body: `When adding or subtracting large numbers:\n1. Line up the digits by place value\n2. Start from the right (ones place) and move left\n3. Remember to carry over or borrow when needed\n\nExample:\n  45,67,890\n+ 23,45,678\n-----------\n  69,13,568`,
+                      },
+                      {
+                        id: 260,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "10. Large Numbers in Real Life",
+                        body: `We encounter large numbers in many situations:\n• Population: India's population is about 138 crore (1,38,00,00,000)\n• Distance: The Moon is about 3,84,400 km from Earth\n• Money: India's GDP is about ₹232 lakh crore (₹232,00,00,00,00,000)\n• Technology: A terabyte of data is 1,00,00,00,00,000 bytes`,
+                      },
+                      {
+                        id: 270,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "11. Scientific Notation",
+                        body: `For very large numbers, we use scientific notation:\n• 10,00,000 = 1 × 10^6\n• 1,00,00,000 = 1 × 10^7\n• 1,00,00,00,000 = 1 × 10^9\n\nThis is useful in science and math for expressing very large or very small numbers efficiently.`,
+                      },
+                      {
+                        id: 280,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "12. Practical Applications",
+                        body: `Understanding large numbers helps us:\n• Read news about population, economy, or space exploration\n• Manage personal finances and understand compound interest\n• Appreciate the scale of scientific discoveries\n• Understand environmental issues, like plastic pollution in oceans\n• Interpret data in fields like technology, business, and social sciences`,
+                      },
+                      {
+                        id: 290,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 7,
+                        id: 300,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 8,
+                        id: 310,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 320,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 330,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                id: 30,
+                description: `Simplifying Calculations with Brackets`,
+                order: 3,
+                title: "Topic 3",
+                lessons: [
                   {
                     id: 113,
-                    title: "Simplifying Calculations with Brackets",
+                    title: "Using Brackets",
                     order: 3,
                     challenges: [
                       {
@@ -3029,23 +3170,104 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 9,
+                        id: 340,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "1. Introduction to Brackets",
+                        body: `Brackets are symbols used in mathematics to group numbers and operations. They help us solve problems in the correct order and avoid confusion.\n\nCommon types of brackets:\n• ( ) - Round brackets or parentheses\n• [ ] - Square brackets\n• { } - Curly brackets\n\nIn Class 6, we'll focus mainly on round brackets ( ).`,
+                      },
+                      {
+                        id: 350,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "2. Why Do We Use Brackets?",
+                        body: `Brackets serve two main purposes:\n1. They group numbers or operations that should be done together.\n2. They change the order in which operations are performed.\n\nFor example:\n• 2 + 3 × 4 = 14 (multiplication is done first)\n• (2 + 3) × 4 = 20 (addition inside brackets is done first)`,
+                      },
+                      {
+                        id: 360,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title:
+                          "3. Basic Rules for Solving Expressions with Brackets",
+                        body: `When solving expressions with brackets, follow these steps:\n1. Always solve what's inside the brackets first.\n2. After solving the brackets, follow the normal order of operations.\n\nExample:\n(10 - 4) + 3 = 6 + 3 = 9`,
+                      },
+                      {
+                        id: 370,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "4. Order of Operations with Brackets (BODMAS)",
+                        body: `BODMAS helps us remember the correct order of operations:\nB - Brackets\nO - Of (multiplication implied by 'of')\nD - Division\nM - Multiplication\nA - Addition\nS - Subtraction\n\nRemember: After brackets, division and multiplication have equal priority (solve left to right), and the same for addition and subtraction.`,
+                      },
+                      {
+                        id: 380,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "5. Applying BODMAS with Brackets",
+                        body: `Let's apply BODMAS to an expression with brackets:\n\n20 - (5 + 3) × 2\n\nStep 1: Solve inside brackets first\n20 - 8 × 2\n\nStep 2: Multiplication before subtraction\n20 - 16\n\nStep 3: Subtraction\n4\n\nSo, 20 - (5 + 3) × 2 = 4`,
+                      },
+                      {
+                        id: 390,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "6. Nested Brackets",
+                        body: `Sometimes, we see brackets inside other brackets. These are called nested brackets.\n\nWhen solving nested brackets:\n1. Start with the innermost brackets and work your way out.\n2. Solve each set of brackets completely before moving to the next.\n\nExample:\n((4 + 2) × 3) - 5 = (6 × 3) - 5 = 18 - 5 = 13`,
+                      },
+                      {
+                        id: 400,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "7. Solving Nested Brackets Step by Step",
+                        body: `Let's solve a nested bracket problem step by step:\n\n(10 - (4 + 1)) × 2\n\nStep 1: Solve the innermost brackets\n(10 - 5) × 2\n\nStep 2: Solve the outer brackets\n5 × 2\n\nStep 3: Multiply\n10\n\nSo, (10 - (4 + 1)) × 2 = 10`,
+                      },
+                      {
+                        id: 410,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "8. Using Brackets in Word Problems",
+                        body: `Brackets are useful in solving word problems. They help us group operations that should be done together.\n\nExample:\nRam has 5 boxes with 4 chocolates in each. He eats 3 chocolates. How many are left?\nSolution: (5 × 4) - 3 = 20 - 3 = 17 chocolates`,
+                      },
+                      {
+                        id: 420,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title:
+                          "9. Translating Word Problems into Bracket Expressions",
+                        body: `When solving word problems, look for phrases that indicate grouping or order of operations. For example:\n• 'Total of' or 'Sum of' usually means addition in brackets\n• 'Product of' usually means multiplication in brackets\n• 'Difference between' usually means subtraction in brackets\n\nExample:\nFind the difference between the sum of 8 and 6, and the product of 3 and 2.\nTranslation: (8 + 6) - (3 × 2) = 14 - 6 = 8`,
+                      },
+                      {
+                        id: 430,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "10. Brackets with Negative Numbers",
+                        body: `When we have negative numbers inside brackets, we need to be extra careful.\n\nRules:\n1. If there's a minus sign before the brackets, it changes the sign of everything inside the brackets.\n2. If there's a plus sign before the brackets, the signs inside remain the same.\n\nExamples:\n• -(3 - 5) = -3 + 5 = 2\n• +(3 - 5) = 3 - 5 = -2`,
+                      },
+                      {
+                        id: 440,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title:
+                          "11. Solving Expressions with Negative Numbers and Brackets",
+                        body: `Let's solve an expression with negative numbers and brackets:\n\n10 - (-3 + 5)\n\nStep 1: Solve inside the brackets\n10 - (2)\n\nStep 2: Subtract\n10 - 2 = 8\n\nSo, 10 - (-3 + 5) = 8`,
+                      },
+                      {
+                        id: 450,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 10,
+                        id: 460,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 11,
+                        id: 470,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 12,
+                        id: 480,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 490,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                id: 40,
+                description: `Reading and Writing Roman Numerals`,
+                order: 4,
+                title: "Topic 4",
+                lessons: [
                   {
                     id: 114,
                     title: "Reading and Writing Roman Numerals",
@@ -3897,19 +4119,91 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 13,
+                        id: 500,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "1. Introduction to Roman Numerals",
+                        body: `Roman numerals are a number system that originated in ancient Rome. They use letters instead of digits to represent numbers. We still see Roman numerals today in many places, such as:\n\n• Clock faces\n• Chapter numbers in books\n• Movie sequel titles\n• Names of kings and queens\n\nLearning Roman numerals helps us read these numbers and understand their historical importance.`,
+                      },
+                      {
+                        id: 510,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "2. Basic Roman Numeral Symbols",
+                        body: `Let's start with the seven basic symbols used in Roman numerals:\n\nI = 1\nV = 5\nX = 10\nL = 50\nC = 100\nD = 500\nM = 1000\n\nThese symbols are the building blocks for all Roman numerals. We'll learn how to combine them to create different numbers.`,
+                      },
+                      {
+                        id: 520,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "3. Writing Numbers 1 to 10 in Roman Numerals",
+                        body: `Now, let's see how to write the numbers 1 to 10 using Roman numerals:\n\n1 = I\n2 = II\n3 = III\n4 = IV\n5 = V\n6 = VI\n7 = VII\n8 = VIII\n9 = IX\n10 = X\n\nNotice how we use combinations of I, V, and X to represent these numbers.`,
+                      },
+                      {
+                        id: 530,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "4. Basic Rules for Writing Roman Numerals",
+                        body: `There are three main rules for writing Roman numerals:\n\n1. Repetition: A symbol can be repeated up to three times to add its value.\n   Example: III = 3, XX = 20\n\n2. Addition: When a symbol is placed after another of equal or greater value, add their values.\n   Example: VI = 6 (5 + 1), XV = 15 (10 + 5)\n\n3. Subtraction: When a symbol is placed before one of greater value, subtract the smaller value.\n   Example: IV = 4 (5 - 1), IX = 9 (10 - 1)`,
+                      },
+                      {
+                        id: 540,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "5. Writing Numbers 11 to 39 in Roman Numerals",
+                        body: `Let's extend our knowledge to write numbers from 11 to 39:\n\n11 = XI\n12 = XII\n13 = XIII\n14 = XIV\n15 = XV\n16 = XVI\n...\n20 = XX\n21 = XXI\n...\n30 = XXX\n31 = XXXI\n...\n39 = XXXIX\n\nNotice how we combine X with the symbols we learned earlier to represent these numbers.`,
+                      },
+                      {
+                        id: 550,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "6. Using L (50) in Roman Numerals",
+                        body: `Now let's introduce L, which represents 50. We can use it to write numbers from 40 to 89:\n\n40 = XL (50 - 10)\n50 = L\n51 = LI\n60 = LX\n70 = LXX\n80 = LXXX\n89 = LXXXIX\n\nRemember, when a smaller value comes before a larger one, we subtract.`,
+                      },
+                      {
+                        id: 560,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "7. Introducing C (100) in Roman Numerals",
+                        body: `C represents 100 in Roman numerals. We can use it to write numbers from 90 to 399:\n\n90 = XC (100 - 10)\n100 = C\n101 = CI\n150 = CL\n200 = CC\n300 = CCC\n399 = CCCXCIX\n\nNotice how we combine C with the symbols we've already learned to represent these larger numbers.`,
+                      },
+                      {
+                        id: 570,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title:
+                          "8. Using D (500) and M (1000) in Roman Numerals",
+                        body: `Finally, let's introduce D (500) and M (1000) to write even larger numbers:\n\n400 = CD (500 - 100)\n500 = D\n600 = DC\n900 = CM (1000 - 100)\n1000 = M\n1500 = MD\n2000 = MM\n\nThese symbols allow us to represent numbers up to 3999 (MMMCMXCIX) in Roman numerals.`,
+                      },
+                      {
+                        id: 580,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "9. Reading Roman Numerals",
+                        body: `To read Roman numerals:\n1. Start from the left and move right.\n2. Add the values of symbols that are the same or decreasing in value.\n3. Subtract when a symbol is followed by one of greater value.\n\nExample: MCMLIV\nM = 1000\nCM = 900 (1000 - 100)\nL = 50\nIV = 4 (5 - 1)\n\nTotal: 1000 + 900 + 50 + 4 = 1954`,
+                      },
+                      {
+                        id: 590,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "10. Roman Numerals in Everyday Life",
+                        body: `Roman numerals are still used in various contexts today:\n\n• Clock faces: Many clocks use Roman numerals for hours.\n• Book chapters: Some books use Roman numerals for chapter numbers.\n• Movie sequels: Films like 'Star Wars IV' use Roman numerals.\n• Sports events: The Super Bowl uses Roman numerals (e.g., Super Bowl LV).\n• Monarchs' names: Kings and queens are often numbered with Roman numerals (e.g., Elizabeth II).`,
+                      },
+                      {
+                        id: 600,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title:
+                          "11. Converting Between Roman and Hindu-Arabic Numerals",
+                        body: `To convert from Roman to Hindu-Arabic numerals:\n1. Break the Roman numeral into symbols.\n2. Convert each symbol to its Hindu-Arabic value.\n3. Apply addition and subtraction rules.\n4. Add up the results.\n\nTo convert from Hindu-Arabic to Roman numerals:\n1. Break the number into thousands, hundreds, tens, and ones.\n2. Convert each part to Roman numerals.\n3. Combine the parts.`,
+                      },
+                      {
+                        id: 610,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 14,
+                        id: 620,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 15,
+                        id: 630,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 16,
+                        id: 640,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 650,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
@@ -6697,8 +6991,8 @@ const main = async () => {
             title: "Chapter 1",
             topics: [
               {
-                id: 21111,
-                description: `T1`,
+                id: 1010,
+                description: `What do different food items contain?`,
                 order: 1,
                 title: "Topic 1",
                 lessons: [
@@ -7057,26 +7351,87 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 21,
+                        id: 1010,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Introduction to Food Components",
+                        body: `Have you ever wondered why we eat different types of food? It's because our body needs various substances to stay healthy and grow. These substances are called nutrients, and they are the components of our food.`,
+                      },
+                      {
+                        id: 1020,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "The Main Nutrients",
+                        body: `There are six main types of nutrients that our body needs:\n\n1. Carbohydrates\n2. Proteins\n3. Fats\n4. Vitamins\n5. Minerals\n6. Water\n\nEach of these nutrients has a special job in keeping us healthy.`,
+                      },
+                      {
+                        id: 1030,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Carbohydrates: Our Energy Source",
+                        body: `Carbohydrates are like fuel for our body. They give us energy to play, study, and do all our daily activities. We can find carbohydrates in foods like:\n\n• Rice\n• Bread\n• Potatoes\n• Cereals`,
+                      },
+                      {
+                        id: 1040,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Proteins: The Body Builders",
+                        body: `Proteins help our body grow and repair itself. They are like the building blocks for our muscles, skin, and hair. We can find proteins in:\n\n• Eggs\n• Milk\n• Pulses (like dal)\n• Fish and meat`,
+                      },
+                      {
+                        id: 1050,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Fats: Energy Storage and Protection",
+                        body: `Fats store energy for our body. They also help protect our organs and keep us warm. We can find fats in:\n\n• Butter\n• Oil\n• Nuts\n• Cheese`,
+                      },
+                      {
+                        id: 1070,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title:
+                          "Vitamins and Minerals: The Protective Nutrients",
+                        body: `Vitamins and minerals are needed in small quantities, but they're very important. They help our body fight diseases and stay healthy. We can find them in:\n\n• Fruits (like oranges, apples)\n• Vegetables (like carrots, spinach)\n• Milk\n• Eggs`,
+                      },
+                      {
+                        id: 1080,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Water: The Essential Nutrient",
+                        body: `Water is also a nutrient! It's found in all parts of our body and is essential for life. We get water from:\n\n• Drinking water\n• Juices\n• Fruits and vegetables\n• Milk`,
+                      },
+                      {
+                        id: 1090,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Foods Contain Multiple Nutrients",
+                        body: `It's important to remember that most foods contain more than one nutrient. For example:\n\n• Milk has proteins, fats, and calcium (a mineral)\n• An apple has carbohydrates, vitamins, and water\n• An egg has proteins and fats`,
+                      },
+                      {
+                        id: 1110,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 22,
+                        id: 1120,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 23,
+                        id: 1130,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 24,
+                        id: 1140,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 1150,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                id: 1020,
+                description: `What do Various Nutrients do for our Body?`,
+                order: 2,
+                title: "Topic 2",
+                lessons: [
                   {
-                    id: 587,
-                    title: "What do Various Nutrients do for our Body?",
+                    id: 212,
+                    title: "What do various nutrients do for our body?",
                     order: 2,
                     challenges: [
                       {
@@ -7724,26 +8079,86 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 25,
+                        id: 1160,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Introduction to Nutrient Functions",
+                        body: `We've learned that food contains different nutrients. But why does our body need these nutrients? Each nutrient has a special job to do in our body, helping us stay healthy and grow.`,
+                      },
+                      {
+                        id: 1161,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Carbohydrates: Our Energy Providers",
+                        body: `Carbohydrates are like fuel for our body. They:\n• Give us energy to play, study, and do all our daily activities\n• Help our brain function properly\n• Provide fiber for good digestion`,
+                      },
+                      {
+                        id: 1170,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Proteins: The Body's Building Blocks`,
+                        body: `Proteins are very important for our body. They:\n• Help in growth and repair of body tissues\n• Build and maintain muscles\n• Help in making enzymes and hormones\n• Support our immune system to fight diseases`,
+                      },
+                      {
+                        id: 1171,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Fats: Energy Storage and More`,
+                        body: `Fats might seem bad, but they're actually very important. They:\n• Store energy for later use\n• Protect our organs\n• Help our body absorb certain vitamins\n• Keep our skin healthy\n• Help us feel full after eating`,
+                      },
+                      {
+                        id: 1180,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Vitamins: The Protective Nutrients`,
+                        body: `Vitamins are needed in small amounts, but they're crucial for our health. They:\n• Boost our immune system to fight diseases\n• Help in various bodily functions\n• Support growth and development\n• Keep our eyes, skin, and bones healthy`,
+                      },
+                      {
+                        id: 1190,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Minerals: The Body's Helpers`,
+                        body: `Minerals work alongside vitamins to keep us healthy. They:\n• Help in building strong bones and teeth (like calcium)\n• Aid in carrying oxygen in blood (like iron)\n• Regulate fluid balance in the body (like sodium and potassium)\n• Support proper nerve and muscle function`,
+                      },
+                      {
+                        id: 1200,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Water: The Essential Nutrient`,
+                        body: `Water is often forgotten as a nutrient, but it's crucial for life. It:\n• Regulates body temperature\n• Helps in digestion of food\n• Carries nutrients and oxygen to cells\n• Removes waste products from our body\n• Keeps our joints lubricated`,
+                      },
+                      {
+                        id: 1210,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Working Together`,
+                        body: `All these nutrients work together in our body. For example:\n• Carbohydrates give us energy to play\n• Proteins help build the muscles we use while playing\n• Water helps regulate our body temperature when we get hot from playing\n• Vitamins and minerals keep us healthy so we can continue to play`,
+                      },
+                      {
+                        id: 1220,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 26,
+                        id: 1230,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 27,
+                        id: 1240,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 28,
+                        id: 1250,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 1260,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                id: 1030,
+                description: `Balanced diet`,
+                order: 3,
+                title: "Topic 3",
+                lessons: [
                   {
-                    id: 943,
-                    title: "Balanced diet",
+                    id: 213,
+                    title: "Understanding Balanced Diet",
                     order: 3,
                     challenges: [
                       {
@@ -8293,26 +8708,104 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 29,
+                        id: 1270,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `What is a Balanced Diet?`,
+                        body: `A balanced diet is a way of eating that gives our body all the nutrients it needs in the right amounts. It's like giving our body a perfect mix of different foods to keep us healthy and growing.`,
+                      },
+                      {
+                        id: 1280,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Why is a Balanced Diet Important?`,
+                        body: `A balanced diet is important because it:\n• Helps us grow properly\n• Keeps us healthy and strong\n• Gives us energy for daily activities\n• Helps our brain work well\n• Protects us from diseases`,
+                      },
+                      {
+                        id: 1290,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Components of a Balanced Diet`,
+                        body: `A balanced diet includes different types of foods in the right amounts:\n1. Cereals and pulses\n2. Fruits and vegetables\n3. Milk and milk products\n4. Meat, fish, or eggs (for non-vegetarians)\n5. Nuts and oilseeds\n6. Fats and sugars (in small quantities)`,
+                      },
+                      {
+                        id: 1300,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Cereals and Pulses`,
+                        body: `Cereals (like rice, wheat) and pulses (like dal) are rich in carbohydrates and proteins. They give us energy and help in body building. We should include these in most of our meals.`,
+                      },
+                      {
+                        id: 1310,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Fruits and Vegetables`,
+                        body: `Fruits and vegetables are packed with vitamins, minerals, and fiber. They help protect our body from diseases. We should eat a variety of colorful fruits and vegetables every day.`,
+                      },
+                      {
+                        id: 1320,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Milk and Milk Products`,
+                        body: `Milk, curd, and cheese are rich in proteins and calcium. They help in building strong bones and teeth. It's good to have milk or milk products daily.`,
+                      },
+                      {
+                        id: 1330,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Meat, Fish, and Eggs`,
+                        body: `These are excellent sources of proteins. They help in body building and repair. For vegetarians, pulses and nuts can provide similar nutrients.`,
+                      },
+                      {
+                        id: 1340,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Nuts and Oilseeds`,
+                        body: `Nuts and oilseeds (like almonds, walnuts, peanuts) contain healthy fats, proteins, and minerals. They are good for our brain and heart when eaten in small quantities.`,
+                      },
+                      {
+                        id: 1350,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Fats and Sugars`,
+                        body: `While fats and sugars are part of a balanced diet, we need them in small amounts. They provide energy, but eating too much can lead to health problems.`,
+                      },
+                      {
+                        id: 1360,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Creating a Balanced Meals`,
+                        body: `A balanced meal should include:\n• A portion of cereals or pulses\n• Some vegetables and/or fruits\n• A small serving of milk or milk product\n• A small portion of meat, fish, egg, or additional pulses for vegetarians\n• Water to stay hydrated`,
+                      },
+                      {
+                        id: 1370,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Remember`,
+                        body: `Eat a variety of foods\n• Include all food groups in your diet\n• Eat fresh fruits and vegetables daily\n• Drink plenty of water\n• Avoid too much of junk food or sugary drinks`,
+                      },
+                      {
+                        id: 1380,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 30,
+                        id: 1390,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 31,
+                        id: 1400,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 32,
+                        id: 1410,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 1420,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                id: 1040,
+                description: `Deficiency diseases`,
+                order: 4,
+                title: "Topic 4",
+                lessons: [
                   {
-                    id: 325,
-                    title: "Deficiency diseases",
+                    id: 214,
+                    title: "Understanding Deficiency Diseases",
                     order: 4,
                     challenges: [
                       {
@@ -8962,26 +9455,92 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 33,
+                        id: 1430,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `What are Deficiency Diseases?`,
+                        body: `Deficiency diseases are health problems that occur when our body doesn't get enough of certain nutrients. It's like when a car runs out of fuel and stops working properly. Our body also needs the right 'fuel' (nutrients) to work well.`,
+                      },
+                      {
+                        id: 1440,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Why Do Deficiency Diseases Happen?`,
+                        body: `Deficiency diseases can happen when:\n• We don't eat a balanced diet\n• Our body can't absorb certain nutrients properly\n• We have increased nutrient needs (like during growth or illness) that aren't met`,
+                      },
+                      {
+                        id: 1450,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Common Deficiency Diseases: Vitamin A Deficiency`,
+                        body: `One common deficiency disease is caused by lack of Vitamin A.\n• Vitamin A is important for our eyes and skin\n• It's found in foods like carrots, sweet potatoes, and milk\n• Lack of Vitamin A can cause night blindness, where it's hard to see in dim light`,
+                      },
+                      {
+                        id: 1460,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Common Deficiency Diseases: Vitamin C Deficiency`,
+                        body: `Another deficiency disease is caused by lack of Vitamin C.\n• Vitamin C helps our body heal and fight infections\n• It's found in citrus fruits, berries, and many vegetables\n• Lack of Vitamin C can cause a disease called scurvy, which makes gums bleed and wounds heal slowly`,
+                      },
+                      {
+                        id: 1470,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Common Deficiency Diseases: Vitamin D Deficiency`,
+                        body: `Vitamin D deficiency is also common.\n• Vitamin D helps our body absorb calcium for strong bones\n• We can get Vitamin D from sunlight and foods like fish and eggs\n• Lack of Vitamin D can cause a disease called rickets in children, which leads to weak and soft bones`,
+                      },
+                      {
+                        id: 1480,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Common Deficiency Diseases: Iron Deficiency`,
+                        body: `Iron deficiency is very common, especially in children and women.\n• Iron helps our blood carry oxygen around the body\n• It's found in foods like red meat, beans, and green leafy vegetables\n• Lack of iron can cause anemia, which makes people feel weak and tired`,
+                      },
+                      {
+                        id: 1490,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Common Deficiency Diseases: Iodine Deficiency`,
+                        body: `Iodine deficiency affects many people worldwide.\n• Iodine is important for proper functioning of the thyroid gland\n• It's found in iodized salt and seafood\n• Lack of iodine can cause goiter, a swelling in the neck, and can affect brain development in children`,
+                      },
+                      {
+                        id: 1500,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Preventing Deficiency Diseases`,
+                        body: `We can prevent most deficiency diseases by:\n• Eating a balanced diet with a variety of foods\n• Including plenty of fruits and vegetables in our meals\n• Getting some sunlight for Vitamin D\n• Using iodized salt\n• Taking supplements if recommended by a doctor`,
+                      },
+                      {
+                        id: 1510,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Remember`,
+                        body: `• Deficiency diseases happen when we don't get enough of certain nutrients\n• Different nutrients cause different deficiency diseases\n• We can prevent most deficiency diseases by eating a balanced diet\n• If you're concerned about deficiencies, always talk to a doctor or a nutritionist`,
+                      },
+                      {
+                        id: 1520,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 34,
+                        id: 1530,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 35,
+                        id: 1540,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 36,
+                        id: 1550,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 1560,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                id: 1050,
+                description: `Test for Presence of Different Components in Food`,
+                order: 5,
+                title: "Topic 5",
+                lessons: [
                   {
-                    id: 761,
-                    title: "Test for Presence of Different Components in Food",
+                    id: 215,
+                    title: "Testing for Different Food Components",
                     order: 5,
                     challenges: [
                       {
@@ -9510,25 +10069,97 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 37,
+                        id: 1570,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Why Do We Test Food?`,
+                        body: `Just like detectives use clues to solve mysteries, scientists use tests to find out what's in our food. These tests help us understand which nutrients are present in different foods. This knowledge helps us make better choices about what we eat.`,
+                      },
+                      {
+                        id: 1580,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `What Can We Test For?`,
+                        body: `We can test food for the presence of different nutrients like:\n• Carbohydrates (especially starch)\n• Proteins\n• Fats\n\nLet's learn about each test one by one!`,
+                      },
+                      {
+                        id: 1590,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Testing for Starch`,
+                        body: `Starch is a type of carbohydrate. Here's how we test for it:\n1. We use a liquid called iodine solution.\n2. Iodine solution is yellowish-brown in color.\n3. When we add iodine to food containing starch, it turns blue-black.\n4. If there's no starch, the color stays yellowish-brown.`,
+                      },
+                      {
+                        id: 1600,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Starch Test: What to Expect`,
+                        body: `• Foods like rice, potato, and bread will turn blue-black (positive test).\n• Foods like meat and most fruits will not change color (negative test).`,
+                      },
+                      {
+                        id: 1610,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Testing for Proteins`,
+                        body: `Proteins are important for growth and repair. Here's how we test for them:\n1. We use a solution called copper sulphate solution and caustic soda.\n2. When we add these to food containing protein, the mixture turns violet or purple.\n3. If there's no protein, the color doesn't change much.`,
+                      },
+                      {
+                        id: 1620,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Protein Test: What to Expect`,
+                        body: `• Foods like eggs, milk, and pulses will turn violet (positive test).\n• Foods like sugar and most fruits will not change color much (negative test).`,
+                      },
+                      {
+                        id: 1630,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Testing for Fats`,
+                        body: `Fats are important for energy and protecting our organs. Here's a simple test for fats:\n1. Take a small piece of food and rub it on a piece of paper.\n2. Let the paper dry.\n3. If the paper becomes translucent (you can partially see through it), fat is present.\n4. If the paper doesn't change, there's likely no fat.`,
+                      },
+                      {
+                        id: 1640,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Fat Test: What to Expect`,
+                        body: `• Foods like butter, oils, and nuts will make the paper translucent (positive test).\n• Foods like fruits and vegetables usually won't change the paper (negative test).`,
+                      },
+                      {
+                        id: 1650,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Conducting Food Tests`,
+                        body: `When conducting these tests:\n• Always be careful with chemicals and follow your teacher's instructions.\n• Use small amounts of food and testing solutions.\n• Observe the color changes carefully.\n• Record your observations.\n• Wash your hands after the experiments.`,
+                      },
+                      {
+                        id: 1660,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Why These Tests are Important`,
+                        body: `• They help us understand what nutrients are in our food.\n• This knowledge helps us make better food choices.\n• Scientists use more advanced versions of these tests to study food.\n• These tests can help people with special dietary needs.`,
+                      },
+                      {
+                        id: 1670,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 38,
+                        id: 1680,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 39,
+                        id: 1690,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 40,
+                        id: 1700,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 1710,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                id: 1060,
+                description: `Roughage and its Importance`,
+                order: 6,
+                title: "Topic 6",
+                lessons: [
                   {
-                    id: 104,
+                    id: 216,
                     title: "Roughage and its Importance",
                     order: 6,
                     challenges: [
@@ -10180,19 +10811,77 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 41,
+                        id: 1720,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `What is Roughage?`,
+                        body: `Roughage, also known as dietary fiber, is a type of carbohydrate found in plants that our body cannot digest. It's like the 'tough' part of plants that passes through our digestive system mostly unchanged.`,
+                      },
+                      {
+                        id: 1730,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Where Do We Find Roughage?`,
+                        body: `Roughage is found in many plant-based foods. Some good sources are:\n• Fruits (especially with edible skins and seeds)\n• Vegetables\n• Whole grains\n• Legumes (like beans and lentils)\n• Nuts and seeds`,
+                      },
+                      {
+                        id: 1740,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Types of Roughage`,
+                        body: `There are two main types of roughage:\n1. Soluble fiber: This type dissolves in water. It's found in foods like oats, peas, and apples.\n2. Insoluble fiber: This type doesn't dissolve in water. It's found in foods like wheat bran, nuts, and many vegetables.`,
+                      },
+                      {
+                        id: 1750,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Why is Roughage Important? Reason 1: Digestive Health`,
+                        body: `Roughage is very important for our digestive system:\n• It helps food move through our digestive tract\n• It prevents constipation by adding bulk to our stool\n• It helps us feel full, which can prevent overeating`,
+                      },
+                      {
+                        id: 1760,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Why is Roughage Important? Reason 2: Blood Sugar Control`,
+                        body: `Roughage, especially soluble fiber, can help control blood sugar levels:\n• It slows down the absorption of sugar\n• This can help prevent rapid spikes in blood sugar after meals\n• This is especially important for people with diabetes`,
+                      },
+                      {
+                        id: 1770,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Why is Roughage Important? Reason 3: Heart Health`,
+                        body: `Roughage can be good for our heart:\n• It can help lower cholesterol levels\n• This can reduce the risk of heart diseases\n• It may also help control blood pressure`,
+                      },
+                      {
+                        id: 1780,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Why is Roughage Important? Reason 4: Weight Management`,
+                        body: `Roughage can help in maintaining a healthy weight:\n• It makes us feel full for longer\n• This can prevent overeating\n• Foods high in fiber are often lower in calories`,
+                      },
+                      {
+                        id: 1790,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `How Much Roughage Do We Need?`,
+                        body: `• Children your age should aim for about 20-25 grams of fiber per day\n• You can get this by eating plenty of fruits, vegetables, and whole grains\n• It's better to get fiber from food rather than supplements\n• Increase fiber intake gradually and drink plenty of water`,
+                      },
+                      {
+                        id: 1800,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: `Remember`,
+                        body: `• Roughage is the part of plant foods that our body doesn't digest\n• It's important for digestive health, blood sugar control, heart health, and weight management\n• Good sources include fruits, vegetables, whole grains, and legumes\n• Aim to include fiber-rich foods in your daily diet`,
+                      },
+                      {
+                        id: 1810,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 42,
+                        id: 1820,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 43,
+                        id: 1830,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 44,
+                        id: 1840,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 1850,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
@@ -10215,8 +10904,8 @@ const main = async () => {
             title: "Chapter 1",
             topics: [
               {
-                id: 31111,
-                description: `T1`,
+                id: 2010,
+                description: `Introduction to history`,
                 order: 1,
                 title: "Topic 1",
                 lessons: [
@@ -11392,19 +12081,19 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 45,
+                        id: 2010,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 46,
+                        id: 2020,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 47,
+                        id: 2030,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 48,
+                        id: 2040,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
@@ -12280,19 +12969,19 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 49,
+                        id: 2050,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 50,
+                        id: 2060,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 51,
+                        id: 2070,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 52,
+                        id: 2080,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
@@ -12954,19 +13643,19 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 53,
+                        id: 2090,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 54,
+                        id: 2100,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 55,
+                        id: 2110,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 56,
+                        id: 2120,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
@@ -13458,19 +14147,19 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 57,
+                        id: 2130,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 58,
+                        id: 2140,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 59,
+                        id: 2150,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 60,
+                        id: 2160,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
@@ -13985,19 +14674,19 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 61,
+                        id: 2170,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 62,
+                        id: 2180,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 63,
+                        id: 2190,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 64,
+                        id: 2200,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
@@ -14061,7 +14750,9 @@ const main = async () => {
             .insert(schema.lessons)
             .values(
               topic.lessons.map((eachLesson) => {
-                const contentBlockIds = eachLesson.blocks.map((contentBlock) => contentBlock.id);
+                const contentBlockIds = eachLesson.blocks.map(
+                  (contentBlock) => contentBlock.id
+                );
                 return { topicId: topic.id, contentBlockIds, ...eachLesson };
               })
             )
@@ -14082,7 +14773,7 @@ const main = async () => {
                     title: contentData.title,
                     body: contentData.body,
                     lessonId: lesson.id,
-                  }
+                  };
                 })
               )
               .returning();
