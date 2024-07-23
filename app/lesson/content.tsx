@@ -54,7 +54,9 @@ const NavigableContainer = ({
           <ChevronLeft className="h-6 w-6" />
         </button>
 
-        <div className="px-8">{<TextImageCard {...data[currentIndex]} />}</div>
+        <div className="flex h-full items-center px-8">
+          {<TextImageCard {...data[currentIndex]} />}
+        </div>
 
         <button
           onClick={goToNext}
@@ -71,6 +73,7 @@ const NavigableContainer = ({
               className={`h-2 w-2 rounded-full hover:cursor-pointer ${
                 index === currentIndex ? "bg-blue-500" : "bg-gray-300"
               }`}
+              onClick={() => setCurrentIndex(index)}
             />
           ))}
         </div>
