@@ -68,7 +68,7 @@ const NavigableContainer = ({
           {data.map((_, index) => (
             <span
               key={index}
-              className={`h-2 w-2 rounded-full ${
+              className={`h-2 w-2 rounded-full hover:cursor-pointer ${
                 index === currentIndex ? "bg-blue-500" : "bg-gray-300"
               }`}
             />
