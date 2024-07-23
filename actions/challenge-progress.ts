@@ -13,6 +13,7 @@ import {
   chapterProgress,
   subjectProgress,
   topicProgress,
+  lessonProgress,
   userProgress,
 } from "@/db/schema";
 
@@ -27,11 +28,15 @@ export const upsertChallengeProgress = async (
   const challenge = await db.query.challenges.findFirst({
     where: eq(challenges.id, challengeId),
     with: {
-      topic: {
+      lesson: {
         with: {
-          chapter: {
+          topic: {
             with: {
-              subject: true
+              chapter: {
+                with: {
+                  subject: true
+                }
+              }
             }
           }
         }
@@ -41,9 +46,10 @@ export const upsertChallengeProgress = async (
 
   if (!challenge) throw new Error("Challenge not found.");
 
-  const topicId = challenge.topic.id;
-  const chapterId = challenge.topic.chapter.id;
-  const subjectId = challenge.topic.chapter.subject.id
+  const lessonId = challenge.lesson.id;
+  const topicId = challenge.lesson.topic.id;
+  const chapterId = challenge.lesson.topic.chapter.id;
+  const subjectId = challenge.lesson.topic.chapter.subject.id;
 
   const existingChallengeProgress = await db.query.challengeProgress.findFirst({
     where: and(
@@ -83,10 +89,10 @@ export const upsertChallengeProgress = async (
       .where(eq(userProgress.userId, userId));
 
     revalidatePath("/learn");
-    revalidatePath("/topic");
+    revalidatePath("/lesson");
     revalidatePath("/quests");
     revalidatePath("/leaderboard");
-    revalidatePath(`/topic/${topicId}`);
+    revalidatePath(`/lesson/${lessonId}`);
     return;
   }
 
@@ -96,16 +102,16 @@ export const upsertChallengeProgress = async (
     completed: true,
   });
 
-  // Update topicProgress
-  await upsertTopicProgress(userId, challengeId, topicId, chapterId, subjectId, isCorrect);
+  // Update lessonProgress
+  await upsertLessonProgress(userId, challengeId, lessonId, topicId, chapterId, subjectId, isCorrect);
 };
 
-async function upsertTopicProgress(userId: string, challengeId: number, topicId: number, chapterId: number, subjectId: number, isCorrect: boolean) {
-  const [topicProgressData, challenge] = await Promise.all([
-    db.query.topicProgress.findFirst({
+async function upsertLessonProgress(userId: string, challengeId: number, lessonId: number, topicId: number, chapterId: number, subjectId: number, isCorrect: boolean) {
+  const [lessonProgressData, challenge] = await Promise.all([
+    db.query.lessonProgress.findFirst({
       where: and(
-        eq(topicProgress.userId, userId),
-        eq(topicProgress.topicId, topicId)
+        eq(lessonProgress.userId, userId),
+        eq(lessonProgress.lessonId, lessonId)
       ),
     }),
     db.query.challenges.findFirst({
@@ -118,24 +124,24 @@ async function upsertTopicProgress(userId: string, challengeId: number, topicId:
   const challengeDifficulty = challenge.difficulty;
   const MIN_ABILITY = 1, MAX_ABILITY = 3, MIN_DIFFICULTY = 1, MAX_DIFFICULTY = 3;
 
-  if (!topicProgressData) {
-    await db.insert(topicProgress).values({
+  if (!lessonProgressData) {
+    await db.insert(lessonProgress).values({
       userId,
-      topicId,
+      lessonId,
       currentDifficulty: challengeDifficulty,
       correctAnswers: isCorrect ? 1 : 0,
       totalAttempts: 1,
       abilityEstimate: MIN_ABILITY,
     });
   } else {
-    const newCorrectAnswers = isCorrect ? topicProgressData.correctAnswers + 1 : topicProgressData.correctAnswers;
-    const newTotalAttempts = topicProgressData.totalAttempts + 1;
-    const oldAbilityEstimate = topicProgressData.abilityEstimate;
+    const newCorrectAnswers = isCorrect ? lessonProgressData.correctAnswers + 1 : lessonProgressData.correctAnswers;
+    const newTotalAttempts = lessonProgressData.totalAttempts + 1;
+    const oldAbilityEstimate = lessonProgressData.abilityEstimate;
 
     const learningRate = 0.4;
     const consistencyBonus = 0.5;
     const scaledDifficulty = (((challengeDifficulty - MIN_DIFFICULTY) / (MAX_DIFFICULTY - MIN_DIFFICULTY)) * (MAX_ABILITY - MIN_ABILITY)) + MIN_ABILITY;
-    
+
     let abilityAdjustment;
     if (isCorrect) {
       // If correct, always increase ability, but more for harder questions
@@ -144,27 +150,82 @@ async function upsertTopicProgress(userId: string, challengeId: number, topicId:
       // If incorrect, always decrease ability, but more for easier questions
       abilityAdjustment = Math.min(-consistencyBonus, scaledDifficulty - oldAbilityEstimate);
     }
-    
+
     let newAbilityEstimate = oldAbilityEstimate + learningRate * abilityAdjustment;
     newAbilityEstimate = Math.max(MIN_ABILITY, Math.min(MAX_ABILITY, newAbilityEstimate));
 
     const newDifficulty = Math.ceil((((newAbilityEstimate - MIN_ABILITY) / (MAX_ABILITY - MIN_ABILITY)) * (MAX_DIFFICULTY - MIN_DIFFICULTY)) + MIN_DIFFICULTY);
 
     await db
-      .update(topicProgress)
+      .update(lessonProgress)
       .set({
         currentDifficulty: newDifficulty,
         correctAnswers: newCorrectAnswers,
         totalAttempts: newTotalAttempts,
         abilityEstimate: newAbilityEstimate,
       })
-      .where(eq(topicProgress.id, topicProgressData.id));
-    
-    await upsertChapterProgress(userId, challengeId, topicId, chapterId, subjectId, isCorrect);
+      .where(eq(lessonProgress.id, lessonProgressData.id));
+
+    await upsertTopicProgress(userId, challengeId, lessonId, topicId, chapterId, subjectId, isCorrect);
   }
 }
 
-async function upsertChapterProgress(userId: string, challengeId: number, topicId: number, chapterId: number, subjectId: number, isCorrect: boolean) {
+async function upsertTopicProgress(userId: string, challengeId: number, lessonId: number, topicId: number, chapterId: number, subjectId: number, isCorrect: boolean) {
+  const topicProgressData = await db.query.topicProgress.findFirst({
+    where: and(
+      eq(topicProgress.userId, userId),
+      eq(topicProgress.topicId, topicId)
+    ),
+  });
+
+  const challenge = await db.query.challenges.findFirst({
+    where: eq(challenges.id, challengeId)
+  });
+
+  if (!challenge) throw new Error("Challenge not found");
+
+  const challengeDifficulty = challenge.difficulty;
+
+  // Define bounds for abilityEstimate
+  const MIN_ABILITY = -3;
+  const MAX_ABILITY = 3;
+
+  if (!topicProgressData) {
+    const initialAbilityEstimate = 0;
+    await db.insert(topicProgress).values({
+      userId,
+      topicId,
+      abilityEstimate: initialAbilityEstimate,
+      currentDifficulty: 1, // Start with the lowest difficulty
+    });
+  } else {
+    // Calculate new ability estimate using Item Response Theory (IRT)
+    const oldAbilityEstimate = topicProgressData.abilityEstimate;
+    const learningRate = 0.1;
+    let newAbilityEstimate = oldAbilityEstimate + 
+      learningRate * (isCorrect ? 1 : -1) * (challengeDifficulty - oldAbilityEstimate);
+
+    // Bound the abilityEstimate
+    newAbilityEstimate = Math.max(MIN_ABILITY, Math.min(MAX_ABILITY, newAbilityEstimate));
+
+    // Calculate new difficulty based on the user's current ability estimate
+    // Map the ability estimate (-3 to 3) to difficulty (1 to 3)
+    const newDifficulty = Math.round(((newAbilityEstimate - MIN_ABILITY) / (MAX_ABILITY - MIN_ABILITY)) * 2 + 1);
+
+    await db
+      .update(topicProgress)
+      .set({
+        abilityEstimate: newAbilityEstimate,
+        currentDifficulty: newDifficulty,
+      })
+      .where(eq(topicProgress.id, topicProgressData.id));
+  }
+
+  // Update chapterProgress
+  await upsertChapterProgress(userId, challengeId, lessonId, topicId, chapterId, subjectId, isCorrect);
+}
+
+async function upsertChapterProgress(userId: string, challengeId: number, lessonId: number, topicId: number, chapterId: number, subjectId: number, isCorrect: boolean) {
   const chapterProgressData = await db.query.chapterProgress.findFirst({
     where: and(
       eq(chapterProgress.userId, userId),
@@ -216,10 +277,10 @@ async function upsertChapterProgress(userId: string, challengeId: number, topicI
   }
 
   // Update subjectProgress
-  await upsertSubjectProgress(userId, challengeId, topicId, chapterId, subjectId, isCorrect);
+  await upsertSubjectProgress(userId, challengeId, lessonId, topicId, chapterId, subjectId, isCorrect);
 }
 
-async function upsertSubjectProgress(userId: string, challengeId: number, topicId: number, chapterId: number, subjectId: number, isCorrect: boolean) {
+async function upsertSubjectProgress(userId: string, challengeId: number, lessonId: number, topicId: number, chapterId: number, subjectId: number, isCorrect: boolean) {
   const subjectProgressData = await db.query.subjectProgress.findFirst({
     where: and(
       eq(subjectProgress.userId, userId),
@@ -277,15 +338,16 @@ async function upsertSubjectProgress(userId: string, challengeId: number, topicI
     .update(userProgress)
     .set({
       points: currentUserProgress.points + 10,
+      activeLessonId: lessonId,
       activeTopicId: topicId,
       activeChapterId: chapterId,
       activeSubjectId: subjectId
     })
     .where(eq(userProgress.userId, userId));
-  
+
   revalidatePath("/learn");
-  revalidatePath("/topic");
+  revalidatePath("/lesson");
   revalidatePath("/quests");
   revalidatePath("/leaderboard");
-  revalidatePath(`/topic/${topicId}`);
+  revalidatePath(`/lesson/${lessonId}`);
 }

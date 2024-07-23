@@ -67,7 +67,7 @@ export const reduceHearts = async (challengeId: number) => {
 
   if (!challenge) throw new Error("Challenge not found.");
 
-  const topicId = challenge.topicId;
+  const lessonId = challenge.lessonId;
 
   const existingChallengeProgress = await db.query.challengeProgress.findFirst({
     where: and(
@@ -97,7 +97,7 @@ export const reduceHearts = async (challengeId: number) => {
   revalidatePath("/learn");
   revalidatePath("/quests");
   revalidatePath("/leaderboard");
-  revalidatePath(`/topic/${topicId}`);
+  revalidatePath(`/lesson/${lessonId}`);
 };
 
 export const refillHearts = async () => {

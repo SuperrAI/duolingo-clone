@@ -12,6 +12,11 @@ export const TopicCreate = () => {
     <Create>
       <SimpleForm>
         <TextInput source="title" validate={[required()]} label="Title" />
+        <TextInput
+          source="description"
+          validate={[required()]}
+          label="Description"
+        />
         <ReferenceInput source="chapterId" reference="chapters" />
         <NumberInput source="order" validate={required()} label="Order" />
       </SimpleForm>

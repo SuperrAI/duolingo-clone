@@ -1,4 +1,4 @@
-import { topics, chapters } from "@/db/schema";
+import { topics } from "@/db/schema";
 
 import { ChapterBanner } from "./chapter-banner";
 import { TopicButton } from "./topic-button";
@@ -12,9 +12,7 @@ type ChapterProps = {
     completed: boolean;
   })[];
   activeTopic:
-    | (typeof topics.$inferSelect & {
-        chapter: typeof chapters.$inferSelect;
-      })
+    | (typeof topics.$inferSelect)
     | undefined;
   activeTopicPercentage: number;
 };
@@ -44,6 +42,7 @@ export const Chapter = ({
               current={isCurrent}
               locked={isLocked}
               percentage={activeTopicPercentage}
+              name={topic.title}
             />
           );
         })}

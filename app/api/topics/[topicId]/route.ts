@@ -12,7 +12,7 @@ export const GET = async (
   const isAdmin = getIsAdmin();
   if (!isAdmin) return new NextResponse("Unauthorized.", { status: 401 });
 
-  const data = await db.query.topics.findFirst({
+  const data = await db.query.chapters.findFirst({
     where: eq(topics.id, params.topicId),
   });
 

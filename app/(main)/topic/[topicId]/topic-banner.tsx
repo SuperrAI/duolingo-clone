@@ -3,14 +3,14 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
-type ChapterBannerProps = {
+type TopicBannerProps = {
   title: string;
   description: string;
 };
 
-export const ChapterBanner = ({ title, description }: ChapterBannerProps) => {
+export const TopicBanner = ({ title, description }: TopicBannerProps) => {
   return (
-    <div className="flex w-full items-center justify-between rounded-xl bg-orange-500 p-5 text-white">
+    <div className="flex w-full items-center justify-between rounded-xl bg-green-500 p-5 text-white">
       <div className="space-y-2.5">
         <h3 className="text-2xl font-bold">{title}</h3>
         <p className="text-lg">{description}</p>

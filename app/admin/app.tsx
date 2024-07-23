@@ -12,6 +12,9 @@ import { ChallengeOptionsList } from "./challengeOption/list";
 import { ChapterCreate } from "./chapter/create";
 import { ChapterEdit } from "./chapter/edit";
 import { ChapterList } from "./chapter/list";
+import { LessonCreate } from "./lesson/create";
+import { LessonEdit } from "./lesson/edit";
+import { LessonList } from "./lesson/list";
 import { SubjectCreate } from "./subject/create";
 import { SubjectEdit } from "./subject/edit";
 import { SubjectList } from "./subject/list";
@@ -46,6 +49,14 @@ const App = () => {
         list={TopicList}
         create={TopicCreate}
         edit={TopicEdit}
+      />
+
+      <Resource
+        name="lessons"
+        recordRepresentation="title"
+        list={LessonList}
+        create={LessonCreate}
+        edit={LessonEdit}
       />
 
       <Resource

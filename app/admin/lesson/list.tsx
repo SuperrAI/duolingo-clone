@@ -6,15 +6,14 @@ import {
   TextField,
 } from "react-admin";
 
-export const TopicList = () => {
+export const LessonList = () => {
   return (
     <List>
       <Datagrid rowClick="edit">
         <NumberField source="id" />
         <TextField source="title" />
-        <TextField source="description" />
         <ReferenceField source="chapterId" reference="chapters" />
-        <TextField source="order" />
+        <NumberField source="order" />
       </Datagrid>
     </List>
   );

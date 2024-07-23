@@ -9,25 +9,34 @@ import { useAudio, useWindowSize, useMount } from "react-use";
 import { toast } from "sonner";
 
 import { upsertChallengeProgress } from "@/actions/challenge-progress";
+import { getNextChallenge } from "@/actions/get-next-challenge";
 import { MAX_HEARTS } from "@/constants";
-import { challengeOptions, challenges, userSubscription } from "@/db/schema";
+import {
+  challengeOptions,
+  challenges,
+  contentBlocks,
+  userSubscription,
+} from "@/db/schema";
 import { useHeartsModal } from "@/store/use-hearts-modal";
 import { usePracticeModal } from "@/store/use-practice-modal";
 
 import { Challenge } from "./challenge";
+import NavigableContainer from "./content";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import { QuestionBubble } from "./question-bubble";
 import { ResultCard } from "./result-card";
-import { getNextChallenge } from "@/actions/get-next-challenge";
 
-const TOTAL_CHALLENGES = 10;
+export const TOTAL_CHALLENGES = 5;
 
 type QuizProps = {
   initialPercentage: number;
   initialHearts: number;
-  initialTopicId: number;
-  initialTopicChallenges: (typeof challenges.$inferSelect & {
+  initialLessonId: number;
+  currentContentBlockOrder: number;
+  contentBlockIds: number[];
+  contentBlocks: (typeof contentBlocks.$inferSelect)[];
+  initialLessonChallenges: (typeof challenges.$inferSelect & {
     completed: boolean;
     challengeOptions: (typeof challengeOptions.$inferSelect)[];
   })[];
@@ -42,8 +51,11 @@ type QuizProps = {
 export const Quiz = ({
   initialPercentage,
   initialHearts,
-  initialTopicId,
-  initialTopicChallenges,
+  initialLessonId,
+  currentContentBlockOrder,
+  contentBlockIds,
+  contentBlocks,
+  initialLessonChallenges,
   initialChallenge,
   userSubscription,
 }: QuizProps) => {
@@ -68,12 +80,12 @@ export const Quiz = ({
     if (initialPercentage === 100) openPracticeModal();
   });
 
-  const [topicId] = useState(initialTopicId);
+  const [lessonId] = useState(initialLessonId);
   const [hearts, setHearts] = useState(initialHearts);
   const [percentage, setPercentage] = useState(() => {
     return initialPercentage === 100 ? 0 : initialPercentage;
   });
-  const [challenges] = useState(initialTopicChallenges);
+  const [challenges] = useState(initialLessonChallenges);
   const [activeIndex, setActiveIndex] = useState(() => {
     const uncompletedIndex = challenges.findIndex(
       (challenge) => !challenge.completed
@@ -86,10 +98,11 @@ export const Quiz = ({
   const [status, setStatus] = useState<"none" | "wrong" | "correct">("none");
 
   const [currentChallenge, setCurrentChallenge] = useState(initialChallenge);
+  const [showContent, setShowContent] = useState(true);
 
   const fetchNextChallenge = async () => {
     try {
-      const nextChallenge = await getNextChallenge(topicId);
+      const nextChallenge = await getNextChallenge(lessonId);
       setCurrentChallenge(nextChallenge);
     } catch (error) {
       toast.error("Failed to fetch the next question. Please try again.");
@@ -124,7 +137,9 @@ export const Quiz = ({
       return;
     }
 
-    const correctOption = currentChallenge.challengeOptions.find((option: any) => option.correct);
+    const correctOption = currentChallenge.challengeOptions.find(
+      (option: any) => option.correct
+    );
 
     if (!correctOption) return;
 
@@ -157,7 +172,23 @@ export const Quiz = ({
     });
   };
 
-  if (!currentChallenge) {
+  const filteredContentData = contentBlocks
+    .filter((content) => content.type === "CONTENT")
+    .map((content) => ({
+      title: content.title ?? "",
+      body: content.body ?? "",
+    }));
+
+  if (percentage === 0 && showContent) {
+    return (
+      <NavigableContainer
+        data={filteredContentData}
+        setShowContent={setShowContent}
+      />
+    );
+  }
+
+  if (!currentChallenge || percentage >= 100) {
     return (
       <>
         {finishAudio}
@@ -186,7 +217,7 @@ export const Quiz = ({
           />
 
           <h1 className="text-lg font-bold text-neutral-700 lg:text-3xl">
-            Great job! <br /> You&apos;ve completed the topic.
+            Great job! <br /> You&apos;ve completed the lesson.
           </h1>
 
           <div className="flex w-full items-center gap-x-4">
@@ -199,7 +230,7 @@ export const Quiz = ({
         </div>
 
         <Footer
-          topicId={topicId}
+          lessonId={lessonId}
           status="completed"
           onCheck={() => router.push("/learn")}
         />
