@@ -82,6 +82,7 @@ const createTables = async () => {
     user_id TEXT NOT NULL,
     challenge_id INTEGER NOT NULL REFERENCES challenges(id) ON DELETE CASCADE,
     completed BOOLEAN NOT NULL DEFAULT FALSE,
+    is_correct BOOLEAN NOT NULL DEFAULT FALSE,
     attempts INTEGER NOT NULL DEFAULT 0,
     last_attempt_correct BOOLEAN,
     created_at TIMESTAMP NOT NULL DEFAULT now(),
@@ -96,6 +97,8 @@ const createTables = async () => {
     current_difficulty INTEGER NOT NULL DEFAULT 1,
     correct_answers INTEGER NOT NULL DEFAULT 0,
     total_attempts INTEGER NOT NULL DEFAULT 0,
+    consecutive_correct INTEGER NOT NULL DEFAULT 0,
+    consecutive_incorrect INTEGER NOT NULL DEFAULT 0,
     completed BOOLEAN NOT NULL DEFAULT FALSE,
     last_attempted_at TIMESTAMP NOT NULL DEFAULT now(),
     ability_estimate REAL NOT NULL DEFAULT 1,
@@ -156,6 +159,12 @@ const main = async () => {
   try {
     // Delete all existing data
     // await Promise.all([
+    //   db.delete(schema.userProgress),
+    //   db.delete(schema.challengeProgress),
+    //   db.delete(schema.lessonProgress),
+    //   db.delete(schema.topicProgress),
+    //   db.delete(schema.chapterProgress),
+    //   db.delete(schema.subjectProgress),
     //   db.delete(schema.subjects),
     //   db.delete(schema.chapters),
     //   db.delete(schema.topics),

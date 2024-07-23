@@ -185,6 +185,7 @@ export const challengeProgress = pgTable("challenge_progress", {
     })
     .notNull(),
   completed: boolean("completed").notNull().default(false),
+  isCorrect: boolean("is_correct").notNull().default(false),
   attempts: integer("attempts").notNull().default(0),
   lastAttemptCorrect: boolean("last_attempt_correct"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
@@ -216,6 +217,8 @@ export const lessonProgress = pgTable("lesson_progress", {
   currentDifficulty: integer("current_difficulty").notNull().default(1),
   correctAnswers: integer("correct_answers").notNull().default(0),
   totalAttempts: integer("total_attempts").notNull().default(0),
+  consecutiveCorrect: integer("consecutive_correct").notNull().default(0),
+  consecutiveIncorrect: integer("consecutive_incorrect").notNull().default(0),
   completed: boolean("completed").notNull().default(false),
   lastAttemptedAt: timestamp("last_attempted_at").notNull().defaultNow(),
   abilityEstimate: real("ability_estimate").notNull().default(1),

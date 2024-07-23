@@ -34,14 +34,14 @@ export const upsertChallengeProgress = async (
             with: {
               chapter: {
                 with: {
-                  subject: true
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+                  subject: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   });
 
   if (!challenge) throw new Error("Challenge not found.");
@@ -100,13 +100,30 @@ export const upsertChallengeProgress = async (
     challengeId,
     userId,
     completed: true,
+    isCorrect,
   });
 
   // Update lessonProgress
-  await upsertLessonProgress(userId, challengeId, lessonId, topicId, chapterId, subjectId, isCorrect);
+  await upsertLessonProgress(
+    userId,
+    challengeId,
+    lessonId,
+    topicId,
+    chapterId,
+    subjectId,
+    isCorrect
+  );
 };
 
-async function upsertLessonProgress(userId: string, challengeId: number, lessonId: number, topicId: number, chapterId: number, subjectId: number, isCorrect: boolean) {
+async function upsertLessonProgress(
+  userId: string,
+  challengeId: number,
+  lessonId: number,
+  topicId: number,
+  chapterId: number,
+  subjectId: number,
+  isCorrect: boolean
+) {
   const [lessonProgressData, challenge] = await Promise.all([
     db.query.lessonProgress.findFirst({
       where: and(
@@ -115,14 +132,19 @@ async function upsertLessonProgress(userId: string, challengeId: number, lessonI
       ),
     }),
     db.query.challenges.findFirst({
-      where: eq(challenges.id, challengeId)
-    })
+      where: eq(challenges.id, challengeId),
+    }),
   ]);
 
   if (!challenge) throw new Error("Challenge not found");
 
   const challengeDifficulty = challenge.difficulty;
-  const MIN_ABILITY = 1, MAX_ABILITY = 3, MIN_DIFFICULTY = 1, MAX_DIFFICULTY = 3;
+  const MIN_ABILITY = 1,
+    MAX_ABILITY = 3,
+    MIN_DIFFICULTY = 1,
+    MAX_DIFFICULTY = 3,
+    DIFFICULTY_ADJUSTMENT_RATE = 0.3,
+    CONSECUTIVE_CHALLENGES_THRESHOLD = 3;
 
   if (!lessonProgressData) {
     await db.insert(lessonProgress).values({
@@ -132,29 +154,64 @@ async function upsertLessonProgress(userId: string, challengeId: number, lessonI
       correctAnswers: isCorrect ? 1 : 0,
       totalAttempts: 1,
       abilityEstimate: MIN_ABILITY,
+      consecutiveCorrect: isCorrect ? 1 : 0,
+      consecutiveIncorrect: isCorrect ? 0 : 1,
     });
   } else {
-    const newCorrectAnswers = isCorrect ? lessonProgressData.correctAnswers + 1 : lessonProgressData.correctAnswers;
+    const newCorrectAnswers = isCorrect
+      ? lessonProgressData.correctAnswers + 1
+      : lessonProgressData.correctAnswers;
     const newTotalAttempts = lessonProgressData.totalAttempts + 1;
     const oldAbilityEstimate = lessonProgressData.abilityEstimate;
 
+    const consecutiveCorrect = isCorrect
+      ? lessonProgressData.consecutiveCorrect + 1
+      : 0;
+    const consecutiveIncorrect = isCorrect
+      ? 0
+      : lessonProgressData.consecutiveIncorrect + 1;
+
     const learningRate = 0.4;
     const consistencyBonus = 0.5;
-    const scaledDifficulty = (((challengeDifficulty - MIN_DIFFICULTY) / (MAX_DIFFICULTY - MIN_DIFFICULTY)) * (MAX_ABILITY - MIN_ABILITY)) + MIN_ABILITY;
+    const scaledDifficulty =
+      ((challengeDifficulty - MIN_DIFFICULTY) /
+        (MAX_DIFFICULTY - MIN_DIFFICULTY)) *
+        (MAX_ABILITY - MIN_ABILITY) +
+      MIN_ABILITY;
 
     let abilityAdjustment;
     if (isCorrect) {
       // If correct, always increase ability, but more for harder questions
-      abilityAdjustment = Math.max(consistencyBonus, scaledDifficulty - oldAbilityEstimate);
+      abilityAdjustment = Math.max(
+        consistencyBonus,
+        scaledDifficulty - oldAbilityEstimate
+      );
     } else {
       // If incorrect, always decrease ability, but more for easier questions
-      abilityAdjustment = Math.min(-consistencyBonus, scaledDifficulty - oldAbilityEstimate);
+      abilityAdjustment = Math.min(
+        -consistencyBonus,
+        scaledDifficulty - oldAbilityEstimate
+      );
     }
 
-    let newAbilityEstimate = oldAbilityEstimate + learningRate * abilityAdjustment;
-    newAbilityEstimate = Math.max(MIN_ABILITY, Math.min(MAX_ABILITY, newAbilityEstimate));
+    if (consecutiveCorrect >= CONSECUTIVE_CHALLENGES_THRESHOLD) {
+      abilityAdjustment += DIFFICULTY_ADJUSTMENT_RATE;
+    } else if (consecutiveIncorrect >= CONSECUTIVE_CHALLENGES_THRESHOLD) {
+      abilityAdjustment -= DIFFICULTY_ADJUSTMENT_RATE;
+    }
 
-    const newDifficulty = Math.ceil((((newAbilityEstimate - MIN_ABILITY) / (MAX_ABILITY - MIN_ABILITY)) * (MAX_DIFFICULTY - MIN_DIFFICULTY)) + MIN_DIFFICULTY);
+    let newAbilityEstimate =
+      oldAbilityEstimate + learningRate * abilityAdjustment;
+    newAbilityEstimate = Math.max(
+      MIN_ABILITY,
+      Math.min(MAX_ABILITY, newAbilityEstimate)
+    );
+
+    const newDifficulty = Math.ceil(
+      ((newAbilityEstimate - MIN_ABILITY) / (MAX_ABILITY - MIN_ABILITY)) *
+        (MAX_DIFFICULTY - MIN_DIFFICULTY) +
+        MIN_DIFFICULTY
+    );
 
     await db
       .update(lessonProgress)
@@ -163,14 +220,32 @@ async function upsertLessonProgress(userId: string, challengeId: number, lessonI
         correctAnswers: newCorrectAnswers,
         totalAttempts: newTotalAttempts,
         abilityEstimate: newAbilityEstimate,
+        consecutiveCorrect,
+        consecutiveIncorrect,
       })
       .where(eq(lessonProgress.id, lessonProgressData.id));
 
-    await upsertTopicProgress(userId, challengeId, lessonId, topicId, chapterId, subjectId, isCorrect);
+    await upsertTopicProgress(
+      userId,
+      challengeId,
+      lessonId,
+      topicId,
+      chapterId,
+      subjectId,
+      isCorrect
+    );
   }
 }
 
-async function upsertTopicProgress(userId: string, challengeId: number, lessonId: number, topicId: number, chapterId: number, subjectId: number, isCorrect: boolean) {
+async function upsertTopicProgress(
+  userId: string,
+  challengeId: number,
+  lessonId: number,
+  topicId: number,
+  chapterId: number,
+  subjectId: number,
+  isCorrect: boolean
+) {
   const topicProgressData = await db.query.topicProgress.findFirst({
     where: and(
       eq(topicProgress.userId, userId),
@@ -179,7 +254,7 @@ async function upsertTopicProgress(userId: string, challengeId: number, lessonId
   });
 
   const challenge = await db.query.challenges.findFirst({
-    where: eq(challenges.id, challengeId)
+    where: eq(challenges.id, challengeId),
   });
 
   if (!challenge) throw new Error("Challenge not found");
@@ -202,15 +277,23 @@ async function upsertTopicProgress(userId: string, challengeId: number, lessonId
     // Calculate new ability estimate using Item Response Theory (IRT)
     const oldAbilityEstimate = topicProgressData.abilityEstimate;
     const learningRate = 0.1;
-    let newAbilityEstimate = oldAbilityEstimate + 
-      learningRate * (isCorrect ? 1 : -1) * (challengeDifficulty - oldAbilityEstimate);
+    let newAbilityEstimate =
+      oldAbilityEstimate +
+      learningRate *
+        (isCorrect ? 1 : -1) *
+        (challengeDifficulty - oldAbilityEstimate);
 
     // Bound the abilityEstimate
-    newAbilityEstimate = Math.max(MIN_ABILITY, Math.min(MAX_ABILITY, newAbilityEstimate));
+    newAbilityEstimate = Math.max(
+      MIN_ABILITY,
+      Math.min(MAX_ABILITY, newAbilityEstimate)
+    );
 
     // Calculate new difficulty based on the user's current ability estimate
     // Map the ability estimate (-3 to 3) to difficulty (1 to 3)
-    const newDifficulty = Math.round(((newAbilityEstimate - MIN_ABILITY) / (MAX_ABILITY - MIN_ABILITY)) * 2 + 1);
+    const newDifficulty = Math.round(
+      ((newAbilityEstimate - MIN_ABILITY) / (MAX_ABILITY - MIN_ABILITY)) * 2 + 1
+    );
 
     await db
       .update(topicProgress)
@@ -222,10 +305,26 @@ async function upsertTopicProgress(userId: string, challengeId: number, lessonId
   }
 
   // Update chapterProgress
-  await upsertChapterProgress(userId, challengeId, lessonId, topicId, chapterId, subjectId, isCorrect);
+  await upsertChapterProgress(
+    userId,
+    challengeId,
+    lessonId,
+    topicId,
+    chapterId,
+    subjectId,
+    isCorrect
+  );
 }
 
-async function upsertChapterProgress(userId: string, challengeId: number, lessonId: number, topicId: number, chapterId: number, subjectId: number, isCorrect: boolean) {
+async function upsertChapterProgress(
+  userId: string,
+  challengeId: number,
+  lessonId: number,
+  topicId: number,
+  chapterId: number,
+  subjectId: number,
+  isCorrect: boolean
+) {
   const chapterProgressData = await db.query.chapterProgress.findFirst({
     where: and(
       eq(chapterProgress.userId, userId),
@@ -234,7 +333,7 @@ async function upsertChapterProgress(userId: string, challengeId: number, lesson
   });
 
   const challenge = await db.query.challenges.findFirst({
-    where: eq(challenges.id, challengeId)
+    where: eq(challenges.id, challengeId),
   });
 
   if (!challenge) throw new Error("Challenge not found");
@@ -257,15 +356,23 @@ async function upsertChapterProgress(userId: string, challengeId: number, lesson
     // Calculate new ability estimate using Item Response Theory (IRT)
     const oldAbilityEstimate = chapterProgressData.abilityEstimate;
     const learningRate = 0.05; // Slightly lower learning rate for chapter level
-    let newAbilityEstimate = oldAbilityEstimate + 
-      learningRate * (isCorrect ? 1 : -1) * (challengeDifficulty - oldAbilityEstimate);
+    let newAbilityEstimate =
+      oldAbilityEstimate +
+      learningRate *
+        (isCorrect ? 1 : -1) *
+        (challengeDifficulty - oldAbilityEstimate);
 
     // Bound the abilityEstimate
-    newAbilityEstimate = Math.max(MIN_ABILITY, Math.min(MAX_ABILITY, newAbilityEstimate));
+    newAbilityEstimate = Math.max(
+      MIN_ABILITY,
+      Math.min(MAX_ABILITY, newAbilityEstimate)
+    );
 
     // Calculate new difficulty based on the user's current ability estimate
     // Map the ability estimate (-3 to 3) to difficulty (1 to 3)
-    const newDifficulty = Math.round(((newAbilityEstimate - MIN_ABILITY) / (MAX_ABILITY - MIN_ABILITY)) * 2 + 1);
+    const newDifficulty = Math.round(
+      ((newAbilityEstimate - MIN_ABILITY) / (MAX_ABILITY - MIN_ABILITY)) * 2 + 1
+    );
 
     await db
       .update(chapterProgress)
@@ -277,10 +384,26 @@ async function upsertChapterProgress(userId: string, challengeId: number, lesson
   }
 
   // Update subjectProgress
-  await upsertSubjectProgress(userId, challengeId, lessonId, topicId, chapterId, subjectId, isCorrect);
+  await upsertSubjectProgress(
+    userId,
+    challengeId,
+    lessonId,
+    topicId,
+    chapterId,
+    subjectId,
+    isCorrect
+  );
 }
 
-async function upsertSubjectProgress(userId: string, challengeId: number, lessonId: number, topicId: number, chapterId: number, subjectId: number, isCorrect: boolean) {
+async function upsertSubjectProgress(
+  userId: string,
+  challengeId: number,
+  lessonId: number,
+  topicId: number,
+  chapterId: number,
+  subjectId: number,
+  isCorrect: boolean
+) {
   const subjectProgressData = await db.query.subjectProgress.findFirst({
     where: and(
       eq(subjectProgress.userId, userId),
@@ -289,7 +412,7 @@ async function upsertSubjectProgress(userId: string, challengeId: number, lesson
   });
 
   const challenge = await db.query.challenges.findFirst({
-    where: eq(challenges.id, challengeId)
+    where: eq(challenges.id, challengeId),
   });
 
   if (!challenge) throw new Error("Challenge not found");
@@ -312,15 +435,23 @@ async function upsertSubjectProgress(userId: string, challengeId: number, lesson
     // Calculate new ability estimate using Item Response Theory (IRT)
     const oldAbilityEstimate = subjectProgressData.abilityEstimate;
     const learningRate = 0.025; // Even lower learning rate for subject level
-    let newAbilityEstimate = oldAbilityEstimate + 
-      learningRate * (isCorrect ? 1 : -1) * (challengeDifficulty - oldAbilityEstimate);
+    let newAbilityEstimate =
+      oldAbilityEstimate +
+      learningRate *
+        (isCorrect ? 1 : -1) *
+        (challengeDifficulty - oldAbilityEstimate);
 
     // Bound the abilityEstimate
-    newAbilityEstimate = Math.max(MIN_ABILITY, Math.min(MAX_ABILITY, newAbilityEstimate));
+    newAbilityEstimate = Math.max(
+      MIN_ABILITY,
+      Math.min(MAX_ABILITY, newAbilityEstimate)
+    );
 
     // Calculate new difficulty based on the user's current ability estimate
     // Map the ability estimate (-3 to 3) to difficulty (1 to 3)
-    const newDifficulty = Math.round(((newAbilityEstimate - MIN_ABILITY) / (MAX_ABILITY - MIN_ABILITY)) * 2 + 1);
+    const newDifficulty = Math.round(
+      ((newAbilityEstimate - MIN_ABILITY) / (MAX_ABILITY - MIN_ABILITY)) * 2 + 1
+    );
 
     await db
       .update(subjectProgress)
@@ -341,7 +472,7 @@ async function upsertSubjectProgress(userId: string, challengeId: number, lesson
       activeLessonId: lessonId,
       activeTopicId: topicId,
       activeChapterId: chapterId,
-      activeSubjectId: subjectId
+      activeSubjectId: subjectId,
     })
     .where(eq(userProgress.userId, userId));
 
