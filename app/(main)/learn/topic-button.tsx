@@ -38,8 +38,8 @@ export const TopicButton = ({
           )}
         />
       )}
-      <div className="relative">
-      <div className="text-lm font-medium text-neutral-600 mb-2">{name}</div>
+      <div className="relative flex flex-col items-center">
+        <div className="text-lm font-medium text-neutral-600 mb-2 text-center">{name}</div>
         <Button
           asChild
           disabled={locked}

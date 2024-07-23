@@ -278,7 +278,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "The place value of 8 in the number 38542 is:",
+                        question:
+                          "The place value of 8 in the number 38542 is:",
                         order: 4,
                         difficulty: 2,
                         id: 1114,
@@ -432,7 +433,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "Which of the following is the smallest number?",
+                        question:
+                          "Which of the following is the smallest number?",
                         order: 10,
                         difficulty: 1,
                         id: 1120,
@@ -1131,67 +1133,68 @@ const main = async () => {
                       {
                         id: 10,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Introduction to Place Value',
+                        title: "Introduction to Place Value",
                         body: `In our number system, each digit in a number has a specific value based on its position. This is called place value. Let's explore how place value helps us understand and compare numbers.`,
                       },
                       {
                         id: 20,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Finding Place Value of Digits',
+                        title: "Finding Place Value of Digits",
                         body: `To find the place value of a digit in a number:\n1. Identify the position of the digit from right to left.\n2. The rightmost position is the ones place, then tens, hundreds, thousands, and so on.\n3. Multiply the digit by its place value (1, 10, 100, 1000, etc.).\n\nFor example, in the number 45,678:\n- 8 is in the ones place: 8 × 1 = 8\n- 7 is in the tens place: 7 × 10 = 70\n- 6 is in the hundreds place: 6 × 100 = 600\n- 5 is in the thousands place: 5 × 1,000 = 5,000\n- 4 is in the ten thousands place: 4 × 10,000 = 40,000`,
                       },
                       {
                         id: 30,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Total Numbers from Given Digits',
+                        title: "Total Numbers from Given Digits",
                         body: `To find the total numbers that can be made from given digits:\n1. Determine if repetition is allowed.\n2. If repetition is not allowed, count the arrangements systematically.\n3. If repetition is allowed, use the counting principle.\n\nFor example, with digits 1, 2, and 3 (no repetition):\nPossible numbers: 123, 132, 213, 231, 312, 321\nTotal: 6 different numbers\n\nWith repetition allowed:\nPossible numbers: 111, 112, 113, 121, 122, 123, 131, 132, 133, 211, 212, 213, 221, 222, 223, 231, 232, 233, 311, 312, 313, 321, 322, 323, 331, 332, 333\nTotal: 27 different numbers`,
                       },
                       {
                         id: 40,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Arranging Digits for Smaller or Bigger Numbers',
+                        title: "Arranging Digits for Smaller or Bigger Numbers",
                         body: `To make the smallest number:\n1. Arrange the digits in ascending order.\n2. Place the smallest non-zero digit in the leftmost position.\n\nTo make the biggest number:\n1. Arrange the digits in descending order.\n\nFor example, with digits 3, 1, 4, 2:\n- Smallest number: 1234\n- Biggest number: 4321`,
                       },
                       {
                         id: 50,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Adding 1 to Get the Smallest Next Digit Number',
+                        title: "Adding 1 to Get the Smallest Next Digit Number",
                         body: `When we add 1 to the greatest 1-digit, 2-digit, or 3-digit number, we get the smallest number with the next number of digits:\n- Greatest 1-digit number: 9\n  9 + 1 = 10 (smallest 2-digit number)\n- Greatest 2-digit number: 99\n  99 + 1 = 100 (smallest 3-digit number)\n- Greatest 3-digit number: 999\n  999 + 1 = 1000 (smallest 4-digit number)`,
                       },
                       {
                         id: 60,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Expanding Numbers and Identifying Place Values',
+                        title: "Expanding Numbers and Identifying Place Values",
                         body: `To expand a number and identify place values:\n1. Write each digit multiplied by its place value.\n2. Add these values together.\n\nFor example, 45,678 can be expanded as:\n40,000 + 5,000 + 600 + 70 + 8\nor\n(4 × 10,000) + (5 × 1,000) + (6 × 100) + (7 × 10) + (8 × 1)`,
                       },
                       {
                         id: 70,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Writing 6-Digit Numbers in Expanded Form and Words',
+                        title:
+                          "Writing 6-Digit Numbers in Expanded Form and Words",
                         body: `Let's take the number 234,567 as an example:\n\nExpanded form:\n200,000 + 30,000 + 4,000 + 500 + 60 + 7\nor\n(2 × 100,000) + (3 × 10,000) + (4 × 1,000) + (5 × 100) + (6 × 10) + (7 × 1)\n\nIn words:\nTwo hundred thirty-four thousand, five hundred sixty-seven`,
                       },
                       {
                         id: 80,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Understanding Predecessors and Successors',
+                        title: "Understanding Predecessors and Successors",
                         body: `The predecessor of a number is the number that comes just before it.\nThe successor of a number is the number that comes just after it.\n\nFor example:\n- For the number 50:\n  Predecessor: 49\n  Successor: 51\n\nNote: The predecessor of a number ending in 0 will end in 9, and all other digits to its left will decrease by 1.`,
                       },
                       {
                         id: 90,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Adding Larger Numbers',
+                        title: "Adding Larger Numbers",
                         body: `When adding larger numbers, we can use the column method:\n1. Align the numbers vertically by their place values.\n2. Start from the rightmost column (ones) and add upwards.\n3. If the sum in any column is 10 or more, carry over to the next column.\n\nFor example, adding 45,678 and 32,456:\n  45,678\n+ 32,456\n--------\n  78,134\n\nThis method helps us deal with situations involving larger numbers in real life, such as population counts or financial calculations.`,
                       },
                       {
                         id: 100,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Using Place Values to Read Numbers Easily',
+                        title: "Using Place Values to Read Numbers Easily",
                         body: `To read large numbers easily:\n1. Group the digits in sets of three from right to left.\n2. Use commas to separate these groups.\n3. Read each group followed by its place value name.\n\nFor example, 45678901 can be written as 45,678,901 and read as:\n'Forty-five million, six hundred seventy-eight thousand, nine hundred one'\n\nThis method helps in quickly understanding the magnitude of large numbers in various contexts, such as distances in space, national budgets, or global statistics.`,
                       },
                       {
                         id: 110,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Conclusion',
+                        title: "Conclusion",
                         body: `In this lesson, we've explored various aspects of comparing numbers:\n- Understanding place value and its importance\n- Finding the total numbers that can be made from given digits\n- Arranging digits to form smaller or bigger numbers\n- Adding 1 to get the next digit number\n- Expanding numbers and identifying place values\n- Writing numbers in expanded form and words\n- Understanding predecessors and successors\n- Adding larger numbers\n- Using place values to read numbers easily\n\nThese skills are fundamental in mathematics and will help you in more advanced topics as well as in real-life situations involving large numbers.`,
                       },
                       {
@@ -1231,7 +1234,8 @@ const main = async () => {
                     challenges: [
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What is the word form of the number 2345678?",
+                        question:
+                          "What is the word form of the number 2345678?",
                         order: 1,
                         difficulty: 1,
                         id: 1200,
@@ -1537,7 +1541,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What is the sum of 123456, 789012, and 654321?",
+                        question:
+                          "What is the sum of 123456, 789012, and 654321?",
                         order: 13,
                         difficulty: 2,
                         id: 1212,
@@ -1869,7 +1874,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "Calculate the sum: 1234567 + 7654321 + 8765432:",
+                        question:
+                          "Calculate the sum: 1234567 + 7654321 + 8765432:",
                         order: 26,
                         difficulty: 3,
                         id: 1224,
@@ -2151,73 +2157,73 @@ const main = async () => {
                       {
                         id: 170,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '1. What Are Large Numbers?',
+                        title: "1. What Are Large Numbers?",
                         body: `Large numbers are numbers with many digits. We encounter them in various situations:\n• Population of countries\n• Distances in space\n• Money in national budgets\n• Number of cells in the human body\n\nUnderstanding large numbers helps us make sense of important information in the world around us.`,
                       },
                       {
                         id: 180,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '2. Indian Number System',
+                        title: "2. Indian Number System",
                         body: `In India, we use a unique system to write and read large numbers:\n• 1,000 = One thousand\n• 10,000 = Ten thousand\n• 1,00,000 = One lakh\n• 10,00,000 = Ten lakh\n• 1,00,00,000 = One crore\n\nWe use commas to separate these groups, making large numbers easier to read.`,
                       },
                       {
                         id: 190,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '3. Reading Large Numbers',
+                        title: "3. Reading Large Numbers",
                         body: `To read large numbers, follow these steps:\n1. Start from the rightmost comma\n2. Read each group of digits\n3. Add the place value (thousand, lakh, crore)\n\nExample: 23,45,678\n• 678 - six hundred seventy-eight\n• 45 - forty-five thousand\n• 23 - twenty-three lakh\n\nSo, we read it as 'twenty-three lakh, forty-five thousand, six hundred seventy-eight'`,
                       },
                       {
                         id: 200,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '4. Writing Large Numbers in Words',
+                        title: "4. Writing Large Numbers in Words",
                         body: `When writing large numbers in words:\n• Use hyphens for compound numbers (twenty-one, thirty-five)\n• Use commas to separate thousands, lakhs, and crores\n• Don't use 'and' except for decimal parts\n\nExample: 3,14,159\nThree lakh, fourteen thousand, one hundred fifty-nine`,
                       },
                       {
                         id: 210,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '5. Comparing Large Numbers',
+                        title: "5. Comparing Large Numbers",
                         body: `To compare large numbers:\n1. First, look at the number of digits\n2. If they have the same number of digits, compare from left to right\n3. Use symbols: > (greater than), < (less than), = (equal to)\n\nExamples:\n45,67,890 > 45,67,889\n12,34,567 < 23,45,678`,
                       },
                       {
                         id: 220,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '6. Ordering Large Numbers',
+                        title: "6. Ordering Large Numbers",
                         body: `To put large numbers in order:\n1. Compare the numbers using the method above\n2. Arrange them from smallest to largest (ascending order) or largest to smallest (descending order)\n\nExample (ascending order):\n12,34,567 < 23,45,678 < 45,67,890`,
                       },
                       {
                         id: 230,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '7. Rounding Large Numbers',
+                        title: "7. Rounding Large Numbers",
                         body: `Rounding makes large numbers easier to work with:\n1. Identify the place value to round to\n2. Look at the digit to its right\n3. If it's 5 or more, round up; if less than 5, round down\n\nExample: Round 3,456,789 to the nearest lakh\n1. We're rounding to the lakhs place (3rd digit from right)\n2. The digit to its right is 4\n3. Since 4 < 5, we round down\nResult: 3,400,000 or 34 lakh`,
                       },
                       {
                         id: 240,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '8. Estimating with Large Numbers',
+                        title: "8. Estimating with Large Numbers",
                         body: `Estimating is useful when we don't need exact numbers:\n1. Round the numbers to make them easier to work with\n2. Do the calculation with the rounded numbers\n3. Use words like 'about' or 'approximately' with the answer\n\nExample: Estimate 3,456,789 + 2,987,654\nRound both to nearest million: 3,000,000 + 3,000,000\nEstimated sum: about 6,000,000 or approximately 6 million`,
                       },
                       {
                         id: 250,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '9. Simple Calculations with Large Numbers',
+                        title: "9. Simple Calculations with Large Numbers",
                         body: `When adding or subtracting large numbers:\n1. Line up the digits by place value\n2. Start from the right (ones place) and move left\n3. Remember to carry over or borrow when needed\n\nExample:\n  45,67,890\n+ 23,45,678\n-----------\n  69,13,568`,
                       },
                       {
                         id: 260,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '10. Large Numbers in Real Life',
+                        title: "10. Large Numbers in Real Life",
                         body: `We encounter large numbers in many situations:\n• Population: India's population is about 138 crore (1,38,00,00,000)\n• Distance: The Moon is about 3,84,400 km from Earth\n• Money: India's GDP is about ₹232 lakh crore (₹232,00,00,00,00,000)\n• Technology: A terabyte of data is 1,00,00,00,00,000 bytes`,
                       },
                       {
                         id: 270,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '11. Scientific Notation',
+                        title: "11. Scientific Notation",
                         body: `For very large numbers, we use scientific notation:\n• 10,00,000 = 1 × 10^6\n• 1,00,00,000 = 1 × 10^7\n• 1,00,00,00,000 = 1 × 10^9\n\nThis is useful in science and math for expressing very large or very small numbers efficiently.`,
                       },
                       {
                         id: 280,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '12. Practical Applications',
+                        title: "12. Practical Applications",
                         body: `Understanding large numbers helps us:\n• Read news about population, economy, or space exploration\n• Manage personal finances and understand compound interest\n• Appreciate the scale of scientific discoveries\n• Understand environmental issues, like plastic pollution in oceans\n• Interpret data in fields like technology, business, and social sciences`,
                       },
                       {
@@ -2242,7 +2248,7 @@ const main = async () => {
                       },
                     ],
                   },
-                ]
+                ],
               },
               {
                 id: 30,
@@ -2610,7 +2616,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "Find the result: (9 ÷ 3) + [8 - {6 - (3 + 2)}]",
+                        question:
+                          "Find the result: (9 ÷ 3) + [8 - {6 - (3 + 2)}]",
                         order: 15,
                         difficulty: 2,
                         id: 1314,
@@ -2685,7 +2692,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "Calculate: 15 + [3 × (10 - 5) - {8 + (4 ÷ 2)}]",
+                        question:
+                          "Calculate: 15 + [3 × (10 - 5) - {8 + (4 ÷ 2)}]",
                         order: 18,
                         difficulty: 3,
                         id: 1317,
@@ -3164,67 +3172,70 @@ const main = async () => {
                       {
                         id: 340,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '1. Introduction to Brackets',
+                        title: "1. Introduction to Brackets",
                         body: `Brackets are symbols used in mathematics to group numbers and operations. They help us solve problems in the correct order and avoid confusion.\n\nCommon types of brackets:\n• ( ) - Round brackets or parentheses\n• [ ] - Square brackets\n• { } - Curly brackets\n\nIn Class 6, we'll focus mainly on round brackets ( ).`,
                       },
                       {
                         id: 350,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '2. Why Do We Use Brackets?',
+                        title: "2. Why Do We Use Brackets?",
                         body: `Brackets serve two main purposes:\n1. They group numbers or operations that should be done together.\n2. They change the order in which operations are performed.\n\nFor example:\n• 2 + 3 × 4 = 14 (multiplication is done first)\n• (2 + 3) × 4 = 20 (addition inside brackets is done first)`,
                       },
                       {
                         id: 360,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '3. Basic Rules for Solving Expressions with Brackets',
+                        title:
+                          "3. Basic Rules for Solving Expressions with Brackets",
                         body: `When solving expressions with brackets, follow these steps:\n1. Always solve what's inside the brackets first.\n2. After solving the brackets, follow the normal order of operations.\n\nExample:\n(10 - 4) + 3 = 6 + 3 = 9`,
                       },
                       {
                         id: 370,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '4. Order of Operations with Brackets (BODMAS)',
+                        title: "4. Order of Operations with Brackets (BODMAS)",
                         body: `BODMAS helps us remember the correct order of operations:\nB - Brackets\nO - Of (multiplication implied by 'of')\nD - Division\nM - Multiplication\nA - Addition\nS - Subtraction\n\nRemember: After brackets, division and multiplication have equal priority (solve left to right), and the same for addition and subtraction.`,
                       },
                       {
                         id: 380,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '5. Applying BODMAS with Brackets',
+                        title: "5. Applying BODMAS with Brackets",
                         body: `Let's apply BODMAS to an expression with brackets:\n\n20 - (5 + 3) × 2\n\nStep 1: Solve inside brackets first\n20 - 8 × 2\n\nStep 2: Multiplication before subtraction\n20 - 16\n\nStep 3: Subtraction\n4\n\nSo, 20 - (5 + 3) × 2 = 4`,
                       },
                       {
                         id: 390,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '6. Nested Brackets',
+                        title: "6. Nested Brackets",
                         body: `Sometimes, we see brackets inside other brackets. These are called nested brackets.\n\nWhen solving nested brackets:\n1. Start with the innermost brackets and work your way out.\n2. Solve each set of brackets completely before moving to the next.\n\nExample:\n((4 + 2) × 3) - 5 = (6 × 3) - 5 = 18 - 5 = 13`,
                       },
                       {
                         id: 400,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '7. Solving Nested Brackets Step by Step',
+                        title: "7. Solving Nested Brackets Step by Step",
                         body: `Let's solve a nested bracket problem step by step:\n\n(10 - (4 + 1)) × 2\n\nStep 1: Solve the innermost brackets\n(10 - 5) × 2\n\nStep 2: Solve the outer brackets\n5 × 2\n\nStep 3: Multiply\n10\n\nSo, (10 - (4 + 1)) × 2 = 10`,
                       },
                       {
                         id: 410,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '8. Using Brackets in Word Problems',
+                        title: "8. Using Brackets in Word Problems",
                         body: `Brackets are useful in solving word problems. They help us group operations that should be done together.\n\nExample:\nRam has 5 boxes with 4 chocolates in each. He eats 3 chocolates. How many are left?\nSolution: (5 × 4) - 3 = 20 - 3 = 17 chocolates`,
                       },
                       {
                         id: 420,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '9. Translating Word Problems into Bracket Expressions',
+                        title:
+                          "9. Translating Word Problems into Bracket Expressions",
                         body: `When solving word problems, look for phrases that indicate grouping or order of operations. For example:\n• 'Total of' or 'Sum of' usually means addition in brackets\n• 'Product of' usually means multiplication in brackets\n• 'Difference between' usually means subtraction in brackets\n\nExample:\nFind the difference between the sum of 8 and 6, and the product of 3 and 2.\nTranslation: (8 + 6) - (3 × 2) = 14 - 6 = 8`,
                       },
                       {
                         id: 430,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '10. Brackets with Negative Numbers',
+                        title: "10. Brackets with Negative Numbers",
                         body: `When we have negative numbers inside brackets, we need to be extra careful.\n\nRules:\n1. If there's a minus sign before the brackets, it changes the sign of everything inside the brackets.\n2. If there's a plus sign before the brackets, the signs inside remain the same.\n\nExamples:\n• -(3 - 5) = -3 + 5 = 2\n• +(3 - 5) = 3 - 5 = -2`,
                       },
                       {
                         id: 440,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '11. Solving Expressions with Negative Numbers and Brackets',
+                        title:
+                          "11. Solving Expressions with Negative Numbers and Brackets",
                         body: `Let's solve an expression with negative numbers and brackets:\n\n10 - (-3 + 5)\n\nStep 1: Solve inside the brackets\n10 - (2)\n\nStep 2: Subtract\n10 - 2 = 8\n\nSo, 10 - (-3 + 5) = 8`,
                       },
                       {
@@ -3917,7 +3928,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "Which Roman numeral represents the number 246?",
+                        question:
+                          "Which Roman numeral represents the number 246?",
                         order: 27,
                         difficulty: 3,
                         id: 1426,
@@ -4171,67 +4183,69 @@ const main = async () => {
                       {
                         id: 500,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '1. Introduction to Roman Numerals',
+                        title: "1. Introduction to Roman Numerals",
                         body: `Roman numerals are a number system that originated in ancient Rome. They use letters instead of digits to represent numbers. We still see Roman numerals today in many places, such as:\n\n• Clock faces\n• Chapter numbers in books\n• Movie sequel titles\n• Names of kings and queens\n\nLearning Roman numerals helps us read these numbers and understand their historical importance.`,
                       },
                       {
                         id: 510,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '2. Basic Roman Numeral Symbols',
+                        title: "2. Basic Roman Numeral Symbols",
                         body: `Let's start with the seven basic symbols used in Roman numerals:\n\nI = 1\nV = 5\nX = 10\nL = 50\nC = 100\nD = 500\nM = 1000\n\nThese symbols are the building blocks for all Roman numerals. We'll learn how to combine them to create different numbers.`,
                       },
                       {
                         id: 520,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '3. Writing Numbers 1 to 10 in Roman Numerals',
+                        title: "3. Writing Numbers 1 to 10 in Roman Numerals",
                         body: `Now, let's see how to write the numbers 1 to 10 using Roman numerals:\n\n1 = I\n2 = II\n3 = III\n4 = IV\n5 = V\n6 = VI\n7 = VII\n8 = VIII\n9 = IX\n10 = X\n\nNotice how we use combinations of I, V, and X to represent these numbers.`,
                       },
                       {
                         id: 530,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '4. Basic Rules for Writing Roman Numerals',
+                        title: "4. Basic Rules for Writing Roman Numerals",
                         body: `There are three main rules for writing Roman numerals:\n\n1. Repetition: A symbol can be repeated up to three times to add its value.\n   Example: III = 3, XX = 20\n\n2. Addition: When a symbol is placed after another of equal or greater value, add their values.\n   Example: VI = 6 (5 + 1), XV = 15 (10 + 5)\n\n3. Subtraction: When a symbol is placed before one of greater value, subtract the smaller value.\n   Example: IV = 4 (5 - 1), IX = 9 (10 - 1)`,
                       },
                       {
                         id: 540,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '5. Writing Numbers 11 to 39 in Roman Numerals',
+                        title: "5. Writing Numbers 11 to 39 in Roman Numerals",
                         body: `Let's extend our knowledge to write numbers from 11 to 39:\n\n11 = XI\n12 = XII\n13 = XIII\n14 = XIV\n15 = XV\n16 = XVI\n...\n20 = XX\n21 = XXI\n...\n30 = XXX\n31 = XXXI\n...\n39 = XXXIX\n\nNotice how we combine X with the symbols we learned earlier to represent these numbers.`,
                       },
                       {
                         id: 550,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '6. Using L (50) in Roman Numerals',
+                        title: "6. Using L (50) in Roman Numerals",
                         body: `Now let's introduce L, which represents 50. We can use it to write numbers from 40 to 89:\n\n40 = XL (50 - 10)\n50 = L\n51 = LI\n60 = LX\n70 = LXX\n80 = LXXX\n89 = LXXXIX\n\nRemember, when a smaller value comes before a larger one, we subtract.`,
                       },
                       {
                         id: 560,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '7. Introducing C (100) in Roman Numerals',
+                        title: "7. Introducing C (100) in Roman Numerals",
                         body: `C represents 100 in Roman numerals. We can use it to write numbers from 90 to 399:\n\n90 = XC (100 - 10)\n100 = C\n101 = CI\n150 = CL\n200 = CC\n300 = CCC\n399 = CCCXCIX\n\nNotice how we combine C with the symbols we've already learned to represent these larger numbers.`,
                       },
                       {
                         id: 570,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '8. Using D (500) and M (1000) in Roman Numerals',
+                        title:
+                          "8. Using D (500) and M (1000) in Roman Numerals",
                         body: `Finally, let's introduce D (500) and M (1000) to write even larger numbers:\n\n400 = CD (500 - 100)\n500 = D\n600 = DC\n900 = CM (1000 - 100)\n1000 = M\n1500 = MD\n2000 = MM\n\nThese symbols allow us to represent numbers up to 3999 (MMMCMXCIX) in Roman numerals.`,
                       },
                       {
                         id: 580,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '9. Reading Roman Numerals',
+                        title: "9. Reading Roman Numerals",
                         body: `To read Roman numerals:\n1. Start from the left and move right.\n2. Add the values of symbols that are the same or decreasing in value.\n3. Subtract when a symbol is followed by one of greater value.\n\nExample: MCMLIV\nM = 1000\nCM = 900 (1000 - 100)\nL = 50\nIV = 4 (5 - 1)\n\nTotal: 1000 + 900 + 50 + 4 = 1954`,
                       },
                       {
                         id: 590,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '10. Roman Numerals in Everyday Life',
+                        title: "10. Roman Numerals in Everyday Life",
                         body: `Roman numerals are still used in various contexts today:\n\n• Clock faces: Many clocks use Roman numerals for hours.\n• Book chapters: Some books use Roman numerals for chapter numbers.\n• Movie sequels: Films like 'Star Wars IV' use Roman numerals.\n• Sports events: The Super Bowl uses Roman numerals (e.g., Super Bowl LV).\n• Monarchs' names: Kings and queens are often numbered with Roman numerals (e.g., Elizabeth II).`,
                       },
                       {
                         id: 600,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: '11. Converting Between Roman and Hindu-Arabic Numerals',
+                        title:
+                          "11. Converting Between Roman and Hindu-Arabic Numerals",
                         body: `To convert from Roman to Hindu-Arabic numerals:\n1. Break the Roman numeral into symbols.\n2. Convert each symbol to its Hindu-Arabic value.\n3. Apply addition and subtraction rules.\n4. Add up the results.\n\nTo convert from Hindu-Arabic to Roman numerals:\n1. Break the number into thousands, hundreds, tens, and ones.\n2. Convert each part to Roman numerals.\n3. Combine the parts.`,
                       },
                       {
@@ -4257,7 +4271,7 @@ const main = async () => {
                     ],
                   },
                 ],
-              }
+              },
             ],
           },
         ],
@@ -4452,7 +4466,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "Which of these foods is a good source of iron?",
+                        question:
+                          "Which of these foods is a good source of iron?",
                         order: 13,
                         difficulty: 2,
                         id: 9753,
@@ -4634,49 +4649,50 @@ const main = async () => {
                       {
                         id: 1010,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Introduction to Food Components',
+                        title: "Introduction to Food Components",
                         body: `Have you ever wondered why we eat different types of food? It's because our body needs various substances to stay healthy and grow. These substances are called nutrients, and they are the components of our food.`,
                       },
                       {
                         id: 1020,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'The Main Nutrients',
+                        title: "The Main Nutrients",
                         body: `There are six main types of nutrients that our body needs:\n\n1. Carbohydrates\n2. Proteins\n3. Fats\n4. Vitamins\n5. Minerals\n6. Water\n\nEach of these nutrients has a special job in keeping us healthy.`,
                       },
                       {
                         id: 1030,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Carbohydrates: Our Energy Source',
+                        title: "Carbohydrates: Our Energy Source",
                         body: `Carbohydrates are like fuel for our body. They give us energy to play, study, and do all our daily activities. We can find carbohydrates in foods like:\n\n• Rice\n• Bread\n• Potatoes\n• Cereals`,
                       },
                       {
                         id: 1040,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Proteins: The Body Builders',
+                        title: "Proteins: The Body Builders",
                         body: `Proteins help our body grow and repair itself. They are like the building blocks for our muscles, skin, and hair. We can find proteins in:\n\n• Eggs\n• Milk\n• Pulses (like dal)\n• Fish and meat`,
                       },
                       {
                         id: 1050,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Fats: Energy Storage and Protection',
+                        title: "Fats: Energy Storage and Protection",
                         body: `Fats store energy for our body. They also help protect our organs and keep us warm. We can find fats in:\n\n• Butter\n• Oil\n• Nuts\n• Cheese`,
                       },
                       {
                         id: 1070,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Vitamins and Minerals: The Protective Nutrients',
+                        title:
+                          "Vitamins and Minerals: The Protective Nutrients",
                         body: `Vitamins and minerals are needed in small quantities, but they're very important. They help our body fight diseases and stay healthy. We can find them in:\n\n• Fruits (like oranges, apples)\n• Vegetables (like carrots, spinach)\n• Milk\n• Eggs`,
                       },
                       {
                         id: 1080,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Water: The Essential Nutrient',
+                        title: "Water: The Essential Nutrient",
                         body: `Water is also a nutrient! It's found in all parts of our body and is essential for life. We get water from:\n\n• Drinking water\n• Juices\n• Fruits and vegetables\n• Milk`,
                       },
                       {
                         id: 1090,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Foods Contain Multiple Nutrients',
+                        title: "Foods Contain Multiple Nutrients",
                         body: `It's important to remember that most foods contain more than one nutrient. For example:\n\n• Milk has proteins, fats, and calcium (a mineral)\n• An apple has carbohydrates, vitamins, and water\n• An egg has proteins and fats`,
                       },
                       {
@@ -4946,7 +4962,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "Which nutrient is essential for blood clotting?",
+                        question:
+                          "Which nutrient is essential for blood clotting?",
                         order: 10,
                         difficulty: 2,
                         id: 258000,
@@ -5176,7 +5193,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What is the function of Vitamin E in our body?",
+                        question:
+                          "What is the function of Vitamin E in our body?",
                         order: 19,
                         difficulty: 2,
                         id: 1002400,
@@ -5359,13 +5377,13 @@ const main = async () => {
                       {
                         id: 1160,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Introduction to Nutrient Functions',
+                        title: "Introduction to Nutrient Functions",
                         body: `We've learned that food contains different nutrients. But why does our body need these nutrients? Each nutrient has a special job to do in our body, helping us stay healthy and grow.`,
                       },
                       {
                         id: 1161,
                         type: contentBlockTypeEnum.enumValues[1],
-                        title: 'Carbohydrates: Our Energy Providers',
+                        title: "Carbohydrates: Our Energy Providers",
                         body: `Carbohydrates are like fuel for our body. They:\n• Give us energy to play, study, and do all our daily activities\n• Help our brain function properly\n• Provide fiber for good digestion`,
                       },
                       {
@@ -5426,7 +5444,7 @@ const main = async () => {
                       },
                     ],
                   },
-                ]
+                ],
               },
               {
                 id: 1030,
@@ -5621,7 +5639,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What happens if a person's diet lacks variety?",
+                        question:
+                          "What happens if a person's diet lacks variety?",
                         order: 8,
                         difficulty: 3,
                         id: 987900,
@@ -5698,12 +5717,16 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "Which statement about a balanced diet is TRUE?",
+                        question:
+                          "Which statement about a balanced diet is TRUE?",
                         order: 11,
                         difficulty: 3,
                         id: 113700,
                         challengeOptions: [
-                          { correct: false, text: "It should eliminate all fats" },
+                          {
+                            correct: false,
+                            text: "It should eliminate all fats",
+                          },
                           {
                             correct: false,
                             text: "It should consist of only raw foods",
@@ -5746,7 +5769,10 @@ const main = async () => {
                             correct: true,
                             text: "It helps in digestion and other body functions",
                           },
-                          { correct: false, text: "It is a source of vitamins" },
+                          {
+                            correct: false,
+                            text: "It is a source of vitamins",
+                          },
                         ],
                       },
                       {
@@ -5777,7 +5803,10 @@ const main = async () => {
                         difficulty: 1,
                         id: 558100,
                         challengeOptions: [
-                          { correct: false, text: "Proper growth and development" },
+                          {
+                            correct: false,
+                            text: "Proper growth and development",
+                          },
                           { correct: false, text: "Strong immunity" },
                           { correct: true, text: "Rapid weight gain" },
                           { correct: false, text: "Good mental health" },
@@ -5880,7 +5909,10 @@ const main = async () => {
                         id: 1224700,
                         challengeOptions: [
                           { correct: false, text: "Feeling energetic" },
-                          { correct: false, text: "Maintaining a healthy weight" },
+                          {
+                            correct: false,
+                            text: "Maintaining a healthy weight",
+                          },
                           { correct: true, text: "Frequent illnesses" },
                           { correct: false, text: "Good skin health" },
                         ],
@@ -5905,7 +5937,10 @@ const main = async () => {
                             correct: false,
                             text: "By eliminating all carbohydrates",
                           },
-                          { correct: false, text: "By including only proteins" },
+                          {
+                            correct: false,
+                            text: "By including only proteins",
+                          },
                         ],
                       },
                       {
@@ -5916,7 +5951,10 @@ const main = async () => {
                         difficulty: 3,
                         id: 1446900,
                         challengeOptions: [
-                          { correct: false, text: "It makes meals more colorful" },
+                          {
+                            correct: false,
+                            text: "It makes meals more colorful",
+                          },
                           {
                             correct: true,
                             text: "It ensures intake of all essential nutrients",
@@ -5956,7 +5994,10 @@ const main = async () => {
                             correct: true,
                             text: "They can lead to health problems if consumed in excess",
                           },
-                          { correct: false, text: "They are difficult to cook" },
+                          {
+                            correct: false,
+                            text: "They are difficult to cook",
+                          },
                         ],
                       },
                     ],
@@ -6049,7 +6090,7 @@ const main = async () => {
                       },
                     ],
                   },
-                ]
+                ],
               },
               {
                 id: 1040,
@@ -6345,7 +6386,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "Which vitamin deficiency can cause beriberi?",
+                        question:
+                          "Which vitamin deficiency can cause beriberi?",
                         order: 12,
                         difficulty: 3,
                         id: 10112,
@@ -6499,7 +6541,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "How does Vitamin D deficiency lead to rickets?",
+                        question:
+                          "How does Vitamin D deficiency lead to rickets?",
                         order: 18,
                         difficulty: 3,
                         id: 10118,
@@ -6576,7 +6619,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "How does Vitamin C deficiency lead to scurvy?",
+                        question:
+                          "How does Vitamin C deficiency lead to scurvy?",
                         order: 21,
                         difficulty: 3,
                         id: 10121,
@@ -6601,7 +6645,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "Which of these is a good source of Vitamin D?",
+                        question:
+                          "Which of these is a good source of Vitamin D?",
                         order: 22,
                         difficulty: 1,
                         id: 10122,
@@ -6780,7 +6825,7 @@ const main = async () => {
                       },
                     ],
                   },
-                ]
+                ],
               },
               {
                 id: 1050,
@@ -7027,7 +7072,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "Which test involves rubbing the food on paper?",
+                        question:
+                          "Which test involves rubbing the food on paper?",
                         order: 10,
                         difficulty: 1,
                         id: 2586,
@@ -7050,7 +7096,7 @@ const main = async () => {
                           },
                         ],
                       },
-    
+
                       {
                         type: schema.challengesEnum.enumValues[0],
                         question:
@@ -7060,7 +7106,10 @@ const main = async () => {
                         id: 20011,
                         challengeOptions: [
                           { correct: false, text: "Add water to the food" },
-                          { correct: true, text: "Grind the food into a paste" },
+                          {
+                            correct: true,
+                            text: "Grind the food into a paste",
+                          },
                           { correct: false, text: "Heat the food" },
                           { correct: false, text: "Add iodine to the food" },
                         ],
@@ -7160,7 +7209,10 @@ const main = async () => {
                             correct: true,
                             text: "To create an alkaline environment",
                           },
-                          { correct: false, text: "To neutralize the solution" },
+                          {
+                            correct: false,
+                            text: "To neutralize the solution",
+                          },
                           {
                             correct: false,
                             text: "To change the color of the solution",
@@ -7230,7 +7282,10 @@ const main = async () => {
                         id: 20021,
                         challengeOptions: [
                           { correct: false, text: "It would turn blue-black" },
-                          { correct: true, text: "It would remain yellow/brown" },
+                          {
+                            correct: true,
+                            text: "It would remain yellow/brown",
+                          },
                           { correct: false, text: "It would turn green" },
                           { correct: false, text: "It would turn colorless" },
                         ],
@@ -7390,7 +7445,7 @@ const main = async () => {
                       },
                     ],
                   },
-                ]
+                ],
               },
               {
                 id: 1060,
@@ -7532,7 +7587,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "How does roughage help in weight management?",
+                        question:
+                          "How does roughage help in weight management?",
                         order: 6,
                         difficulty: 3,
                         id: 2575,
@@ -7583,7 +7639,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What happens if a person's diet lacks roughage?",
+                        question:
+                          "What happens if a person's diet lacks roughage?",
                         order: 8,
                         difficulty: 2,
                         id: 9983,
@@ -7608,7 +7665,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "How does roughage affect blood sugar levels?",
+                        question:
+                          "How does roughage affect blood sugar levels?",
                         order: 9,
                         difficulty: 3,
                         id: 3686,
@@ -7684,7 +7742,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "How does roughage contribute to colon health?",
+                        question:
+                          "How does roughage contribute to colon health?",
                         order: 12,
                         difficulty: 3,
                         id: 20112,
@@ -7709,7 +7768,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "Which of these is NOT a type of dietary fiber?",
+                        question:
+                          "Which of these is NOT a type of dietary fiber?",
                         order: 13,
                         difficulty: 1,
                         id: 20113,
@@ -7811,7 +7871,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "How does fiber intake affect water consumption?",
+                        question:
+                          "How does fiber intake affect water consumption?",
                         order: 17,
                         difficulty: 2,
                         id: 20117,
@@ -8120,7 +8181,7 @@ const main = async () => {
                       },
                     ],
                   },
-                ]
+                ],
               },
             ],
           },
@@ -8381,7 +8442,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What did hunter-gatherers use to hunt animals?",
+                        question:
+                          "What did hunter-gatherers use to hunt animals?",
                         order: 10,
                         difficulty: 1,
                         id: 90011010,
@@ -8406,7 +8468,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What kind of shelters did hunter-gatherers use?",
+                        question:
+                          "What kind of shelters did hunter-gatherers use?",
                         order: 11,
                         difficulty: 1,
                         id: 90011011,
@@ -9351,7 +9414,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What is a primary purpose of early human tools?",
+                        question:
+                          "What is a primary purpose of early human tools?",
                         order: 2,
                         difficulty: 1,
                         id: 90022051,
@@ -9388,7 +9452,10 @@ const main = async () => {
                           },
                           { correct: false, text: "Stone was colorful" },
                           { correct: false, text: "Stone was rare" },
-                          { correct: false, text: "Stone was soft and flexible" },
+                          {
+                            correct: false,
+                            text: "Stone was soft and flexible",
+                          },
                         ],
                       },
                       {
@@ -9449,13 +9516,17 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What was a hand axe used for by early humans?",
+                        question:
+                          "What was a hand axe used for by early humans?",
                         order: 9,
                         difficulty: 1,
                         id: 90022058,
                         challengeOptions: [
                           { correct: false, text: "Writing" },
-                          { correct: true, text: "Digging, cutting, and hunting" },
+                          {
+                            correct: true,
+                            text: "Digging, cutting, and hunting",
+                          },
                           { correct: false, text: "Cooking" },
                           { correct: false, text: "Painting" },
                         ],
@@ -9572,13 +9643,19 @@ const main = async () => {
                         difficulty: 2,
                         id: 90022066,
                         challengeOptions: [
-                          { correct: false, text: "Introduction of iron tools" },
+                          {
+                            correct: false,
+                            text: "Introduction of iron tools",
+                          },
                           {
                             correct: true,
                             text: "Polished stone tools and farming implements",
                           },
                           { correct: false, text: "Use of plastic" },
-                          { correct: false, text: "Development of electronics" },
+                          {
+                            correct: false,
+                            text: "Development of electronics",
+                          },
                         ],
                       },
                       {
@@ -9593,7 +9670,10 @@ const main = async () => {
                             correct: true,
                             text: "By flaking and chipping away at the stone",
                           },
-                          { correct: false, text: "By using chemical reactions" },
+                          {
+                            correct: false,
+                            text: "By using chemical reactions",
+                          },
                           { correct: false, text: "By 3D printing" },
                         ],
                       },
@@ -9642,8 +9722,14 @@ const main = async () => {
                             correct: true,
                             text: "They combined different materials for greater efficiency",
                           },
-                          { correct: false, text: "They were purely decorative" },
-                          { correct: false, text: "They were used for farming" },
+                          {
+                            correct: false,
+                            text: "They were purely decorative",
+                          },
+                          {
+                            correct: false,
+                            text: "They were used for farming",
+                          },
                         ],
                       },
                       {
@@ -9705,7 +9791,10 @@ const main = async () => {
                             correct: true,
                             text: "It supports the theory that Africa is the cradle of humankind",
                           },
-                          { correct: false, text: "It disproves human evolution" },
+                          {
+                            correct: false,
+                            text: "It disproves human evolution",
+                          },
                           {
                             correct: false,
                             text: "It suggests humans originated elsewhere",
@@ -9768,7 +9857,10 @@ const main = async () => {
                             correct: true,
                             text: "It helps understand the daily lives and survival strategies of early humans",
                           },
-                          { correct: false, text: "It has no historical value" },
+                          {
+                            correct: false,
+                            text: "It has no historical value",
+                          },
                           {
                             correct: false,
                             text: "It is only of interest to tool makers",
@@ -9803,7 +9895,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What was a 'burin' used for by early humans?",
+                        question:
+                          "What was a 'burin' used for by early humans?",
                         order: 29,
                         difficulty: 2,
                         id: 90022078,
@@ -9839,7 +9932,10 @@ const main = async () => {
                         difficulty: 3,
                         id: 90022080,
                         challengeOptions: [
-                          { correct: false, text: "It was the first metal tool" },
+                          {
+                            correct: false,
+                            text: "It was the first metal tool",
+                          },
                           {
                             correct: true,
                             text: "It represents a major advancement in tool-making with its standardized design",
@@ -9890,7 +9986,10 @@ const main = async () => {
                             correct: false,
                             text: "A modern tool-making technique",
                           },
-                          { correct: false, text: "A type of Neolithic pottery" },
+                          {
+                            correct: false,
+                            text: "A type of Neolithic pottery",
+                          },
                         ],
                       },
                       {
@@ -9923,8 +10022,14 @@ const main = async () => {
                             correct: true,
                             text: "It allowed for the hardening of wooden tools and the development of new techniques",
                           },
-                          { correct: false, text: "It made tools less effective" },
-                          { correct: false, text: "It was only used for cooking" },
+                          {
+                            correct: false,
+                            text: "It made tools less effective",
+                          },
+                          {
+                            correct: false,
+                            text: "It was only used for cooking",
+                          },
                         ],
                       },
                       {
@@ -9951,7 +10056,10 @@ const main = async () => {
                         difficulty: 3,
                         id: 90022086,
                         challengeOptions: [
-                          { correct: false, text: "It was the first use of metal" },
+                          {
+                            correct: false,
+                            text: "It was the first use of metal",
+                          },
                           {
                             correct: true,
                             text: "It shows a sophisticated method of producing uniformly shaped flakes",
@@ -9960,7 +10068,10 @@ const main = async () => {
                             correct: false,
                             text: "It was used for creating pottery",
                           },
-                          { correct: false, text: "It was a method of fishing" },
+                          {
+                            correct: false,
+                            text: "It was a method of fishing",
+                          },
                         ],
                       },
                       {
@@ -9979,7 +10090,10 @@ const main = async () => {
                             correct: true,
                             text: "Early humans had diverse activities and roles",
                           },
-                          { correct: false, text: "Tools were used as currency" },
+                          {
+                            correct: false,
+                            text: "Tools were used as currency",
+                          },
                           {
                             correct: false,
                             text: "The site was abandoned quickly",
@@ -10011,7 +10125,10 @@ const main = async () => {
                         difficulty: 3,
                         id: 90022089,
                         challengeOptions: [
-                          { correct: false, text: "Randomly selected materials" },
+                          {
+                            correct: false,
+                            text: "Randomly selected materials",
+                          },
                           {
                             correct: true,
                             text: "Choice of specific stones for different tools based on hardness and sharpness",
@@ -10062,7 +10179,10 @@ const main = async () => {
                             correct: true,
                             text: "They had complex social structures and division of labor",
                           },
-                          { correct: false, text: "They did not use tools often" },
+                          {
+                            correct: false,
+                            text: "They did not use tools often",
+                          },
                           {
                             correct: false,
                             text: "They were highly dependent on other animals",
@@ -10100,7 +10220,10 @@ const main = async () => {
                         difficulty: 3,
                         id: 90022093,
                         challengeOptions: [
-                          { correct: false, text: "It restricted their movement" },
+                          {
+                            correct: false,
+                            text: "It restricted their movement",
+                          },
                           {
                             correct: true,
                             text: "It enabled them to exploit new environments and expand their territories",
@@ -10216,7 +10339,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What did fire help early humans to do at night?",
+                        question:
+                          "What did fire help early humans to do at night?",
                         order: 3,
                         difficulty: 1,
                         id: 900320102,
@@ -10833,7 +10957,8 @@ const main = async () => {
                   },
                   {
                     id: 314,
-                    title: "Beginning of Agriculture and Domestication of Animals",
+                    title:
+                      "Beginning of Agriculture and Domestication of Animals",
                     order: 4,
                     challenges: [
                       {
@@ -10865,14 +10990,21 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What does the term 'domestication' refer to?",
+                        question:
+                          "What does the term 'domestication' refer to?",
                         order: 3,
                         difficulty: 1,
                         id: 900420127,
                         challengeOptions: [
                           { correct: false, text: "Training animals to hunt" },
-                          { correct: true, text: "Taming animals for human use" },
-                          { correct: false, text: "Building homes for animals" },
+                          {
+                            correct: true,
+                            text: "Taming animals for human use",
+                          },
+                          {
+                            correct: false,
+                            text: "Building homes for animals",
+                          },
                           { correct: false, text: "None of the above" },
                         ],
                       },
@@ -10966,12 +11098,18 @@ const main = async () => {
                         difficulty: 2,
                         id: 900420133,
                         challengeOptions: [
-                          { correct: false, text: "Decrease in food production" },
+                          {
+                            correct: false,
+                            text: "Decrease in food production",
+                          },
                           {
                             correct: true,
                             text: "Establishment of permanent settlements",
                           },
-                          { correct: false, text: "Increased nomadic behavior" },
+                          {
+                            correct: false,
+                            text: "Increased nomadic behavior",
+                          },
                           { correct: false, text: "Reduced use of tools" },
                         ],
                       },
@@ -11014,7 +11152,10 @@ const main = async () => {
                             correct: true,
                             text: "It led to the creation of complex societies and trade",
                           },
-                          { correct: false, text: "It had no significant impact" },
+                          {
+                            correct: false,
+                            text: "It had no significant impact",
+                          },
                           { correct: false, text: "It caused frequent wars" },
                         ],
                       },
@@ -11048,8 +11189,14 @@ const main = async () => {
                             correct: true,
                             text: "It led to settled communities and the growth of villages",
                           },
-                          { correct: false, text: "It reduced the need for tools" },
-                          { correct: false, text: "It decreased food security" },
+                          {
+                            correct: false,
+                            text: "It reduced the need for tools",
+                          },
+                          {
+                            correct: false,
+                            text: "It decreased food security",
+                          },
                         ],
                       },
                       {
@@ -11137,13 +11284,19 @@ const main = async () => {
                         difficulty: 3,
                         id: 900420142,
                         challengeOptions: [
-                          { correct: false, text: "It reduced trade activities" },
+                          {
+                            correct: false,
+                            text: "It reduced trade activities",
+                          },
                           {
                             correct: true,
                             text: "It facilitated the transport of goods over long distances",
                           },
                           { correct: false, text: "It made trade unnecessary" },
-                          { correct: false, text: "It only affected local trade" },
+                          {
+                            correct: false,
+                            text: "It only affected local trade",
+                          },
                         ],
                       },
                       {
@@ -11271,7 +11424,10 @@ const main = async () => {
                         difficulty: 3,
                         id: 900420149,
                         challengeOptions: [
-                          { correct: false, text: "It made agriculture difficult" },
+                          {
+                            correct: false,
+                            text: "It made agriculture difficult",
+                          },
                           {
                             correct: true,
                             text: "It allowed for the cultivation of crops in arid regions",
@@ -11316,9 +11472,15 @@ const main = async () => {
                         id: 900520150,
                         challengeOptions: [
                           { correct: true, text: "A place where people live" },
-                          { correct: false, text: "A place where animals live" },
+                          {
+                            correct: false,
+                            text: "A place where animals live",
+                          },
                           { correct: false, text: "A place where people hunt" },
-                          { correct: false, text: "A place where crops are grown" },
+                          {
+                            correct: false,
+                            text: "A place where crops are grown",
+                          },
                         ],
                       },
                       {
@@ -11329,7 +11491,10 @@ const main = async () => {
                         difficulty: 1,
                         id: 900520151,
                         challengeOptions: [
-                          { correct: false, text: "Because they ran out of food" },
+                          {
+                            correct: false,
+                            text: "Because they ran out of food",
+                          },
                           {
                             correct: true,
                             text: "Because they discovered agriculture",
@@ -11360,7 +11525,8 @@ const main = async () => {
                       },
                       {
                         type: schema.challengesEnum.enumValues[0],
-                        question: "What type of houses did early settlers build?",
+                        question:
+                          "What type of houses did early settlers build?",
                         order: 4,
                         difficulty: 1,
                         id: 900520153,
@@ -11447,7 +11613,10 @@ const main = async () => {
                             correct: true,
                             text: "It allowed people to stay in one place and form communities",
                           },
-                          { correct: false, text: "It made people more nomadic" },
+                          {
+                            correct: false,
+                            text: "It made people more nomadic",
+                          },
                         ],
                       },
                       {
@@ -11463,7 +11632,10 @@ const main = async () => {
                             correct: true,
                             text: "It allowed trade and specialization of labor",
                           },
-                          { correct: false, text: "It made people travel more" },
+                          {
+                            correct: false,
+                            text: "It made people travel more",
+                          },
                           {
                             correct: false,
                             text: "It decreased the need for cooperation",
@@ -11518,13 +11690,22 @@ const main = async () => {
                         difficulty: 2,
                         id: 900520162,
                         challengeOptions: [
-                          { correct: false, text: "They became more egalitarian" },
+                          {
+                            correct: false,
+                            text: "They became more egalitarian",
+                          },
                           {
                             correct: true,
                             text: "They became more complex with defined roles and hierarchies",
                           },
-                          { correct: false, text: "They became less organized" },
-                          { correct: false, text: "They eliminated social roles" },
+                          {
+                            correct: false,
+                            text: "They became less organized",
+                          },
+                          {
+                            correct: false,
+                            text: "They eliminated social roles",
+                          },
                         ],
                       },
                       {
@@ -11554,7 +11735,10 @@ const main = async () => {
                             correct: true,
                             text: "It led to deforestation and changes in land use",
                           },
-                          { correct: false, text: "It preserved natural habitats" },
+                          {
+                            correct: false,
+                            text: "It preserved natural habitats",
+                          },
                           {
                             correct: false,
                             text: "It decreased human impact on nature",
@@ -11570,7 +11754,10 @@ const main = async () => {
                         id: 900520165,
                         challengeOptions: [
                           { correct: false, text: "Industrial production" },
-                          { correct: true, text: "Trade and exchange of goods" },
+                          {
+                            correct: true,
+                            text: "Trade and exchange of goods",
+                          },
                           { correct: false, text: "High-tech manufacturing" },
                           { correct: false, text: "Software development" },
                         ],
@@ -11628,7 +11815,10 @@ const main = async () => {
                             correct: true,
                             text: "It created a surplus of food, allowing people time to develop new tools and technologies",
                           },
-                          { correct: false, text: "It made technology irrelevant" },
+                          {
+                            correct: false,
+                            text: "It made technology irrelevant",
+                          },
                           {
                             correct: false,
                             text: "It led to technological decline",
@@ -11648,7 +11838,10 @@ const main = async () => {
                             correct: true,
                             text: "It became a central part of community life, influencing social and political structures",
                           },
-                          { correct: false, text: "It was only for entertainment" },
+                          {
+                            correct: false,
+                            text: "It was only for entertainment",
+                          },
                           {
                             correct: false,
                             text: "It discouraged community living",
@@ -11663,7 +11856,10 @@ const main = async () => {
                         difficulty: 3,
                         id: 900520170,
                         challengeOptions: [
-                          { correct: false, text: "Population remained static" },
+                          {
+                            correct: false,
+                            text: "Population remained static",
+                          },
                           {
                             correct: true,
                             text: "Population increased significantly due to stable food supplies",
@@ -11709,7 +11905,10 @@ const main = async () => {
                         difficulty: 3,
                         id: 900520172,
                         challengeOptions: [
-                          { correct: false, text: "Increase in social equality" },
+                          {
+                            correct: false,
+                            text: "Increase in social equality",
+                          },
                           {
                             correct: true,
                             text: "Emergence of defined social roles and hierarchies",
@@ -11757,7 +11956,10 @@ const main = async () => {
                             correct: true,
                             text: "It required organized leadership and administrative systems to manage resources and people",
                           },
-                          { correct: false, text: "It made governance chaotic" },
+                          {
+                            correct: false,
+                            text: "It made governance chaotic",
+                          },
                           {
                             correct: false,
                             text: "It had no effect on administration",
@@ -11785,7 +11987,7 @@ const main = async () => {
                     ],
                   },
                 ],
-              }
+              },
             ],
           },
         ],
@@ -11843,7 +12045,9 @@ const main = async () => {
             .insert(schema.lessons)
             .values(
               topic.lessons.map((eachLesson) => {
-                const contentBlockIds = eachLesson.blocks.map((contentBlock) => contentBlock.id);
+                const contentBlockIds = eachLesson.blocks.map(
+                  (contentBlock) => contentBlock.id
+                );
                 return { topicId: topic.id, contentBlockIds, ...eachLesson };
               })
             )
@@ -11864,7 +12068,7 @@ const main = async () => {
                     title: contentData.title,
                     body: contentData.body,
                     lessonId: lesson.id,
-                  }
+                  };
                 })
               )
               .returning();

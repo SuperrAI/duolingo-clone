@@ -42,7 +42,7 @@ export const Chapter = ({
               current={isCurrent}
               locked={isLocked}
               percentage={activeTopicPercentage}
-              name={topic.title}
+              name={topic.description}
             />
           );
         })}
