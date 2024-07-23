@@ -40,7 +40,10 @@ type QuizProps = {
     completed: boolean;
     challengeOptions: (typeof challengeOptions.$inferSelect)[];
   })[];
-  initialChallenge: any;
+  initialChallenge: typeof challenges.$inferSelect & {
+    completed?: boolean;
+    challengeOptions: (typeof challengeOptions.$inferSelect)[];
+  };
   userSubscription:
     | (typeof userSubscription.$inferSelect & {
         isActive: boolean;
@@ -52,8 +55,6 @@ export const Quiz = ({
   initialPercentage,
   initialHearts,
   initialLessonId,
-  currentContentBlockOrder,
-  contentBlockIds,
   contentBlocks,
   initialLessonChallenges,
   initialChallenge,
@@ -86,13 +87,6 @@ export const Quiz = ({
     return initialPercentage === 100 ? 0 : initialPercentage;
   });
   const [challenges] = useState(initialLessonChallenges);
-  const [activeIndex, setActiveIndex] = useState(() => {
-    const uncompletedIndex = challenges.findIndex(
-      (challenge) => !challenge.completed
-    );
-
-    return uncompletedIndex === -1 ? 0 : uncompletedIndex;
-  });
 
   const [selectedOption, setSelectedOption] = useState<number>();
   const [status, setStatus] = useState<"none" | "wrong" | "correct">("none");
@@ -111,10 +105,6 @@ export const Quiz = ({
 
   const options = currentChallenge?.challengeOptions ?? [];
 
-  const onNext = () => {
-    setActiveIndex((current) => current + 1);
-  };
-
   const onSelect = (id: number) => {
     if (status !== "none") return;
 
@@ -131,14 +121,14 @@ export const Quiz = ({
     }
 
     if (status === "correct") {
-      fetchNextChallenge();
+      void fetchNextChallenge();
       setStatus("none");
       setSelectedOption(undefined);
       return;
     }
 
     const correctOption = currentChallenge.challengeOptions.find(
-      (option: any) => option.correct
+      (option) => option.correct
     );
 
     if (!correctOption) return;
