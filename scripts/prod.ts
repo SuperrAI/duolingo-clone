@@ -40,7 +40,7 @@ const createTables = async () => {
     lesson_order INTEGER NOT NULL
   );`;
 
-  await sql`CREATE TYPE content_block_type AS ENUM ('CHALLENGE', 'CONTENT');`;
+  // await sql`CREATE TYPE content_block_type AS ENUM ('CHALLENGE', 'CONTENT');`;
 
   await sql`CREATE TABLE IF NOT EXISTS content_blocks (
     id SERIAL PRIMARY KEY,
@@ -158,22 +158,22 @@ const createTables = async () => {
 const main = async () => {
   try {
     // Delete all existing data
-    // await Promise.all([
-    //   db.delete(schema.userProgress),
-    //   db.delete(schema.challengeProgress),
-    //   db.delete(schema.lessonProgress),
-    //   db.delete(schema.topicProgress),
-    //   db.delete(schema.chapterProgress),
-    //   db.delete(schema.subjectProgress),
-    //   db.delete(schema.subjects),
-    //   db.delete(schema.chapters),
-    //   db.delete(schema.topics),
-    //   db.delete(schema.lessons),
-    //   db.delete(schema.challenges),
-    //   db.delete(schema.challengeOptions),
-    //   db.delete(schema.userProgress),
-    //   db.delete(schema.userSubscription),
-    // ]);
+    await Promise.all([
+      db.delete(schema.userProgress),
+      db.delete(schema.challengeProgress),
+      db.delete(schema.lessonProgress),
+      db.delete(schema.topicProgress),
+      db.delete(schema.chapterProgress),
+      db.delete(schema.subjectProgress),
+      db.delete(schema.subjects),
+      db.delete(schema.chapters),
+      db.delete(schema.topics),
+      db.delete(schema.lessons),
+      db.delete(schema.challenges),
+      db.delete(schema.challengeOptions),
+      db.delete(schema.userProgress),
+      db.delete(schema.userSubscription),
+    ]);
 
     console.log("Creating tables");
     await createTables();
@@ -8209,13 +8209,13 @@ const main = async () => {
             topics: [
               {
                 id: 2010,
-                description: `Introduction to history`,
+                description: `Hunter-gatherers and their lifestyle`,
                 order: 1,
                 title: "Topic 1",
                 lessons: [
                   {
                     id: 311,
-                    title: "Hunter-gatherers and their lifestyle ",
+                    title: "Understanding Early Human Survival",
                     order: 1,
                     challenges: [
                       {
@@ -9386,25 +9386,79 @@ const main = async () => {
                     blocks: [
                       {
                         id: 2010,
-                        type: contentBlockTypeEnum.enumValues[0],
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "What are hunter-gatherers?",
+                        body: `Hunter-gatherers were early humans who lived by hunting animals and gathering wild plants for food. They didn't grow crops or keep animals like we do today.`,
                       },
                       {
                         id: 2020,
-                        type: contentBlockTypeEnum.enumValues[0],
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "How did they get food?",
+                        body: `• Hunting: They caught animals like deer, rabbits, and fish for meat.\n• Gathering: They collected fruits, nuts, roots, and leaves from plants in their surroundings.`,
                       },
                       {
                         id: 2030,
-                        type: contentBlockTypeEnum.enumValues[0],
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Where did they live?",
+                        body: `Hunter-gatherers were nomads. This means they didn't have permanent homes. Instead, they moved from place to place in search of food and water.`,
                       },
                       {
                         id: 2040,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Why did they move around?",
+                        body: `• To follow animal herds they hunted\n• To find new areas with plenty of plants to gather\n• To locate water sources\n• To adapt to changing seasons`,
+                      },
+                      {
+                        id: 2050,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "How did they live?",
+                        body: `• In small groups: Usually 20-30 people, often related to each other\n• Sharing: They shared food and resources within their group\n• Simple shelters: They made temporary homes from materials like animal skins or tree branches\n• Division of tasks: Different group members had different jobs, like hunting or tool-making`,
+                      },
+                      {
+                        id: 2060,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "What skills did they need?",
+                        body: `Hunter-gatherers needed many skills to survive:\n• Tracking animals\n• Making and using tools\n• Identifying safe plants to eat\n• Finding water\n• Building shelters\n• Working together as a team`,
+                      },
+                      {
+                        id: 2070,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "How was their life different from ours?",
+                        body: `• No farming: They didn't grow their own food\n• No domesticated animals: They didn't keep animals like cows or chickens\n• Constant movement: They didn't live in one place all year\n• Close to nature: Their survival depended on understanding their environment\n• No money or markets: They used what they found or made themselves`,
+                      },
+                      {
+                        id: 2080,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 2090,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 2100,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 2110,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 2111,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                id: 2020,
+                description: `Tools and Implements used by early humans`,
+                order: 2,
+                title: "Topic 2",
+                lessons: [
                   {
                     id: 312,
-                    title: "Tools and Implements used by early humans ",
+                    title: "Discovering How Our Ancestors Shaped Their World",
                     order: 2,
                     challenges: [
                       {
@@ -10273,23 +10327,77 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 2050,
+                        id: 2120,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "What are tools?",
+                        body: `Tools are objects that humans use to make tasks easier. Early humans made simple tools to help them survive and do daily activities like hunting, gathering food, and making shelters.`,
+                      },
+                      {
+                        id: 2130,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "The first tools",
+                        body: `• Stone tools: The earliest tools were made from stones.\n• How they were made: Early humans would strike one stone against another to create sharp edges.\n• Uses: These sharp stone tools were used for cutting meat, scraping animal hides, and digging for roots.`,
+                      },
+                      {
+                        id: 2140,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Types of stone tools",
+                        body: `1. Handaxes: Teardrop-shaped tools used for cutting and chopping.\n2. Scrapers: Tools with a flat edge used to clean animal hides.\n3. Choppers: Heavy tools used for breaking bones and woody plants.\n4. Points: Sharp tools used as spearheads for hunting.`,
+                      },
+                      {
+                        id: 2150,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Beyond stone: Other materials",
+                        body: `As time passed, early humans learned to use other materials:\n• Wood: Used to make spears, clubs, and handles for stone tools.\n• Bone: Animal bones were shaped into needles, fishhooks, and harpoons.\n• Animal hides: Used to make clothing and shelters.`,
+                      },
+                      {
+                        id: 2160,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Composite tools",
+                        body: `Early humans eventually learned to combine materials to make more effective tools:\n• Stone axe heads attached to wooden handles\n• Bone points fixed to wooden spears\n• Stone blades inserted into bone or wooden handles to make knives`,
+                      },
+                      {
+                        id: 2170,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "How tools changed over time",
+                        body: `• Became more specialized: Tools were designed for specific tasks\n• Improved techniques: Better ways of shaping stone and other materials\n• New materials: Use of softer stones and eventually metals\n• Complex designs: Tools with multiple parts working together`,
+                      },
+                      {
+                        id: 2180,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Importance of tools for early humans",
+                        body: `Tools were crucial for early human survival and development:\n• Made hunting and gathering more efficient\n• Allowed humans to access new food sources\n• Helped in making clothing and shelters\n• Enabled humans to defend themselves against predators\n• Led to the development of new skills and knowledge`,
+                      },
+                      {
+                        id: 2190,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 2060,
+                        id: 2200,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 2070,
+                        id: 2210,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 2080,
+                        id: 2220,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 2221,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                id: 2030,
+                description: `Discovery of Fire`,
+                order: 3,
+                title: "Topic 3",
+                lessons: [
                   {
                     id: 313,
                     title: "Discovery of Fire",
@@ -10947,23 +11055,83 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 2090,
+                        id: 2230,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "What is fire?",
+                        body: `Fire is a natural phenomenon that produces heat and light. It occurs when a material burns or undergoes combustion. Early humans observed fire in nature, such as from lightning strikes or volcanic activity.`,
+                      },
+                      {
+                        id: 2240,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "How did early humans discover fire?",
+                        body: `• Observation: They first saw fire occurring naturally in their environment.\n• Preservation: They learned to keep natural fires burning by adding fuel.\n• Creation: Eventually, they discovered how to make fire themselves.`,
+                      },
+                      {
+                        id: 2250,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Methods of making fire",
+                        body: `Early humans developed various methods to create fire:\n• Friction: Rubbing two pieces of wood together\n• Striking: Hitting certain types of stones together to create sparks\n• Drilling: Rapidly spinning a stick against a wooden board`,
+                      },
+                      {
+                        id: 2260,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Uses of fire: Warmth and light",
+                        body: `Fire provided many benefits to early humans:\n• Warmth: It allowed them to stay warm in cold climates and at night.\n• Light: Fire provided light in the darkness, extending their active hours.\n• Protection: The light and heat from fire kept predators away from their camps.`,
+                      },
+                      {
+                        id: 2270,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Uses of fire: Cooking and food preservation",
+                        body: `Fire revolutionized how early humans ate:\n• Cooking meat: Made it easier to eat and digest, and killed harmful bacteria.\n• Cooking plants: Made some inedible plants safe to eat and improved flavor.\n• Food preservation: Smoking meat over fire helped preserve it for longer periods.`,
+                      },
+                      {
+                        id: 2280,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Uses of fire: Tool making",
+                        body: `Fire helped early humans improve their tools:\n• Hardening wood: Fire could harden wooden spears, making them more effective.\n• Shaping stones: Heating certain stones made them easier to shape into tools.\n• Creating new materials: Eventually, humans used fire to work with metals.`,
+                      },
+                      {
+                        id: 2290,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Social impact of fire",
+                        body: `Fire changed how early humans interacted:\n• Gathering point: People gathered around fires, promoting social interaction.\n• Storytelling: The fireplace became a center for sharing stories and knowledge.\n• Expanded territories: With fire, humans could survive in colder regions.`,
+                      },
+                      {
+                        id: 2300,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Long-term effects of fire use",
+                        body: `The mastery of fire had far-reaching effects:\n• Brain development: Cooked food provided more energy, possibly aiding brain growth.\n• Cultural development: Fire rituals became part of early human culture and beliefs.\n• Technological advancement: Understanding fire was a stepping stone to more complex technologies.`,
+                      },
+                      {
+                        id: 2310,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 2100,
+                        id: 2320,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 2110,
+                        id: 2330,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 2120,
+                        id: 2340,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 2341,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                id: 2040,
+                description: `Beginning of Agriculture and Domestication of Animals`,
+                order: 4,
+                title: "Topic 4",
+                lessons: [
                   {
                     id: 314,
                     title:
@@ -11451,26 +11619,93 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 2130,
+                        id: 2350,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "What is agriculture?",
+                        body: `Agriculture is the practice of growing plants and raising animals for food and other uses. It began when humans started to grow their own food instead of just gathering wild plants.`,
+                      },
+                      {
+                        id: 2360,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "How did agriculture begin?",
+                        body: `• Observation: People noticed that dropped seeds grew into new plants.\n• Experimentation: They started planting seeds on purpose.\n• Selection: They chose to plant seeds from the best plants.\n• Cultivation: They began to care for the plants as they grew.`,
+                      },
+                      {
+                        id: 2370,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Early crops",
+                        body: `Different crops were first grown in different parts of the world:\n• Wheat and barley in the Middle East\n• Rice in China and India\n• Corn (maize) in Central America\n• Potatoes in South America`,
+                      },
+                      {
+                        id: 2380,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "What is animal domestication?",
+                        body: `Animal domestication is the process of taming wild animals and breeding them to live alongside humans. Domesticated animals provided food, labor, and other resources.`,
+                      },
+                      {
+                        id: 2390,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "How did animal domestication begin?",
+                        body: `• Hunting: Humans first hunted wild animals for food.\n• Taming: They captured young animals and raised them.\n• Breeding: They selectively bred the tamest animals.\n• Care: They provided food and protection to the animals.`,
+                      },
+                      {
+                        id: 2400,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Early domesticated animals",
+                        body: `Different animals were domesticated in different regions:\n• Dogs: First domesticated animal, used for hunting and protection\n• Sheep and goats: For meat, milk, and wool\n• Cattle: For meat, milk, and as draft animals\n• Chickens: For meat and eggs`,
+                      },
+                      {
+                        id: 2410,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title:
+                          "Benefits of agriculture and animal domestication",
+                        body: `These practices brought many changes:\n• Reliable food source: Less dependence on hunting and gathering\n• Surplus food: Ability to store food for future use\n• Larger populations: More food could support more people\n• Permanent settlements: People could stay in one place\n• New technologies: Development of farming tools and techniques`,
+                      },
+                      {
+                        id: 2420,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Changes in society",
+                        body: `Agriculture and animal domestication led to big changes in how people lived:\n• Division of labor: Different jobs for different people\n• Social hierarchy: Some people became wealthier or more powerful\n• Trade: Exchange of surplus food and goods\n• Cultural development: More time for art, religion, and learning`,
+                      },
+                      {
+                        id: 2430,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Challenges of early agriculture",
+                        body: `The shift to farming wasn't always easy:\n• Hard work: Farming required more labor than hunting and gathering\n• Crop failures: Droughts or pests could destroy food supply\n• Less varied diet: People relied on fewer types of food\n• New diseases: Living close to animals led to new illnesses`,
+                      },
+                      {
+                        id: 2440,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 2140,
+                        id: 2450,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 2150,
+                        id: 2460,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 2160,
+                        id: 2470,
+                        type: contentBlockTypeEnum.enumValues[0],
+                      },
+                      {
+                        id: 2471,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                id: 2050,
+                description: `Settlements and community life`,
+                order: 5,
+                title: "Topic 5",
+                lessons: [
                   {
                     id: 315,
-                    title: "Settlements and community life ",
+                    title: "Settlements and community life",
                     order: 5,
                     challenges: [
                       {
@@ -11978,19 +12213,73 @@ const main = async () => {
                     ],
                     blocks: [
                       {
-                        id: 2170,
+                        id: 2480,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "What is a settlement?",
+                        body: `A settlement is a place where people live together. Early human settlements were the first villages and towns that people built when they stopped moving around and started growing food.`,
+                      },
+                      {
+                        id: 2490,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "From nomads to settlers",
+                        body: `• Nomads: Hunter-gatherers who moved from place to place.\n• Settlers: People who stayed in one place to farm and raise animals.\n• Reason for change: Farming required people to stay near their crops.`,
+                      },
+                      {
+                        id: 2500,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Early settlements",
+                        body: `The first settlements were small villages:\n• Location: Near water sources and good farming land\n• Housing: Simple homes made of mud, wood, or stone\n• Size: Usually home to a few families or a small community\n• Layout: Houses grouped together, often with a central area`,
+                      },
+                      {
+                        id: 2510,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Community life in early settlements",
+                        body: `Living in settlements changed how people interacted:\n• Cooperation: People worked together to farm and build\n• Shared resources: Tools and food were often shared\n• Social gatherings: More opportunities for group activities\n• Decision making: Leaders emerged to guide the community`,
+                      },
+                      {
+                        id: 2520,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Division of labor",
+                        body: `As settlements grew, people started to have different jobs:\n• Farmers: Grew crops and raised animals\n• Craftspeople: Made tools, pottery, and clothing\n• Builders: Constructed homes and other structures\n• Leaders: Made decisions for the community`,
+                      },
+                      {
+                        id: 2530,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Trade and exchange",
+                        body: `Settlements allowed for new forms of exchange:\n• Surplus: Extra food could be traded for other goods\n• Specialization: People could focus on making specific items to trade\n• Markets: Places where people met to exchange goods\n• Long-distance trade: Exchange with other settlements`,
+                      },
+                      {
+                        id: 2540,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Cultural developments",
+                        body: `Settled life allowed for new cultural practices:\n• Art: More time for creating pottery, sculptures, and paintings\n• Religion: Building of temples and development of rituals\n• Learning: Passing down of knowledge and skills\n• Technology: Invention of new tools and techniques`,
+                      },
+                      {
+                        id: 2550,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Changes in society",
+                        body: `Settlements led to more complex social structures:\n• Social hierarchy: Some people became wealthier or more powerful\n• Property ownership: Land and resources could be owned\n• Rules and laws: Development of community guidelines\n• Conflict: Disputes over resources or power could arise`,
+                      },
+                      {
+                        id: 2560,
+                        type: contentBlockTypeEnum.enumValues[1],
+                        title: "Growth of settlements",
+                        body: `Over time, some settlements grew larger:\n• Villages: Small farming communities\n• Towns: Larger settlements with more diverse activities\n• Cities: Very large settlements with complex organization\n• This growth led to the development of early civilizations`,
+                      },
+                      {
+                        id: 2570,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 2180,
+                        id: 2580,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 2190,
+                        id: 2590,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                       {
-                        id: 2200,
+                        id: 2600,
                         type: contentBlockTypeEnum.enumValues[0],
                       },
                     ],
